@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Entdecken Sie unsere große Auswahl an Fahrrädern: E-Bikes, Mountainbikes, Rennräder, Trekkingräder und mehr bei Radsport Ziller.">
+  <title>Fahrräder - Radsport Ziller</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  
+  <!-- Header mit Navigation -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="../index.html" class="logo" aria-label="Zur Startseite">
+        Radsport <span class="logo-accent">Ziller</span>
+      </a>
+      
+      <!-- Accessibility Controls -->
+      <div class="accessibility-controls" aria-label="Barrierefreiheit">
+        <button 
+          id="textSizeBtn" 
+          class="accessibility-btn" 
+          aria-label="Textgröße anpassen"
+          title="Textgröße anpassen">
+          A+
+        </button>
+        <button 
+          id="contrastBtn" 
+          class="accessibility-btn" 
+          aria-label="Kontrast anpassen"
+          aria-pressed="false"
+          title="Kontrast anpassen">
+          ◐
+        </button>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button 
+        class="menu-toggle" 
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="main-nav">
+        ☰
+      </button>
+      
+      <!-- Navigation -->
+      <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="../index.html" class="nav-link">Startseite</a></li>
+          <li class="nav-item"><a href="fahrraeder.html" class="nav-link">Fahrräder</a></li>
+          <li class="nav-item"><a href="leasing.html" class="nav-link">Leasing</a></li>
+          <li class="nav-item"><a href="service.html" class="nav-link">Service &amp; Reparatur</a></li>
+          <li class="nav-item"><a href="neuigkeiten.html" class="nav-link">Neuigkeiten</a></li>
+          <li class="nav-item"><a href="kontakt.html" class="nav-link">Über uns / Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Page Header -->
+    <section class="hero">
+      <div class="container">
+        <h1>Unsere Fahrräder</h1>
+        <p>Entdecken Sie unsere vielfältige Auswahl an hochwertigen Fahrrädern für jeden Einsatzzweck</p>
+      </div>
+    </section>
+    
+    <!-- Fahrrad-Kategorien -->
+    <section class="section">
+      <div class="container">
+        <h2 class="text-center mb-lg">Unsere Fahrrad-Kategorien</h2>
+        
+        <div class="grid grid-3">
+          
+          <!-- E-Bikes -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #dc0000, #a50000); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              ⚡
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">E-Bikes</h3>
+              <p class="card-text">
+                Komfortables und müheloses Fahren mit elektrischer Unterstützung. 
+                Ideal für längere Strecken und bergiges Gelände.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ City E-Bikes</li>
+                <li>✓ Trekking E-Bikes</li>
+                <li>✓ Mountain E-Bikes</li>
+                <li>✓ S-Pedelecs</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Mountainbikes -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #000000, #333333); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              ⛰️
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Mountainbikes</h3>
+              <p class="card-text">
+                Robust und geländegängig für anspruchsvolle Trails und Offroad-Abenteuer.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ Hardtail MTB</li>
+                <li>✓ Fully MTB</li>
+                <li>✓ Cross Country</li>
+                <li>✓ All Mountain</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Rennräder -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #dc0000, #a50000); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              🏁
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Rennräder</h3>
+              <p class="card-text">
+                Leicht und aerodynamisch für maximale Geschwindigkeit auf der Straße.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ Race Bikes</li>
+                <li>✓ Endurance Bikes</li>
+                <li>✓ Aero Bikes</li>
+                <li>✓ Gravel Bikes</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Trekkingräder -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #000000, #333333); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              🚴
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Trekkingräder</h3>
+              <p class="card-text">
+                Vielseitig und komfortabel für lange Touren und Radreisen.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ Damen Trekking</li>
+                <li>✓ Herren Trekking</li>
+                <li>✓ Crossbikes</li>
+                <li>✓ Reiseräder</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Citybikes -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #dc0000, #a50000); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              🏙️
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Citybikes</h3>
+              <p class="card-text">
+                Praktisch und bequem für den urbanen Alltag und kurze Strecken.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ Hollandräder</li>
+                <li>✓ Urban Bikes</li>
+                <li>✓ Falträder</li>
+                <li>✓ Transporträder</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Kinderräder -->
+          <div class="card">
+            <div class="card-image" style="background: linear-gradient(135deg, #000000, #333333); display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+              👶
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">Kinderräder</h3>
+              <p class="card-text">
+                Sichere und altersgerechte Fahrräder für die jüngsten Radfahrer.
+              </p>
+              <ul style="list-style: none; padding: 0; margin-top: 1rem; color: var(--color-gray);">
+                <li>✓ Laufräder</li>
+                <li>✓ 12" - 20" Kinderräder</li>
+                <li>✓ Jugendräder</li>
+                <li>✓ BMX</li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <!-- Top Marken -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="text-center mb-lg">Unsere Top-Marken</h2>
+        <div class="grid grid-4">
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Trek
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Specialized
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Cube
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Giant
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Scott
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Cannondale
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            Bulls
+          </div>
+          <div class="text-center" style="padding: 2rem; background: white; border-radius: 8px; font-weight: bold; font-size: 1.2rem;">
+            KTM
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Beratung -->
+    <section class="section">
+      <div class="container text-center">
+        <h2>Individuelle Beratung</h2>
+        <p style="max-width: 700px; margin: 0 auto var(--spacing-md);">
+          Die Wahl des richtigen Fahrrads hängt von vielen Faktoren ab: 
+          Einsatzzweck, Körpergröße, Budget und persönliche Vorlieben. 
+          Lassen Sie sich von unseren Experten beraten!
+        </p>
+        <a href="kontakt.html" class="btn btn-primary">Beratungstermin vereinbaren</a>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        
+        <div class="footer-section">
+          <h3>Radsport Ziller</h3>
+          <p>Ihr Fahrradfachgeschäft für<br>Beratung, Verkauf und Service</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Kontakt</h3>
+          <address>
+            Musterstraße 123<br>
+            12345 Musterstadt<br>
+            Tel: 01234 / 567890<br>
+            E-Mail: info@radsport-ziller.de
+          </address>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Öffnungszeiten</h3>
+          <p>
+            Mo - Fr: 9:00 - 18:00 Uhr<br>
+            Samstag: 9:00 - 14:00 Uhr<br>
+            Sonntag: geschlossen
+          </p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Schnelllinks</h3>
+          <ul class="footer-links">
+            <li><a href="fahrraeder.html">Fahrräder</a></li>
+            <li><a href="leasing.html">Leasing</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+          </ul>
+        </div>
+        
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Radsport Ziller. Alle Rechte vorbehalten.</p>
+        <ul class="footer-legal">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="../js/main.js"></script>
+</body>
+</html>
