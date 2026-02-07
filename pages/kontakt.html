@@ -233,16 +233,69 @@
       </div>
     </section>
     
-    <!-- Karte Platzhalter -->
+    <!-- Google Maps -->
     <section class="section">
-      <div class="container text-center">
-        <h2>So finden Sie uns</h2>
-        <div style="background: var(--color-gray-light); padding: var(--spacing-xl); border-radius: 8px; margin-top: var(--spacing-md);">
-          <p style="color: var(--color-gray);">
-            [ Hier wird später eine interaktive Karte eingefügt ]<br>
-            Google Maps / OpenStreetMap Integration geplant
-          </p>
+      <div class="container">
+        <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">So finden Sie uns</h2>
+        
+        <!-- Desktop: Interaktive Karte + Button -->
+        <div class="map-desktop" style="display: none;">
+          <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md);">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.123!2d11.4682051!3d48.408672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e66c0b348e191%3A0x6329681be1454853!2sRadsport%20Ziller%20GmbH%20%26%20Co.%20KG!5e0!3m2!1sde!2sde!4v1707336000000!5m2!1sde!2sde"
+              width="100%" 
+              height="450" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Google Maps Standort Radsport Ziller">
+            </iframe>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://www.google.com/maps/dir//Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2A,+85238+Petershausen/@48.1656832,11.5277824,6130m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x479e66c0b348e191:0x6329681be1454853!2m2!1d11.4682051!2d48.408672?entry=ttu" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn btn-primary">
+              <span style="margin-right: 8px;">🗺️</span> Route zu uns planen
+            </a>
+          </div>
         </div>
+        
+        <!-- Mobile: Nur Button zur Route -->
+        <div class="map-mobile" style="display: none;">
+          <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📍</div>
+            <h3 style="margin-bottom: var(--spacing-md);">Besuchen Sie uns</h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">
+              Radsport Ziller GmbH & Co. KG<br>
+              Indersdorfer Str. 2 a<br>
+              85238 Petershausen
+            </p>
+            <a href="https://www.google.com/maps/dir//Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2A,+85238+Petershausen/@48.1656832,11.5277824,6130m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x479e66c0b348e191:0x6329681be1454853!2m2!1d11.4682051!2d48.408672?entry=ttu" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="btn btn-primary"
+               style="font-size: 1.1rem;">
+              <span style="margin-right: 8px;">🗺️</span> Route zu uns planen
+            </a>
+          </div>
+        </div>
+        
+        <style>
+          /* Desktop: Karte + Button anzeigen */
+          @media (min-width: 768px) {
+            .map-desktop { display: block !important; }
+            .map-mobile { display: none !important; }
+          }
+          
+          /* Mobile: Nur Button anzeigen */
+          @media (max-width: 767px) {
+            .map-desktop { display: none !important; }
+            .map-mobile { display: block !important; }
+          }
+        </style>
+        
       </div>
     </section>
     
