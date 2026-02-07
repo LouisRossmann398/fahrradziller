@@ -152,42 +152,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const serviceForm = document.getElementById('serviceAppointmentForm');
   
   if (serviceForm) {
-    // Set minimum date to tomorrow (not today)
+    // Initialize Flatpickr for date selection
     const appointmentDateInput = document.getElementById('appointmentDate');
-    if (appointmentDateInput) {
+    if (appointmentDateInput && typeof flatpickr !== 'undefined') {
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowStr = tomorrow.toISOString().split('T')[0];
-      appointmentDateInput.setAttribute('min', tomorrowStr);
       
-      // Check for weekends when date changes
-      appointmentDateInput.addEventListener('change', function() {
-        const selectedDate = new Date(this.value + 'T00:00:00');
-        const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 6 = Saturday
-        
-        // Clear previous error messages
-        document.querySelectorAll('.date-error').forEach(el => el.remove());
-        this.style.borderColor = '';
-        
-        // Check if weekend
-        if (dayOfWeek === 0 || dayOfWeek === 6) {
-          // Show error message
-          const errorDiv = document.createElement('div');
-          errorDiv.className = 'date-error error-message';
-          errorDiv.style.cssText = `
-            color: var(--color-primary);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background: #fff3cd;
-            border-left: 4px solid var(--color-primary);
-            border-radius: 4px;
-          `;
-          errorDiv.textContent = '❌ Am Wochenende (Samstag & Sonntag) finden keine Reparaturen statt. Bitte wählen Sie einen Werktag.';
-          
-          this.parentElement.appendChild(errorDiv);
-          this.value = ''; // Clear the invalid date
-          this.style.borderColor = 'var(--color-primary)';
+      flatpickr(appointmentDateInput, {
+        locale: 'de',
+        dateFormat: 'd.m.Y',
+        minDate: tomorrow,
+        disable: [
+          function(date) {
+            // Disable weekends (0 = Sunday, 6 = Saturday)
+            return (date.getDay() === 0 || date.getDay() === 6);
+          }
+        ],
+        onChange: function(selectedDates, dateStr, instance) {
+          // Clear any previous error messages
+          document.querySelectorAll('.date-error').forEach(el => el.remove());
+          appointmentDateInput.style.borderColor = '';
         }
       });
     }
