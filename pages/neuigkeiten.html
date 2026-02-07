@@ -56,10 +56,124 @@
     <!-- Page Header -->
     <section class="hero">
       <div class="container">
-        <h1>Angebote</h1>
-        <p>Aktuelle Angebote und Neuigkeiten</p>
+        <h1>Aktuelle Angebote</h1>
+        <p>Unsere monatlichen Sonderangebote und Aktionen</p>
       </div>
     </section>
+    
+    <!-- PDF Viewer / Download Section -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto;">
+          
+          <!-- PDF vorhanden -->
+          <div id="pdfAvailable" style="display: none;">
+            <!-- Desktop: PDF Viewer -->
+            <div class="pdf-viewer-desktop" style="display: none;">
+              <div style="background: white; padding: var(--spacing-md); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: var(--spacing-md);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
+                  <h2 style="margin: 0;">Aktuelle Angebote</h2>
+                  <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary">
+                    <span style="margin-right: 8px;">📥</span> PDF herunterladen
+                  </a>
+                </div>
+              </div>
+              
+              <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+                <iframe 
+                  id="pdfFrame"
+                  src="../angebote/aktuelle-angebote.pdf" 
+                  style="width: 100%; height: 800px; border: none;"
+                  title="Aktuelle Angebote PDF">
+                </iframe>
+              </div>
+              
+              <p style="text-align: center; color: var(--color-text-secondary); margin-top: var(--spacing-md); font-size: 0.9rem;">
+                💡 Tipp: Sie können im PDF scrollen oder die Seiten mit den Browser-Tools durchblättern
+              </p>
+            </div>
+            
+            <!-- Mobile: Nur Download Button -->
+            <div class="pdf-viewer-mobile" style="display: none;">
+              <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📄</div>
+                <h2 style="margin-bottom: var(--spacing-md);">Aktuelle Angebote</h2>
+                <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+                  Laden Sie unser aktuelles Angebots-PDF herunter und entdecken Sie unsere Sonderaktionen.
+                </p>
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary" style="font-size: 1.1rem;">
+                  <span style="margin-right: 8px;">📥</span> PDF herunterladen
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Kein PDF vorhanden (Platzhalter) -->
+          <div id="pdfNotAvailable" style="display: none;">
+            <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+              <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📋</div>
+              <h2 style="margin-bottom: var(--spacing-md);">Aktuell keine Angebote</h2>
+              <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Im Moment sind keine besonderen Angebote verfügbar. 
+                Schauen Sie bald wieder vorbei oder besuchen Sie uns direkt im Geschäft!
+              </p>
+              <p style="color: var(--color-text-secondary); font-size: 0.9rem;">
+                Unsere aktuellen Öffnungszeiten und Kontaktdaten finden Sie im Footer.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Loading State -->
+          <div id="pdfLoading">
+            <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+              <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">⏳</div>
+              <p style="color: var(--color-text-secondary);">Angebote werden geladen...</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    
+    <script>
+      // PDF Verfügbarkeit prüfen und entsprechende Ansicht zeigen
+      (function() {
+        const pdfUrl = '../angebote/aktuelle-angebote.pdf';
+        const pdfAvailable = document.getElementById('pdfAvailable');
+        const pdfNotAvailable = document.getElementById('pdfNotAvailable');
+        const pdfLoading = document.getElementById('pdfLoading');
+        const pdfViewerDesktop = document.querySelector('.pdf-viewer-desktop');
+        const pdfViewerMobile = document.querySelector('.pdf-viewer-mobile');
+        
+        // Mobile Detection
+        const isMobile = window.innerWidth < 768;
+        
+        // PDF Existenz prüfen
+        fetch(pdfUrl, { method: 'HEAD' })
+          .then(response => {
+            pdfLoading.style.display = 'none';
+            
+            if (response.ok) {
+              // PDF existiert
+              pdfAvailable.style.display = 'block';
+              
+              if (isMobile) {
+                pdfViewerMobile.style.display = 'block';
+              } else {
+                pdfViewerDesktop.style.display = 'block';
+              }
+            } else {
+              // PDF existiert nicht
+              pdfNotAvailable.style.display = 'block';
+            }
+          })
+          .catch(error => {
+            // Fehler oder PDF nicht verfügbar
+            pdfLoading.style.display = 'none';
+            pdfNotAvailable.style.display = 'block';
+          });
+      })();
+    </script>
     
   </main>
   
