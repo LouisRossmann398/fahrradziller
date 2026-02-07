@@ -4,34 +4,14 @@
  */
 
 // ============================================
-// Bayerische Feiertage berechnen
+// Feste Feiertage in Bayern (ohne bewegliche Feiertage)
 // ============================================
 
-function getEasterDate(year) {
-  // Berechnung nach Gauss-Algorithmus
-  const a = year % 19;
-  const b = Math.floor(year / 100);
-  const c = year % 100;
-  const d = Math.floor(b / 4);
-  const e = b % 4;
-  const f = Math.floor((b + 8) / 25);
-  const g = Math.floor((b - f + 1) / 3);
-  const h = (19 * a + b - d - g + 15) % 30;
-  const i = Math.floor(c / 4);
-  const k = c % 4;
-  const l = (32 + 2 * e + 2 * i - h - k) % 7;
-  const m = Math.floor((a + 11 * h + 22 * l) / 451);
-  const month = Math.floor((h + l - 7 * m + 114) / 31);
-  const day = ((h + l - 7 * m + 114) % 31) + 1;
-  return new Date(year, month - 1, day);
-}
-
 function isBavarianHoliday(date) {
-  const year = date.getFullYear();
   const month = date.getMonth();
   const day = date.getDate();
   
-  // Feste Feiertage
+  // Nur feste Feiertage - bewegliche Feiertage ignoriert
   const fixedHolidays = [
     { month: 0, day: 1 },   // Neujahr
     { month: 0, day: 6 },   // Heilige Drei Könige
@@ -43,35 +23,7 @@ function isBavarianHoliday(date) {
     { month: 11, day: 26 }  // 2. Weihnachtstag
   ];
   
-  // Prüfe feste Feiertage
-  for (const holiday of fixedHolidays) {
-    if (month === holiday.month && day === holiday.day) {
-      return true;
-    }
-  }
-  
-  // Bewegliche Feiertage (abhängig von Ostern)
-  const easter = getEasterDate(year);
-  const easterTime = easter.getTime();
-  const dateTime = date.getTime();
-  const oneDay = 24 * 60 * 60 * 1000;
-  
-  // Karfreitag (2 Tage vor Ostern)
-  if (dateTime === easterTime - 2 * oneDay) return true;
-  
-  // Ostermontag (1 Tag nach Ostern)
-  if (dateTime === easterTime + 1 * oneDay) return true;
-  
-  // Christi Himmelfahrt (39 Tage nach Ostern)
-  if (dateTime === easterTime + 39 * oneDay) return true;
-  
-  // Pfingstmontag (50 Tage nach Ostern)
-  if (dateTime === easterTime + 50 * oneDay) return true;
-  
-  // Fronleichnam (60 Tage nach Ostern)
-  if (dateTime === easterTime + 60 * oneDay) return true;
-  
-  return false;
+  return fixedHolidays.some(h => h.month === month && h.day === day);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
