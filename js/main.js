@@ -3,77 +3,6 @@
  * Funktionen: Mobile Navigation, Accessibility Features
  */
 
-// ============================================
-// Bayerische Feiertage berechnen
-// ============================================
-
-function getEasterDate(year) {
-  // Berechnung nach Gauss-Algorithmus
-  const a = year % 19;
-  const b = Math.floor(year / 100);
-  const c = year % 100;
-  const d = Math.floor(b / 4);
-  const e = b % 4;
-  const f = Math.floor((b + 8) / 25);
-  const g = Math.floor((b - f + 1) / 3);
-  const h = (19 * a + b - d - g + 15) % 30;
-  const i = Math.floor(c / 4);
-  const k = c % 4;
-  const l = (32 + 2 * e + 2 * i - h - k) % 7;
-  const m = Math.floor((a + 11 * h + 22 * l) / 451);
-  const month = Math.floor((h + l - 7 * m + 114) / 31);
-  const day = ((h + l - 7 * m + 114) % 31) + 1;
-  return new Date(year, month - 1, day);
-}
-
-function isBavarianHoliday(date) {
-  const year = date.getFullYear();
-  const month = date.getMonth();
-  const day = date.getDate();
-  
-  // Feste Feiertage
-  const fixedHolidays = [
-    { month: 0, day: 1 },   // Neujahr
-    { month: 0, day: 6 },   // Heilige Drei Könige
-    { month: 4, day: 1 },   // Tag der Arbeit
-    { month: 7, day: 15 },  // Mariä Himmelfahrt
-    { month: 9, day: 3 },   // Tag der Deutschen Einheit
-    { month: 10, day: 1 },  // Allerheiligen
-    { month: 11, day: 25 }, // 1. Weihnachtstag
-    { month: 11, day: 26 }  // 2. Weihnachtstag
-  ];
-  
-  // Prüfe feste Feiertage
-  for (const holiday of fixedHolidays) {
-    if (month === holiday.month && day === holiday.day) {
-      return true;
-    }
-  }
-  
-  // Bewegliche Feiertage (abhängig von Ostern)
-  const easter = getEasterDate(year);
-  const easterTime = easter.getTime();
-  const dateTime = date.getTime();
-  const oneDay = 24 * 60 * 60 * 1000;
-  
-  // Karfreitag (2 Tage vor Ostern)
-  if (dateTime === easterTime - 2 * oneDay) return true;
-  
-  // Ostermontag (1 Tag nach Ostern)
-  if (dateTime === easterTime + 1 * oneDay) return true;
-  
-  // Christi Himmelfahrt (39 Tage nach Ostern)
-  if (dateTime === easterTime + 39 * oneDay) return true;
-  
-  // Pfingstmontag (50 Tage nach Ostern)
-  if (dateTime === easterTime + 50 * oneDay) return true;
-  
-  // Fronleichnam (60 Tage nach Ostern)
-  if (dateTime === easterTime + 60 * oneDay) return true;
-  
-  return false;
-}
-
 document.addEventListener('DOMContentLoaded', function() {
   
   // ============================================
@@ -231,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const tomorrowStr = tomorrow.toISOString().split('T')[0];
       appointmentDateInput.setAttribute('min', tomorrowStr);
       
-      // Check for weekends and holidays when date changes
+      // Check for weekends when date changes
       appointmentDateInput.addEventListener('change', function() {
         const selectedDate = new Date(this.value + 'T00:00:00');
         const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 6 = Saturday
@@ -240,18 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.date-error').forEach(el => el.remove());
         this.style.borderColor = '';
         
-        let errorMessage = null;
-        
         // Check if weekend
         if (dayOfWeek === 0 || dayOfWeek === 6) {
-          errorMessage = '❌ Am Wochenende (Samstag & Sonntag) finden keine Reparaturen statt. Bitte wählen Sie einen Werktag.';
-        }
-        // Check if holiday
-        else if (isBavarianHoliday(selectedDate)) {
-          errorMessage = '❌ An Feiertagen finden keine Reparaturen statt. Bitte wählen Sie einen anderen Tag.';
-        }
-        
-        if (errorMessage) {
           // Show error message
           const errorDiv = document.createElement('div');
           errorDiv.className = 'date-error error-message';
@@ -264,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             border-left: 4px solid var(--color-primary);
             border-radius: 4px;
           `;
-          errorDiv.textContent = errorMessage;
+          errorDiv.textContent = '❌ Am Wochenende (Samstag & Sonntag) finden keine Reparaturen statt. Bitte wählen Sie einen Werktag.';
           
           this.parentElement.appendChild(errorDiv);
           this.value = ''; // Clear the invalid date
