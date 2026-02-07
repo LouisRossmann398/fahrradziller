@@ -152,11 +152,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const serviceForm = document.getElementById('serviceAppointmentForm');
   
   if (serviceForm) {
-    // Set minimum date to today
+    // Set minimum date to tomorrow (not today)
     const appointmentDateInput = document.getElementById('appointmentDate');
     if (appointmentDateInput) {
-      const today = new Date().toISOString().split('T')[0];
-      appointmentDateInput.setAttribute('min', today);
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+      appointmentDateInput.setAttribute('min', tomorrowStr);
     }
     
     serviceForm.addEventListener('submit', function(e) {
