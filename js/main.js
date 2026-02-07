@@ -6,6 +6,26 @@
 document.addEventListener('DOMContentLoaded', function() {
   
   // ============================================
+  // Dynamisches Jahr im Footer und rechtlichen Seiten
+  // ============================================
+  
+  const currentYear = new Date().getFullYear();
+  const yearElement = document.getElementById('currentYear');
+  if (yearElement) {
+    yearElement.textContent = currentYear;
+  }
+  
+  // Datum für Impressum/Datenschutz (Format: "Monat Jahr")
+  const updateDateElement = document.getElementById('updateDate');
+  if (updateDateElement) {
+    const months = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 
+                    'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+    const now = new Date();
+    const monthName = months[now.getMonth()];
+    updateDateElement.textContent = `${monthName} ${currentYear}`;
+  }
+  
+  // ============================================
   // Mobile Navigation Toggle
   // ============================================
   
