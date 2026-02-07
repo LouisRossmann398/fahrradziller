@@ -6,8 +6,8 @@
   <meta name="description" content="Professioneller Fahrradservice und Reparatur bei Radsport Ziller - Wartung, Inspektion und Reparaturen aller Art.">
   <title>Service & Reparatur - Radsport Ziller</title>
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_red.css">
+  <link rel="stylesheet" href="../js/vendor/flatpickr/flatpickr.min.css">
+  <link rel="stylesheet" href="../js/vendor/flatpickr/material_red.css">
   <style>
     /* Flatpickr Anpassungen - alles im dunkleren Rot */
     .flatpickr-calendar .flatpickr-months {
@@ -266,16 +266,10 @@
             <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">
               Unverbindliche Terminanfrage senden
             </button>
-            
-            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: var(--spacing-md); margin-top: var(--spacing-md); border-radius: 4px;">
-              <strong style="color: #856404;">ℹ️ Wichtig:</strong>
-              <p style="color: #856404; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
-                Dies ist eine <strong>unverbindliche Terminanfrage</strong>. Wir prüfen die Verfügbarkeit in unserer Werkstatt 
-                und melden uns dann per E-Mail oder Telefon bei Ihnen zurück, um den Termin zu bestätigen oder 
-                einen Alternativtermin anzubieten.
-              </p>
-            </div>
           </form>
+          
+          <!-- Success Message Container (initially hidden) -->
+          <div id="serviceSuccessContainer" style="display: none;"></div>
         </div>
       </div>
     </section>
@@ -314,8 +308,8 @@
             Radsport Ziller GmbH & Co. KG<br>
             Indersdorfer Str. 2 a<br>
             85238 Petershausen<br>
-            Tel: 08137 / 5025<br>
-            E-Mail: radsport@radsport-ziller.com
+            Tel: <a href="tel:081375025" style="color: rgba(255, 255, 255, 0.8);">08137 / 5025</a><br>
+            E-Mail: <a href="mailto:radsport@radsport-ziller.com" style="color: rgba(255, 255, 255, 0.8);">radsport@radsport-ziller.com</a>
           </address>
         </div>
         
@@ -351,8 +345,8 @@
     </div>
   </footer>
   
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+  <script src="../js/vendor/flatpickr/flatpickr.min.js"></script>
+  <script src="../js/vendor/flatpickr/de.js"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>
