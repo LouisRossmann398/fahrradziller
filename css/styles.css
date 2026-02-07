@@ -164,15 +164,19 @@ a:focus {
   background: var(--color-white);
   border: 2px solid var(--color-gray);
   border-radius: 4px;
-  padding: var(--spacing-xs);
+  padding: 0;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 18px; /* Fixe Pixel-Größe statt rem */
+  font-weight: 600;
   transition: all var(--transition-speed);
+  flex-shrink: 0; /* Verhindert Schrumpfen */
 }
 
 .accessibility-btn:hover {
