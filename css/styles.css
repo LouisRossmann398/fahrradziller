@@ -294,15 +294,16 @@ a:focus {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #a50000 100%);
+  background: var(--color-primary);
   color: var(--color-white);
   box-shadow: 0 4px 16px rgba(220, 0, 0, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(220, 0, 0, 0.35);
-  background: linear-gradient(135deg, #a50000 0%, var(--color-primary) 100%);
+  box-shadow: 0 6px 24px rgba(220, 0, 0, 0.4);
+  background: var(--color-primary);
+  filter: brightness(1.05);
 }
 
 .btn-primary:active {
