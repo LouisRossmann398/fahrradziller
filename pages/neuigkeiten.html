@@ -70,16 +70,7 @@
           <div id="pdfAvailable" style="display: none;">
             <!-- Desktop: PDF Viewer -->
             <div class="pdf-viewer-desktop" style="display: none;">
-              <div style="background: white; padding: var(--spacing-md); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: var(--spacing-md);">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-sm);">
-                  <h2 style="margin: 0;">Aktuelle Angebote</h2>
-                  <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary">
-                    <span style="margin-right: 8px;">📥</span> PDF herunterladen
-                  </a>
-                </div>
-              </div>
-              
-              <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;">
+              <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md);">
                 <iframe 
                   id="pdfFrame"
                   src="../angebote/aktuelle-angebote.pdf" 
@@ -88,9 +79,11 @@
                 </iframe>
               </div>
               
-              <p style="text-align: center; color: var(--color-text-secondary); margin-top: var(--spacing-md); font-size: 0.9rem;">
-                💡 Tipp: Sie können im PDF scrollen oder die Seiten mit den Browser-Tools durchblättern
-              </p>
+              <div style="text-align: center;">
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary">
+                  <span style="margin-right: 8px;">📥</span> PDF herunterladen
+                </a>
+              </div>
             </div>
             
             <!-- Mobile: Nur Download Button -->
