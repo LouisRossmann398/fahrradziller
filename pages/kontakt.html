@@ -240,29 +240,18 @@
         
         <!-- Desktop: Interaktive Karte + Button -->
         <div class="map-desktop" style="display: none;">
-          
-          <!-- Platzhalter vor dem Laden (Zwei-Klick-Lösung für DSGVO) -->
-          <div id="mapsPlaceholder" style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: var(--spacing-xl); text-align: center; margin-bottom: var(--spacing-md);">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🗺️</div>
-            <h3 style="margin-bottom: var(--spacing-md);">Interaktive Karte anzeigen</h3>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); line-height: 1.8;">
-              Um Ihnen eine interaktive Karte anzuzeigen, laden wir Inhalte von Google Maps. 
-              Dabei wird Ihre IP-Adresse an Google übertragen.
-            </p>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); font-size: 0.9rem;">
-              Mit dem Laden der Karte akzeptieren Sie die 
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Google</a>.
-            </p>
-            <button id="loadMapsBtn" class="btn btn-primary">
-              Karte laden
-            </button>
+          <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md);">
+            <iframe 
+              src="https://www.google.com/maps?q=Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2a,+85238+Petershausen&output=embed&z=15"
+              width="100%" 
+              height="450" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Google Maps Standort Radsport Ziller">
+            </iframe>
           </div>
-          
-          <!-- Karte (wird nach Zustimmung geladen) -->
-          <div id="mapsContainer" style="display: none; background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md);">
-            <!-- iframe wird dynamisch eingefügt -->
-          </div>
-          
           <div style="text-align: center;">
             <a href="https://www.google.com/maps/dir//Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2A,+85238+Petershausen/@48.1656832,11.5277824,6130m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x479e66c0b348e191:0x6329681be1454853!2m2!1d11.4682051!2d48.408672?entry=ttu" 
                target="_blank" 
@@ -366,44 +355,5 @@
   </footer>
   
   <script src="../js/main.js"></script>
-  
-  <!-- Google Maps Zwei-Klick-Lösung -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const loadMapsBtn = document.getElementById('loadMapsBtn');
-      const mapsPlaceholder = document.getElementById('mapsPlaceholder');
-      const mapsContainer = document.getElementById('mapsContainer');
-      
-      if (loadMapsBtn) {
-        loadMapsBtn.addEventListener('click', function() {
-          // Platzhalter ausblenden
-          mapsPlaceholder.style.display = 'none';
-          
-          // Karte laden und anzeigen
-          mapsContainer.innerHTML = `
-            <iframe 
-              src="https://www.google.com/maps?q=Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2a,+85238+Petershausen&output=embed&z=15"
-              width="100%" 
-              height="450" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Google Maps Standort Radsport Ziller">
-            </iframe>
-          `;
-          mapsContainer.style.display = 'block';
-          
-          // Zustimmung im LocalStorage speichern (optional, für künftige Besuche)
-          localStorage.setItem('googleMapsConsent', 'true');
-        });
-        
-        // Prüfen, ob Nutzer bereits zugestimmt hat
-        if (localStorage.getItem('googleMapsConsent') === 'true') {
-          loadMapsBtn.click();
-        }
-      }
-    });
-  </script>
 </body>
 </html>
