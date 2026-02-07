@@ -33,8 +33,7 @@ Ziller/
 ## ✨ Features
 
 ### Barrierefreiheit (Accessibility)
-- **Textgröße anpassen**: 3 Stufen (Normal, Groß, Sehr Groß)
-- **Kontrast anpassen**: Umschaltung zwischen normalem und hohem Kontrast
+- **Textgröße anpassen**: 3 Stufen (Normal, Groß, Sehr Groß) - wirkt auf gesamten Text
 - Einstellungen werden im Browser gespeichert (localStorage)
 - Semantisches HTML für Screen-Reader
 - Keyboard-Navigation optimiert

@@ -35,16 +35,9 @@
 }
 
 /* Accessibility Klassen für Textgröße */
-body.text-size-normal { --font-size-base: 16px; }
-body.text-size-large { --font-size-base: 18px; }
-body.text-size-xlarge { --font-size-base: 20px; }
-
-/* Accessibility Klassen für Kontrast */
-body.high-contrast {
-  --color-text: #000000;
-  --color-gray: #000000;
-  --color-primary: #ff0000;
-}
+html.text-size-normal { font-size: 16px; }
+html.text-size-large { font-size: 18px; }
+html.text-size-xlarge { font-size: 20px; }
 
 /* ============================================
    Reset & Base Styles
@@ -58,7 +51,7 @@ body.high-contrast {
 
 html {
   scroll-behavior: smooth;
-  font-size: var(--font-size-base);
+  font-size: 16px; /* Standard-Größe, wird durch Accessibility-Klassen überschrieben */
 }
 
 body {

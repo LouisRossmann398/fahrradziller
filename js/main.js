@@ -82,60 +82,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function applyTextSize(size) {
-    document.body.classList.remove('text-size-normal', 'text-size-large', 'text-size-xlarge');
+    const html = document.documentElement;
+    html.classList.remove('text-size-normal', 'text-size-large', 'text-size-xlarge');
     
     switch(size) {
       case 0:
-        document.body.classList.add('text-size-normal');
+        html.classList.add('text-size-normal');
         if (textSizeBtn) textSizeBtn.title = 'Textgröße: Normal (klicken für Groß)';
         break;
       case 1:
-        document.body.classList.add('text-size-large');
+        html.classList.add('text-size-large');
         if (textSizeBtn) textSizeBtn.title = 'Textgröße: Groß (klicken für Sehr Groß)';
         break;
       case 2:
-        document.body.classList.add('text-size-xlarge');
+        html.classList.add('text-size-xlarge');
         if (textSizeBtn) textSizeBtn.title = 'Textgröße: Sehr Groß (klicken für Normal)';
         break;
-    }
-  }
-  
-  // ============================================
-  // Accessibility: High Contrast Toggle
-  // ============================================
-  
-  const contrastBtn = document.getElementById('contrastBtn');
-  let highContrast = false;
-  
-  // Load saved contrast preference
-  const savedContrast = localStorage.getItem('highContrast');
-  if (savedContrast === 'true') {
-    highContrast = true;
-    document.body.classList.add('high-contrast');
-    updateContrastButton();
-  }
-  
-  if (contrastBtn) {
-    contrastBtn.addEventListener('click', function() {
-      highContrast = !highContrast;
-      
-      if (highContrast) {
-        document.body.classList.add('high-contrast');
-      } else {
-        document.body.classList.remove('high-contrast');
-      }
-      
-      localStorage.setItem('highContrast', highContrast);
-      updateContrastButton();
-    });
-  }
-  
-  function updateContrastButton() {
-    if (contrastBtn) {
-      contrastBtn.title = highContrast ? 
-        'Hoher Kontrast aktiv (klicken zum Deaktivieren)' : 
-        'Normaler Kontrast (klicken für Hohen Kontrast)';
-      contrastBtn.setAttribute('aria-pressed', highContrast);
     }
   }
   
