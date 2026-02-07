@@ -146,6 +146,113 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // ============================================
+  // Service Appointment Form
+  // ============================================
+  
+  const serviceForm = document.getElementById('serviceAppointmentForm');
+  
+  if (serviceForm) {
+    // Set minimum date to today
+    const appointmentDateInput = document.getElementById('appointmentDate');
+    if (appointmentDateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      appointmentDateInput.setAttribute('min', today);
+    }
+    
+    serviceForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form values
+      const date = document.getElementById('appointmentDate').value;
+      const time = document.getElementById('appointmentTime').value;
+      const serviceType = document.getElementById('serviceType').value;
+      const name = document.getElementById('serviceName').value;
+      const email = document.getElementById('serviceEmail').value;
+      const phone = document.getElementById('servicePhone').value;
+      const message = document.getElementById('serviceMessage').value;
+      const privacy = document.getElementById('servicePrivacy').checked;
+      
+      // Validation
+      let isValid = true;
+      
+      // Clear previous error messages
+      document.querySelectorAll('.error-message').forEach(el => el.remove());
+      
+      if (!date) {
+        showError(document.getElementById('appointmentDate'), 'Bitte wählen Sie ein Datum');
+        isValid = false;
+      }
+      
+      if (!time) {
+        showError(document.getElementById('appointmentTime'), 'Bitte wählen Sie eine Uhrzeit');
+        isValid = false;
+      }
+      
+      if (!serviceType) {
+        showError(document.getElementById('serviceType'), 'Bitte wählen Sie die Art des Anliegens');
+        isValid = false;
+      }
+      
+      if (!name.trim()) {
+        showError(document.getElementById('serviceName'), 'Bitte geben Sie Ihren Namen ein');
+        isValid = false;
+      }
+      
+      if (!email.trim() || !isValidEmail(email)) {
+        showError(document.getElementById('serviceEmail'), 'Bitte geben Sie eine gültige E-Mail-Adresse ein');
+        isValid = false;
+      }
+      
+      if (!privacy) {
+        alert('Bitte stimmen Sie der Datenschutzerklärung zu.');
+        isValid = false;
+      }
+      
+      if (isValid) {
+        // Show success message (since we don't have backend yet)
+        showServiceSuccessMessage(date, time);
+        serviceForm.reset();
+      }
+    });
+  }
+  
+  function showServiceSuccessMessage(date, time) {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'success-message';
+    successDiv.style.cssText = `
+      background-color: #28a745;
+      color: white;
+      padding: var(--spacing-md);
+      border-radius: 4px;
+      margin-top: var(--spacing-md);
+      text-align: center;
+      font-size: 1.1rem;
+    `;
+    
+    // Format date for display
+    const dateObj = new Date(date + 'T00:00:00');
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = dateObj.toLocaleDateString('de-DE', options);
+    
+    successDiv.innerHTML = `
+      <strong>✓ Terminanfrage erfolgreich gesendet!</strong><br><br>
+      Ihr Wunschtermin: ${formattedDate} um ${time} Uhr<br><br>
+      Wir haben Ihre Anfrage erhalten und melden uns in Kürze bei Ihnen zur Terminbestätigung.<br>
+      Sie erhalten auch eine Bestätigungs-E-Mail.
+    `;
+    
+    serviceForm.appendChild(successDiv);
+    
+    // Scroll to success message
+    successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    // Remove after 8 seconds
+    setTimeout(() => {
+      successDiv.remove();
+    }, 8000);
+  }
+  
+  // ============================================
   // Form Validation (if form exists)
   // ============================================
   

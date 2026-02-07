@@ -61,6 +61,213 @@
       </div>
     </section>
     
+    <!-- Einführungstext -->
+    <section class="section">
+      <div class="container">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <h2>Ihr Rad in guten Händen</h2>
+          <p style="font-size: 1.1rem; margin-top: var(--spacing-md);">
+            Bei uns endet die Kundenbetreuung nicht mit dem Verkauf! Ganz egal, ob Sie Ihr Rad 
+            besser ausstatten möchten, etwas zu reparieren ist, oder Sie sich generell einmal 
+            beraten lassen möchten! In unserer erfahrenen Fahrradwerkstatt arbeiten wir stets 
+            sorgfältig an jedem Anliegen!
+          </p>
+        </div>
+        
+        <div class="grid grid-2" style="margin-top: var(--spacing-lg);">
+          <div class="card">
+            <div class="card-content">
+              <h3>Alle Hersteller</h3>
+              <p>Wir reparieren und warten Fahrräder aller Hersteller – unabhängig von Marke oder Alter.</p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-content">
+              <h3>Unser Tipp</h3>
+              <p>Bringen Sie Ihr Fahrrad einmal im Jahr zur Inspektion und halten Sie es somit 
+                nachhaltig in Schuss. So werden Sie lange an Ihrem Fahrrad Freude haben.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Terminbuchung -->
+    <section class="section section-alt">
+      <div class="container">
+        <div style="max-width: 700px; margin: 0 auto;">
+          <h2 class="text-center">Termin vereinbaren</h2>
+          <p class="text-center" style="margin-bottom: var(--spacing-lg);">
+            Vereinbaren Sie direkt online einen Termin für Service, Reparatur oder Beratung. 
+            Wir melden uns zeitnah bei Ihnen zur Bestätigung.
+          </p>
+          
+          <form id="serviceAppointmentForm" class="service-form" style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            
+            <div class="form-group">
+              <label for="appointmentDate" class="form-label">
+                Wunschtermin – Datum <span style="color: var(--color-primary);">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="appointmentDate" 
+                name="appointmentDate" 
+                class="form-input" 
+                required
+                aria-required="true">
+              <small style="color: var(--color-gray); font-size: 0.9rem; margin-top: 0.25rem; display: block;">
+                Bitte wählen Sie Ihr Wunschdatum. Wir bestätigen die Verfügbarkeit.
+              </small>
+            </div>
+            
+            <div class="form-group">
+              <label for="appointmentTime" class="form-label">
+                Wunschtermin – Uhrzeit <span style="color: var(--color-primary);">*</span>
+              </label>
+              <select id="appointmentTime" name="appointmentTime" class="form-select" required aria-required="true">
+                <option value="">Bitte wählen Sie eine Uhrzeit</option>
+                <optgroup label="Vormittag">
+                  <option value="09:00">09:00 Uhr</option>
+                  <option value="09:30">09:30 Uhr</option>
+                  <option value="10:00">10:00 Uhr</option>
+                  <option value="10:30">10:30 Uhr</option>
+                  <option value="11:00">11:00 Uhr</option>
+                  <option value="11:30">11:30 Uhr</option>
+                </optgroup>
+                <optgroup label="Nachmittag">
+                  <option value="14:00">14:00 Uhr</option>
+                  <option value="14:30">14:30 Uhr</option>
+                  <option value="15:00">15:00 Uhr</option>
+                  <option value="15:30">15:30 Uhr</option>
+                  <option value="16:00">16:00 Uhr</option>
+                  <option value="16:30">16:30 Uhr</option>
+                  <option value="17:00">17:00 Uhr</option>
+                  <option value="17:30">17:30 Uhr</option>
+                </optgroup>
+              </select>
+              <small style="color: var(--color-gray); font-size: 0.9rem; margin-top: 0.25rem; display: block;">
+                Bitte beachten Sie unsere Öffnungszeiten: Mo, Di, Do, Fr: 9-12 & 14-18 Uhr, Mi & Sa: 9-12 Uhr
+              </small>
+            </div>
+            
+            <div class="form-group">
+              <label for="serviceType" class="form-label">
+                Art des Anliegens <span style="color: var(--color-primary);">*</span>
+              </label>
+              <select id="serviceType" name="serviceType" class="form-select" required aria-required="true">
+                <option value="">Bitte wählen</option>
+                <option value="inspektion">Inspektion / Wartung</option>
+                <option value="reparatur">Reparatur</option>
+                <option value="beratung">Beratung</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="serviceName" class="form-label">
+                Ihr Name <span style="color: var(--color-primary);">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="serviceName" 
+                name="serviceName" 
+                class="form-input" 
+                required
+                aria-required="true"
+                placeholder="Vorname Nachname">
+            </div>
+            
+            <div class="form-group">
+              <label for="serviceEmail" class="form-label">
+                Ihre E-Mail-Adresse <span style="color: var(--color-primary);">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="serviceEmail" 
+                name="serviceEmail" 
+                class="form-input" 
+                required
+                aria-required="true"
+                placeholder="ihre.email@beispiel.de">
+            </div>
+            
+            <div class="form-group">
+              <label for="servicePhone" class="form-label">
+                Telefonnummer (optional)
+              </label>
+              <input 
+                type="tel" 
+                id="servicePhone" 
+                name="servicePhone" 
+                class="form-input"
+                placeholder="0123 / 456789">
+              <small style="color: var(--color-gray); font-size: 0.9rem; margin-top: 0.25rem; display: block;">
+                Für Rückfragen hilfreich
+              </small>
+            </div>
+            
+            <div class="form-group">
+              <label for="serviceMessage" class="form-label">
+                Ihr Anliegen (optional)
+              </label>
+              <textarea 
+                id="serviceMessage" 
+                name="serviceMessage" 
+                class="form-textarea"
+                rows="4"
+                placeholder="Beschreiben Sie kurz Ihr Anliegen, z.B. welche Reparatur benötigt wird..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+                <input 
+                  type="checkbox" 
+                  id="servicePrivacy" 
+                  name="servicePrivacy" 
+                  required
+                  style="margin-top: 0.25rem;">
+                <span style="font-size: 0.9rem;">
+                  Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> 
+                  zur Kenntnis genommen und stimme der Verarbeitung meiner Daten zur Terminvereinbarung zu. 
+                  <span style="color: var(--color-primary);">*</span>
+                </span>
+              </label>
+            </div>
+            
+            <p style="font-size: 0.9rem; color: var(--color-gray); margin-bottom: var(--spacing-md);">
+              <span style="color: var(--color-primary);">*</span> Pflichtfelder
+            </p>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">
+              Terminanfrage senden
+            </button>
+            
+            <p style="font-size: 0.9rem; color: var(--color-gray); text-align: center; margin-top: var(--spacing-md); margin-bottom: 0;">
+              Nach dem Absenden erhalten Sie eine Bestätigung per E-Mail. 
+              Wir melden uns zeitnah zur finalen Terminabsprache.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Kontakt -->
+    <section class="section">
+      <div class="container text-center">
+        <h2>Lieber persönlich?</h2>
+        <p style="max-width: 600px; margin: 0 auto var(--spacing-md);">
+          Sie können uns natürlich auch gerne telefonisch oder per E-Mail kontaktieren.
+        </p>
+        <p style="font-size: 1.2rem; margin-bottom: var(--spacing-sm);">
+          <strong>Telefon:</strong> <a href="tel:081375025">08137 / 5025</a>
+        </p>
+        <p style="font-size: 1.2rem;">
+          <strong>E-Mail:</strong> <a href="mailto:radsport@radsport-ziller.com">radsport@radsport-ziller.com</a>
+        </p>
+      </div>
+    </section>
+    
   </main>
   
   <!-- Footer -->
