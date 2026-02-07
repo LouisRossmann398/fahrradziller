@@ -287,6 +287,56 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       }
+      
+      // Live validation for email
+      const serviceEmailInput = document.getElementById('serviceEmail');
+      if (serviceEmailInput) {
+        serviceEmailInput.addEventListener('blur', function() {
+          // Remove previous error
+          const existingError = this.parentElement.querySelector('.error-message');
+          if (existingError) existingError.remove();
+          this.style.borderColor = '';
+          
+          // Validate if not empty
+          if (this.value.trim() && !isValidEmail(this.value)) {
+            showError(this, 'Bitte geben Sie eine gültige E-Mail-Adresse ein (z.B. name@beispiel.de)');
+          }
+        });
+        
+        // Clear error on input
+        serviceEmailInput.addEventListener('input', function() {
+          const existingError = this.parentElement.querySelector('.error-message');
+          if (existingError && isValidEmail(this.value)) {
+            existingError.remove();
+            this.style.borderColor = '';
+          }
+        });
+      }
+      
+      // Live validation for phone (optional field)
+      const servicePhoneInput = document.getElementById('servicePhone');
+      if (servicePhoneInput) {
+        servicePhoneInput.addEventListener('blur', function() {
+          // Remove previous error
+          const existingError = this.parentElement.querySelector('.error-message');
+          if (existingError) existingError.remove();
+          this.style.borderColor = '';
+          
+          // Validate only if something is entered
+          if (this.value.trim() && !isValidPhone(this.value)) {
+            showError(this, 'Bitte geben Sie eine gültige Telefonnummer ein (mindestens 5 Ziffern)');
+          }
+        });
+        
+        // Clear error on input
+        servicePhoneInput.addEventListener('input', function() {
+          const existingError = this.parentElement.querySelector('.error-message');
+          if (existingError && (this.value.trim() === '' || isValidPhone(this.value))) {
+            existingError.remove();
+            this.style.borderColor = '';
+          }
+        });
+      }
     }
     
     serviceForm.addEventListener('submit', function(e) {
