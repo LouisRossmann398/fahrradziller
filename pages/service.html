@@ -9,21 +9,47 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_red.css">
   <style>
-    /* Flatpickr Anpassungen */
+    /* Flatpickr Anpassungen - alles im dunkleren Rot */
+    .flatpickr-calendar .flatpickr-months {
+      background: #a50000 !important;
+    }
+    .flatpickr-calendar .flatpickr-month {
+      background: #a50000 !important;
+    }
+    .flatpickr-calendar .flatpickr-current-month {
+      color: white !important;
+    }
+    .flatpickr-calendar .flatpickr-current-month .flatpickr-monthDropdown-months {
+      background: #a50000 !important;
+      color: white !important;
+    }
+    .flatpickr-calendar .flatpickr-current-month .numInputWrapper input {
+      color: white !important;
+      background: #a50000 !important;
+    }
+    .flatpickr-calendar .flatpickr-prev-month,
+    .flatpickr-calendar .flatpickr-next-month {
+      color: white !important;
+      fill: white !important;
+    }
+    .flatpickr-calendar .flatpickr-prev-month:hover,
+    .flatpickr-calendar .flatpickr-next-month:hover {
+      color: rgba(255,255,255,0.8) !important;
+    }
     .flatpickr-calendar .flatpickr-weekdays {
-      background: #dc0000 !important;
+      background: #a50000 !important;
       border: none !important;
       margin: 0 !important;
       padding: 0 !important;
     }
     .flatpickr-calendar .flatpickr-weekdaycontainer {
-      background: #dc0000 !important;
+      background: #a50000 !important;
       border: none !important;
     }
     .flatpickr-calendar .flatpickr-weekday {
       color: white !important;
       font-weight: 600;
-      background: #dc0000 !important;
+      background: #a50000 !important;
     }
   </style>
 </head>
