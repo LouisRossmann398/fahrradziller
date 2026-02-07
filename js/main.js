@@ -389,49 +389,87 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (isValid) {
-        // Show success message (since we don't have backend yet)
+        // Show success message and hide form
         showServiceSuccessMessage(date, time);
-        serviceForm.reset();
       }
     });
   }
   
   function showServiceSuccessMessage(date, time) {
-    const successDiv = document.createElement('div');
-    successDiv.className = 'success-message';
-    successDiv.style.cssText = `
-      background-color: #28a745;
-      color: white;
-      padding: var(--spacing-md);
-      border-radius: 4px;
-      margin-top: var(--spacing-md);
-      text-align: center;
-      font-size: 1.1rem;
-    `;
+    // Parse date from German format (dd.mm.yyyy) to Date object
+    let formattedDate = date; // Fallback
     
-    // Format date for display
-    const dateObj = new Date(date + 'T00:00:00');
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const formattedDate = dateObj.toLocaleDateString('de-DE', options);
+    try {
+      // Split date string (format: "10.02.2026")
+      const parts = date.split('.');
+      if (parts.length === 3) {
+        const day = parseInt(parts[0]);
+        const month = parseInt(parts[1]) - 1; // Month is 0-indexed
+        const year = parseInt(parts[2]);
+        const dateObj = new Date(year, month, day);
+        
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        formattedDate = dateObj.toLocaleDateString('de-DE', options);
+      }
+    } catch (e) {
+      // If parsing fails, just use the original date string
+      formattedDate = date;
+    }
     
-    successDiv.innerHTML = `
-      <strong>✓ Terminanfrage erfolgreich gesendet!</strong><br><br>
-      Ihr Wunschtermin: ${formattedDate} um ${time} Uhr<br><br>
-      <strong>Wie geht es weiter?</strong><br>
-      Wir prüfen die Verfügbarkeit in unserer Werkstatt und melden uns per E-Mail oder Telefon bei Ihnen, 
-      um den Termin zu bestätigen oder einen Alternativvorschlag zu machen.<br><br>
-      <em>Der Termin ist erst nach unserer Rückmeldung verbindlich.</em>
-    `;
+    // Hide the form
+    serviceForm.style.display = 'none';
     
-    serviceForm.appendChild(successDiv);
-    
-    // Scroll to success message
-    successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    // Remove after 8 seconds
-    setTimeout(() => {
-      successDiv.remove();
-    }, 8000);
+    // Show success message in container
+    const successContainer = document.getElementById('serviceSuccessContainer');
+    if (successContainer) {
+      successContainer.style.display = 'block';
+      successContainer.style.cssText = `
+        display: block;
+        background: white;
+        padding: var(--spacing-lg);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        text-align: center;
+      `;
+      
+      successContainer.innerHTML = `
+        <div style="background: #28a745; color: white; padding: var(--spacing-md); border-radius: 8px; margin-bottom: var(--spacing-md);">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">✓</div>
+          <h3 style="color: white; margin: 0;">Terminanfrage erfolgreich gesendet!</h3>
+        </div>
+        
+        <div style="background: var(--color-gray-light); padding: var(--spacing-md); border-radius: 8px; margin-bottom: var(--spacing-md);">
+          <h3 style="margin-top: 0; color: var(--color-secondary);">Ihr Wunschtermin</h3>
+          <p style="font-size: 1.2rem; margin: 0; font-weight: bold; color: var(--color-primary);">
+            ${formattedDate}<br>um ${time} Uhr
+          </p>
+        </div>
+        
+        <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: var(--spacing-md); border-radius: 4px; text-align: left; margin-bottom: var(--spacing-md);">
+          <strong style="color: #856404;">ℹ️ Wichtig - Bitte beachten:</strong>
+          <p style="color: #856404; margin: 0.5rem 0 0 0; line-height: 1.6;">
+            Dies ist eine <strong>unverbindliche Terminanfrage</strong>.<br><br>
+            <strong>Wie geht es weiter?</strong><br>
+            Wir prüfen die Verfügbarkeit in unserer Werkstatt für Ihren Wunschtermin und melden uns 
+            <strong>per E-Mail oder Telefon</strong> bei Ihnen zurück.<br><br>
+            Wir bestätigen den Termin oder bieten Ihnen einen Alternativtermin an.<br><br>
+            <em>Der Termin ist erst nach unserer Bestätigung verbindlich.</em>
+          </p>
+        </div>
+        
+        <p style="color: var(--color-gray);">
+          Sie sollten in den nächsten 1-2 Werktagen von uns hören.<br>
+          Falls nicht, melden Sie sich gerne bei uns.
+        </p>
+        
+        <div style="margin-top: var(--spacing-md);">
+          <a href="kontakt.html" class="btn btn-secondary">Zu den Kontaktdaten</a>
+        </div>
+      `;
+      
+      // Scroll to success message
+      successContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
   
   // ============================================
