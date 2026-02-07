@@ -165,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Get form values
       const date = document.getElementById('appointmentDate').value;
       const time = document.getElementById('appointmentTime').value;
-      const serviceType = document.getElementById('serviceType').value;
       const name = document.getElementById('serviceName').value;
       const email = document.getElementById('serviceEmail').value;
       const phone = document.getElementById('servicePhone').value;
@@ -185,11 +184,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (!time) {
         showError(document.getElementById('appointmentTime'), 'Bitte wählen Sie eine Uhrzeit');
-        isValid = false;
-      }
-      
-      if (!serviceType) {
-        showError(document.getElementById('serviceType'), 'Bitte wählen Sie die Art des Anliegens');
         isValid = false;
       }
       
