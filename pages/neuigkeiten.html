@@ -145,30 +145,43 @@
         // Mobile Detection
         const isMobile = window.innerWidth < 768;
         
-        // PDF Existenz prüfen
-        fetch(pdfUrl, { method: 'HEAD' })
-          .then(response => {
-            pdfLoading.style.display = 'none';
-            
-            if (response.ok) {
-              // PDF existiert
-              pdfAvailable.style.display = 'block';
-              
-              if (isMobile) {
-                pdfViewerMobile.style.display = 'block';
+        // Funktion um PDF anzuzeigen
+        function showPDF() {
+          pdfLoading.style.display = 'none';
+          pdfAvailable.style.display = 'block';
+          
+          if (isMobile) {
+            pdfViewerMobile.style.display = 'block';
+          } else {
+            pdfViewerDesktop.style.display = 'block';
+          }
+        }
+        
+        // Funktion um Platzhalter anzuzeigen
+        function showPlaceholder() {
+          pdfLoading.style.display = 'none';
+          pdfNotAvailable.style.display = 'block';
+        }
+        
+        // Prüfen ob wir über HTTP(S) oder file:// laufen
+        if (window.location.protocol === 'file:') {
+          // Lokaler Test: Immer PDF anzeigen
+          showPDF();
+        } else {
+          // Auf Server: PDF Existenz prüfen
+          fetch(pdfUrl, { method: 'HEAD' })
+            .then(response => {
+              if (response.ok) {
+                showPDF();
               } else {
-                pdfViewerDesktop.style.display = 'block';
+                showPlaceholder();
               }
-            } else {
-              // PDF existiert nicht
-              pdfNotAvailable.style.display = 'block';
-            }
-          })
-          .catch(error => {
-            // Fehler oder PDF nicht verfügbar
-            pdfLoading.style.display = 'none';
-            pdfNotAvailable.style.display = 'block';
-          });
+            })
+            .catch(error => {
+              // Bei Fehler: Platzhalter anzeigen
+              showPlaceholder();
+            });
+        }
       })();
     </script>
     
