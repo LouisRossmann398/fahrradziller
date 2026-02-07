@@ -622,39 +622,43 @@ a:focus {
    ============================================ */
 
 .scroll-to-top-bar {
-  background: var(--color-gray-light);
-  border-top: 2px solid var(--color-primary);
+  background: linear-gradient(to right, var(--color-primary), #c00);
   padding: var(--spacing-md) 0;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .scroll-to-top-bar:hover {
-  background: #e8e8e8;
+  background: linear-gradient(to right, #c00, var(--color-primary));
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .scroll-to-top-bar button {
   background: none;
   border: none;
-  color: var(--color-primary);
+  color: var(--color-white);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.scroll-to-top-bar button:hover {
-  transform: translateY(-2px);
+.scroll-to-top-bar:hover button {
+  transform: translateY(-3px);
 }
 
 .scroll-to-top-bar .arrow {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   display: inline-block;
   animation: bounce 2s infinite;
+  font-weight: bold;
 }
 
 @keyframes bounce {
@@ -662,10 +666,10 @@ a:focus {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
   }
   60% {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
   }
 }
 
