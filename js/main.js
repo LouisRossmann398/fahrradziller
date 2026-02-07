@@ -177,11 +177,60 @@ document.addEventListener('DOMContentLoaded', function() {
   if (serviceForm) {
     // Initialize Flatpickr for date selection
     const appointmentDateInput = document.getElementById('appointmentDate');
+    const appointmentTimeSelect = document.getElementById('appointmentTime');
+    let flatpickrInstance = null;
+    
     if (appointmentDateInput && typeof flatpickr !== 'undefined') {
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       
-      flatpickr(appointmentDateInput, {
+      // Update time options based on selected date
+      function updateTimeOptions(selectedDate) {
+        if (!appointmentTimeSelect || !selectedDate) return;
+        
+        const dayOfWeek = selectedDate.getDay();
+        const isFriday = (dayOfWeek === 5);
+        const currentValue = appointmentTimeSelect.value;
+        
+        // Mo-Do Zeiten: 8:00 - 16:00
+        const mondayToThursdayTimes = [
+          '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+          '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00'
+        ];
+        
+        // Freitag Zeiten: 8:00 - 13:30
+        const fridayTimes = [
+          '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+          '12:00', '12:30', '13:00', '13:30'
+        ];
+        
+        const availableTimes = isFriday ? fridayTimes : mondayToThursdayTimes;
+        
+        // Clear and rebuild options
+        appointmentTimeSelect.innerHTML = '<option value="">Bitte wählen Sie eine Uhrzeit</option>';
+        
+        availableTimes.forEach(time => {
+          const option = document.createElement('option');
+          option.value = time;
+          option.textContent = time + ' Uhr';
+          appointmentTimeSelect.appendChild(option);
+        });
+        
+        // Restore previous value if still valid
+        if (availableTimes.includes(currentValue)) {
+          appointmentTimeSelect.value = currentValue;
+        }
+      }
+      
+      // Check if time is valid for Fridays (only 8:00 - 13:30)
+      function isTimeValidForFriday(time) {
+        if (!time) return true;
+        const [hours, minutes] = time.split(':').map(Number);
+        const timeInMinutes = hours * 60 + minutes;
+        return timeInMinutes >= 480 && timeInMinutes <= 810; // 8:00 - 13:30
+      }
+      
+      flatpickrInstance = flatpickr(appointmentDateInput, {
         locale: 'de',
         dateFormat: 'd.m.Y',
         minDate: tomorrow,
@@ -195,6 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isBavarianHoliday(date)) {
               return true;
             }
+            // If time is selected and it's after 13:30, disable Fridays
+            const selectedTime = appointmentTimeSelect ? appointmentTimeSelect.value : null;
+            if (selectedTime && !isTimeValidForFriday(selectedTime)) {
+              if (date.getDay() === 5) { // Friday
+                return true;
+              }
+            }
             return false;
           }
         ],
@@ -202,8 +258,35 @@ document.addEventListener('DOMContentLoaded', function() {
           // Clear any previous error messages
           document.querySelectorAll('.date-error').forEach(el => el.remove());
           appointmentDateInput.style.borderColor = '';
+          
+          // Update time options based on selected date
+          if (selectedDates.length > 0) {
+            updateTimeOptions(selectedDates[0]);
+          }
         }
       });
+      
+      // When time changes, refresh Flatpickr to update disabled days
+      if (appointmentTimeSelect) {
+        appointmentTimeSelect.addEventListener('change', function() {
+          if (flatpickrInstance) {
+            flatpickrInstance.redraw();
+            
+            // Check if currently selected date is still valid
+            const currentDate = flatpickrInstance.selectedDates[0];
+            if (currentDate) {
+              const isFriday = currentDate.getDay() === 5;
+              const selectedTime = this.value;
+              
+              if (isFriday && selectedTime && !isTimeValidForFriday(selectedTime)) {
+                // Clear the date if Friday with invalid time
+                flatpickrInstance.clear();
+                alert('Die gewählte Uhrzeit ist freitags nicht verfügbar. Freitags sind nur Termine bis 13:30 Uhr möglich.\n\nBitte wählen Sie ein anderes Datum (Mo-Do) oder eine frühere Uhrzeit.');
+              }
+            }
+          }
+        });
+      }
     }
     
     serviceForm.addEventListener('submit', function(e) {
@@ -241,6 +324,12 @@ document.addEventListener('DOMContentLoaded', function() {
       
       if (!email.trim() || !isValidEmail(email)) {
         showError(document.getElementById('serviceEmail'), 'Bitte geben Sie eine gültige E-Mail-Adresse ein');
+        isValid = false;
+      }
+      
+      // Optional phone validation (only if filled)
+      if (phone.trim() && !isValidPhone(phone)) {
+        showError(document.getElementById('servicePhone'), 'Bitte geben Sie eine gültige Telefonnummer ein');
         isValid = false;
       }
       
@@ -357,8 +446,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function isValidEmail(email) {
+    // Lockere Validierung: muss @ und . enthalten
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
+  }
+  
+  function isValidPhone(phone) {
+    // Sehr lockere Validierung: mindestens 5 Ziffern, erlaubt Leerzeichen, /, -, (, ), +
+    const digitsOnly = phone.replace(/[\s\-\/\(\)\+]/g, '');
+    return digitsOnly.length >= 5 && /^\d+$/.test(digitsOnly);
   }
   
   function showSuccessMessage() {
