@@ -26,7 +26,82 @@ function isBavarianHoliday(date) {
   return fixedHolidays.some(h => h.month === month && h.day === day);
 }
 
+// ============================================
+// Osterdatum berechnen (Gauss-Algorithmus)
+// ============================================
+
+function calculateEaster(year) {
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1; // 0-indexed
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month, day);
+}
+
+// ============================================
+// Feiertagsgrüße anzeigen
+// ============================================
+
+function showHolidayGreeting() {
+  const greetingElement = document.getElementById('holidayGreeting');
+  if (!greetingElement) return;
+  
+  const now = new Date();
+  const month = now.getMonth(); // 0-indexed
+  const day = now.getDate();
+  const year = now.getFullYear();
+  
+  let greeting = null;
+  
+  // Weihnachten: 1. Dezember bis 26. Dezember
+  if (month === 11 && day >= 1 && day <= 26) {
+    greeting = '🎄 Frohe Weihnachten wünscht Ihnen das Team von Radsport Ziller! 🎄';
+  }
+  
+  // Neujahr: 27. Dezember bis 1. Januar
+  else if ((month === 11 && day >= 27) || (month === 0 && day === 1)) {
+    greeting = '🎆 Einen guten Rutsch ins neue Jahr wünscht Ihnen das Team von Radsport Ziller! 🎆';
+  }
+  
+  // Ostern: 2 Wochen vor bis 1 Tag nach Ostersonntag
+  else {
+    const easter = calculateEaster(year);
+    const easterTime = easter.getTime();
+    const nowTime = now.getTime();
+    const dayInMs = 24 * 60 * 60 * 1000;
+    
+    // 14 Tage vor Ostern bis 1 Tag nach Ostern
+    if (nowTime >= (easterTime - 14 * dayInMs) && nowTime <= (easterTime + 1 * dayInMs)) {
+      greeting = '🐰 Frohe Ostern wünscht Ihnen das Team von Radsport Ziller! 🐰';
+    }
+  }
+  
+  // Gruß anzeigen oder ausblenden
+  if (greeting) {
+    greetingElement.textContent = greeting;
+    greetingElement.style.display = 'block';
+  } else {
+    greetingElement.style.display = 'none';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  
+  // ============================================
+  // Feiertagsgrüße anzeigen
+  // ============================================
+  
+  showHolidayGreeting();
   
   // ============================================
   // Dynamisches Jahr im Footer und rechtlichen Seiten
