@@ -97,11 +97,18 @@
     <section class="section section-alt">
       <div class="container">
         <div style="max-width: 700px; margin: 0 auto;">
-          <h2 class="text-center">Termin vereinbaren</h2>
-          <p class="text-center" style="margin-bottom: var(--spacing-lg);">
-            Vereinbaren Sie direkt online einen Termin für Service, Reparatur oder Beratung. 
-            Wir melden uns zeitnah bei Ihnen zur Bestätigung.
+          <h2 class="text-center">Terminanfrage stellen</h2>
+          <p class="text-center" style="margin-bottom: var(--spacing-md);">
+            Stellen Sie hier Ihre Terminanfrage für Service, Reparatur oder Beratung. 
           </p>
+          <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: var(--spacing-md); margin-bottom: var(--spacing-lg); border-radius: 4px;">
+            <strong style="color: #856404;">ℹ️ Wichtig:</strong>
+            <p style="color: #856404; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
+              Dies ist eine <strong>unverbindliche Terminanfrage</strong>. Wir prüfen die Verfügbarkeit in unserer Werkstatt 
+              und melden uns dann per E-Mail oder Telefon bei Ihnen zurück, um den Termin zu bestätigen oder 
+              einen Alternativtermin anzubieten.
+            </p>
+          </div>
           
           <form id="serviceAppointmentForm" class="service-form" style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             
@@ -146,14 +153,13 @@
                 <option value="16:00">16:00 Uhr</option>
               </select>
               <small style="color: var(--color-gray); font-size: 0.9rem; margin-top: 0.25rem; display: block;">
-                <strong>Reparaturzeiten:</strong> Mo-Do: 8-16 Uhr, Fr: 8-13:30 Uhr<br>
-                (16 Uhr = letzter Reparaturtermin zum Buchen)
+                <strong>Reparaturzeiten:</strong> Mo-Do: 8-16 Uhr, Fr: 8-13:30 Uhr
               </small>
             </div>
             
             <div class="form-group">
               <label for="serviceName" class="form-label">
-                Ihr Name <span style="color: var(--color-primary);">*</span>
+                Name <span style="color: var(--color-primary);">*</span>
               </label>
               <input 
                 type="text" 
@@ -227,12 +233,12 @@
             </p>
             
             <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">
-              Terminanfrage senden
+              Unverbindliche Terminanfrage senden
             </button>
             
             <p style="font-size: 0.9rem; color: var(--color-gray); text-align: center; margin-top: var(--spacing-md); margin-bottom: 0;">
-              Nach dem Absenden erhalten Sie eine Bestätigung per E-Mail. 
-              Wir melden uns zeitnah zur finalen Terminabsprache.
+              <strong>Nach dem Absenden:</strong> Wir prüfen Ihre Terminanfrage und melden uns 
+              per E-Mail oder Telefon bei Ihnen, um den Termin zu bestätigen.
             </p>
           </form>
         </div>

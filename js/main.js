@@ -231,8 +231,10 @@ document.addEventListener('DOMContentLoaded', function() {
     successDiv.innerHTML = `
       <strong>✓ Terminanfrage erfolgreich gesendet!</strong><br><br>
       Ihr Wunschtermin: ${formattedDate} um ${time} Uhr<br><br>
-      Wir haben Ihre Anfrage erhalten und melden uns in Kürze bei Ihnen zur Terminbestätigung.<br>
-      Sie erhalten auch eine Bestätigungs-E-Mail.
+      <strong>Wie geht es weiter?</strong><br>
+      Wir prüfen die Verfügbarkeit in unserer Werkstatt und melden uns per E-Mail oder Telefon bei Ihnen, 
+      um den Termin zu bestätigen oder einen Alternativvorschlag zu machen.<br><br>
+      <em>Der Termin ist erst nach unserer Rückmeldung verbindlich.</em>
     `;
     
     serviceForm.appendChild(successDiv);
