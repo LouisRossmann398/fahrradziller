@@ -391,6 +391,11 @@ a:focus {
   transition: border-color var(--transition-speed);
 }
 
+/* Platzhalter-Option (value="") im Select grau machen */
+.form-select option[value=""] {
+  color: var(--color-gray);
+}
+
 .form-select option {
   color: var(--color-text);
 }
