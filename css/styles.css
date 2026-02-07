@@ -391,6 +391,10 @@ a:focus {
   transition: border-color var(--transition-speed);
 }
 
+.form-select option {
+  color: var(--color-text);
+}
+
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
