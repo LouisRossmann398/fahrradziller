@@ -172,6 +172,10 @@ a:focus {
     height: 80px;
   }
   
+  .header.menu-open {
+    box-shadow: none;
+  }
+  
   main {
     padding-top: 80px;
   }
@@ -181,6 +185,7 @@ a:focus {
     box-shadow: none;
     padding: 0;
     margin: 0;
+    margin-top: -1px;
     /* Menü füllt Viewport-Höhe */
     min-height: calc(100vh - 80px);
   }

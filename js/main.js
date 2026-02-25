@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
   const navLinks = document.querySelectorAll('.nav-link');
+  const header = document.querySelector('.header');
   
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', function() {
@@ -141,6 +142,15 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Change icon
       menuToggle.textContent = isExpanded ? '✕' : '☰';
+      
+      // Remove header shadow when menu is open on mobile
+      if (header) {
+        if (isExpanded) {
+          header.classList.add('menu-open');
+        } else {
+          header.classList.remove('menu-open');
+        }
+      }
     });
     
     // Close menu when clicking on a link (mobile)
@@ -150,6 +160,9 @@ document.addEventListener('DOMContentLoaded', function() {
           nav.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
           menuToggle.textContent = '☰';
+          if (header) {
+            header.classList.remove('menu-open');
+          }
         }
       });
     });
@@ -682,11 +695,15 @@ window.addEventListener('resize', function() {
     if (window.innerWidth >= 768) {
       const nav = document.querySelector('.nav');
       const menuToggle = document.querySelector('.menu-toggle');
+      const header = document.querySelector('.header');
       if (nav && nav.classList.contains('active')) {
         nav.classList.remove('active');
         if (menuToggle) {
           menuToggle.setAttribute('aria-expanded', 'false');
           menuToggle.textContent = '☰';
+        }
+        if (header) {
+          header.classList.remove('menu-open');
         }
       }
     }
