@@ -180,16 +180,19 @@ a:focus {
   }
   
   .nav {
-    top: 78px;
+    top: 80px;
     box-shadow: none !important;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
     z-index: 1001;
-    /* Menü füllt Viewport-Höhe und überlappt leicht */
-    min-height: calc(100vh - 78px);
+    /* Menü füllt Viewport-Höhe */
+    min-height: calc(100vh - 80px);
     /* Weißer Hintergrund ohne Transparenz */
     background: #ffffff !important;
+    /* Weißer "Deckel" über der Navigation um Lücke zu schließen */
+    border-top: 5px solid #ffffff !important;
+    margin-top: -5px !important;
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
