@@ -640,10 +640,15 @@ a:focus {
   .jobrad-calculator-wrapper {
     padding: var(--spacing-md);
     border-radius: 8px;
+    overflow-x: hidden;
   }
   
   .jobrad-calculator-wrapper iframe {
-    min-height: 700px;
+    min-height: 800px;
+    width: 150%;
+    max-width: 150%;
+    margin-left: 0;
+    transform-origin: left top;
   }
 }
 
