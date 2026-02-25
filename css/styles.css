@@ -622,26 +622,23 @@ a:focus {
    ============================================ */
 
 .leasing-partners {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-xl);
-  flex-wrap: wrap;
-  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .partner-logo {
-  flex: 0 1 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .partner-logo:hover {
@@ -657,15 +654,23 @@ a:focus {
   object-fit: contain;
 }
 
-/* Mobile Optimierung */
+/* Mobile & Tablet Optimierung */
+@media (max-width: 1024px) {
+  .leasing-partners {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
 @media (max-width: 768px) {
   .leasing-partners {
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-md);
   }
   
   .partner-logo {
-    flex: 0 1 calc(50% - var(--spacing-md));
-    min-width: 140px;
+    padding: var(--spacing-md);
+    min-height: 100px;
   }
   
   .partner-logo img {
