@@ -618,6 +618,62 @@ a:focus {
 }
 
 /* ============================================
+   Leasing Partners
+   ============================================ */
+
+.leasing-partners {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.partner-logo {
+  flex: 0 1 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  min-height: 100px;
+}
+
+.partner-logo:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.partner-logo img {
+  max-width: 100%;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mobile Optimierung */
+@media (max-width: 768px) {
+  .leasing-partners {
+    gap: var(--spacing-md);
+  }
+  
+  .partner-logo {
+    flex: 0 1 calc(50% - var(--spacing-md));
+    min-width: 140px;
+  }
+  
+  .partner-logo img {
+    max-height: 60px;
+  }
+}
+
+/* ============================================
    JobRad Calculator
    ============================================ */
 
