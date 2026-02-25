@@ -181,12 +181,6 @@ a:focus {
     box-shadow: none;
     padding: 0;
     margin: 0;
-    /* Vollbild-Menü auf Mobile */
-    position: fixed;
-    bottom: 0;
-    overflow-y: auto;
-    background: var(--color-white);
-    z-index: 999;
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
