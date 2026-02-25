@@ -730,6 +730,14 @@ a:focus {
   object-fit: contain;
 }
 
+/* Spezielle Behandlung für Logos mit schwarzem Hintergrund */
+.partner-logo img[src*="bikeleasing-logo"],
+.partner-logo img[src*="mein-dienstrad-logo"],
+.partner-logo img[src*="lease-a-bike-logo"] {
+  filter: invert(1);
+  background: transparent;
+}
+
 /* Mobile & Tablet Optimierung */
 @media (max-width: 1024px) {
   .leasing-partners {
