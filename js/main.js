@@ -690,5 +690,34 @@ window.addEventListener('resize', function() {
         }
       }
     }
+    // Update partner logo link targets
+    updatePartnerLogoTargets();
   }, 250);
 });
+
+// ============================================
+// Partner Logo Link Targets (Mobile vs Desktop)
+// ============================================
+
+function updatePartnerLogoTargets() {
+  const partnerLinks = document.querySelectorAll('.partner-logo a');
+  
+  partnerLinks.forEach(link => {
+    if (window.innerWidth < 768) {
+      // Mobile: im gleichen Tab öffnen
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+    } else {
+      // Desktop: in neuem Tab öffnen
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+}
+
+// Initial call on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', updatePartnerLogoTargets);
+} else {
+  updatePartnerLogoTargets();
+}
