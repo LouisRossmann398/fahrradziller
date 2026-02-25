@@ -180,14 +180,16 @@ a:focus {
   }
   
   .nav {
-    top: 79px;
+    top: 78px;
     box-shadow: none !important;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
     z-index: 1001;
-    /* Menü füllt Viewport-Höhe */
-    min-height: calc(100vh - 79px);
+    /* Menü füllt Viewport-Höhe und überlappt leicht */
+    min-height: calc(100vh - 78px);
+    /* Weißer Hintergrund ohne Transparenz */
+    background: #ffffff !important;
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
@@ -195,6 +197,7 @@ a:focus {
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
+    background: #ffffff;
   }
   
   .nav-item {
