@@ -738,3 +738,59 @@ if (document.readyState === 'loading') {
 } else {
   updatePartnerLogoTargets();
 }
+
+// ============================================
+// Smart Social Media Links (App vs Browser)
+// ============================================
+
+function setupSmartSocialLinks() {
+  const socialLinks = document.querySelectorAll('.social-media-link');
+  const isMobile = window.innerWidth < 768;
+  
+  socialLinks.forEach(link => {
+    const appUrl = link.getAttribute('data-app-url');
+    const webUrl = link.getAttribute('data-web-url');
+    
+    if (isMobile) {
+      // Mobile: Entferne target, versuche App zu öffnen
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+      
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Versuche App-Link zu öffnen
+        const startTime = Date.now();
+        window.location.href = appUrl;
+        
+        // Fallback zum Web-Link nach kurzer Verzögerung
+        setTimeout(function() {
+          // Wenn nach 500ms noch auf der Seite (App nicht geöffnet)
+          if (Date.now() - startTime < 1500) {
+            window.location.href = webUrl;
+          }
+        }, 500);
+      });
+    } else {
+      // Desktop: Behalte target="_blank", nutze Web-URL
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+      link.href = webUrl;
+    }
+  });
+}
+
+// Initial setup
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupSmartSocialLinks);
+} else {
+  setupSmartSocialLinks();
+}
+
+// Update bei Fenstergrößenänderung
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    setupSmartSocialLinks();
+  }, 250);
+});
