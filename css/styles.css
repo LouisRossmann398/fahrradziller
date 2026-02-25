@@ -618,6 +618,36 @@ a:focus {
 }
 
 /* ============================================
+   JobRad Calculator
+   ============================================ */
+
+.jobrad-calculator-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  padding: var(--spacing-lg);
+}
+
+.jobrad-calculator-wrapper iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* Mobile Optimierung */
+@media (max-width: 768px) {
+  .jobrad-calculator-wrapper {
+    padding: var(--spacing-md);
+    border-radius: 8px;
+  }
+  
+  .jobrad-calculator-wrapper iframe {
+    min-height: 700px;
+  }
+}
+
+/* ============================================
    Scroll to Top
    ============================================ */
 
