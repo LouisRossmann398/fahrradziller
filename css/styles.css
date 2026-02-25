@@ -178,11 +178,23 @@ a:focus {
   
   .nav {
     top: 80px;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
   .nav-list {
     padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    margin: 0;
+  }
+  
+  .nav-item:first-child {
+    border-top: none;
   }
   
   /* Mobile Header Layout: A+ links, Logo mittig, Menü rechts */
