@@ -181,11 +181,13 @@ a:focus {
     box-shadow: none;
     padding: 0;
     margin: 0;
+    /* Menü füllt Viewport-Höhe */
+    min-height: calc(100vh - 80px);
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
   .nav-list {
-    padding: 0;
+    padding: 0 !important;
     margin: 0;
   }
   
@@ -195,6 +197,10 @@ a:focus {
   
   .nav-item:first-child {
     border-top: none;
+  }
+  
+  .nav-link {
+    padding: var(--spacing-md) var(--spacing-md);
   }
   
   /* Mobile Header Layout: A+ links, Logo mittig, Menü rechts */
