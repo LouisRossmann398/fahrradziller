@@ -628,7 +628,7 @@ a:focus {
   overflow: hidden;
   padding: var(--spacing-lg);
   position: relative;
-  max-height: 750px;
+  max-height: 950px;
   transition: max-height 0.5s ease;
 }
 
@@ -663,7 +663,7 @@ a:focus {
   .jobrad-calculator-wrapper {
     padding: var(--spacing-md);
     border-radius: 8px;
-    max-height: 850px;
+    max-height: 1150px;
   }
   
   .jobrad-calculator-wrapper iframe {
