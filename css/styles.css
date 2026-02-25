@@ -179,6 +179,31 @@ a:focus {
   .nav {
     top: 80px;
   }
+  
+  /* Mobile Header Layout: A+ links, Logo mittig, Menü rechts */
+  .header-container {
+    position: relative;
+    justify-content: center;
+  }
+  
+  .logo {
+    order: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .menu-toggle {
+    order: 3;
+    position: absolute;
+    right: var(--spacing-sm);
+  }
+  
+  .accessibility-controls {
+    order: 1;
+    position: absolute;
+    left: var(--spacing-sm);
+  }
 }
 
 /* Accessibility Controls */
