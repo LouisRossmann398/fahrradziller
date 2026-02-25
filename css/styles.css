@@ -180,6 +180,11 @@ a:focus {
     top: 80px;
   }
   
+  /* Kein Abstand zwischen Header und Menü auf Mobile */
+  .nav-list {
+    padding: 0;
+  }
+  
   /* Mobile Header Layout: A+ links, Logo mittig, Menü rechts */
   .header-container {
     position: relative;
