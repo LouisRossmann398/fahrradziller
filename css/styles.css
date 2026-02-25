@@ -170,10 +170,7 @@ a:focus {
   
   .header {
     height: 80px;
-  }
-  
-  .header.menu-open {
-    box-shadow: none;
+    box-shadow: none !important;
   }
   
   main {
