@@ -171,6 +171,8 @@ a:focus {
   .header {
     height: 80px;
     box-shadow: none !important;
+    border: none !important;
+    border-bottom: none !important;
   }
   
   main {
@@ -178,31 +180,36 @@ a:focus {
   }
   
   .nav {
-    top: 80px;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    margin-top: -1px;
+    top: 79px;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    z-index: 1001;
     /* Menü füllt Viewport-Höhe */
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 79px);
   }
   
   /* Kein Abstand zwischen Header und Menü auf Mobile */
   .nav-list {
     padding: 0 !important;
-    margin: 0;
+    margin: 0 !important;
+    border: none !important;
   }
   
   .nav-item {
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: none !important;
   }
   
   .nav-item:first-child {
-    border-top: none;
+    border-top: none !important;
   }
   
   .nav-link {
     padding: var(--spacing-md) var(--spacing-md);
+    border-top: none !important;
   }
   
   /* Mobile Header Layout: A+ links, Logo mittig, Menü rechts */
@@ -278,6 +285,7 @@ a:focus {
   right: 0;
   background: var(--color-white);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
 .nav.active {
@@ -287,10 +295,15 @@ a:focus {
 .nav-list {
   list-style: none;
   padding: var(--spacing-sm) 0;
+  margin: 0;
+  border: none;
 }
 
 .nav-item {
   border-bottom: 1px solid var(--color-gray-light);
+  border-top: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
