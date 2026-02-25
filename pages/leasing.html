@@ -194,7 +194,7 @@
           </div>
           
           <!-- JobRad Rechner iframe -->
-          <div class="jobrad-calculator-wrapper" id="jobradWrapper">
+          <div class="jobrad-calculator-wrapper">
             <script src="https://www.jobrad.org/.resources/jobrad/external-modules/iframeResizer.min.js"></script>
             <iframe id="jobradCalculator"
                     src="https://www.jobrad.org/fachhandel/werbematerial/werkzeugkasten/iframe1" 
@@ -215,39 +215,7 @@
                 }, '#jobradCalculator');
               }
             </script>
-            
-            <!-- Gradient Overlay für eingeklappten Zustand -->
-            <div class="jobrad-gradient-overlay" id="jobradOverlay"></div>
           </div>
-          
-          <!-- Toggle Button -->
-          <div style="text-align: center; margin-top: var(--spacing-md);">
-            <button id="jobradToggle" class="btn btn-secondary" onclick="toggleJobradCalculator()">
-              <span id="jobradToggleText">Details & Ersparnis anzeigen</span>
-              <span id="jobradToggleArrow" style="margin-left: 8px;">▼</span>
-            </button>
-          </div>
-          
-          <script>
-            function toggleJobradCalculator() {
-              const wrapper = document.getElementById('jobradWrapper');
-              const overlay = document.getElementById('jobradOverlay');
-              const text = document.getElementById('jobradToggleText');
-              const arrow = document.getElementById('jobradToggleArrow');
-              
-              if (wrapper.classList.contains('expanded')) {
-                wrapper.classList.remove('expanded');
-                overlay.style.display = 'block';
-                text.textContent = 'Details & Ersparnis anzeigen';
-                arrow.textContent = '▼';
-              } else {
-                wrapper.classList.add('expanded');
-                overlay.style.display = 'none';
-                text.textContent = 'Details & Ersparnis ausblenden';
-                arrow.textContent = '▲';
-              }
-            }
-          </script>
         </div>
       </div>
     </section>
