@@ -362,7 +362,7 @@ a:focus {
 .hero-slider {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   background: #f5f5f5;
 }
@@ -460,7 +460,7 @@ a:focus {
 /* Mobile Optimierung */
 @media (max-width: 768px) {
   .hero-slider {
-    height: 250px;
+    height: 320px;
   }
   
   .hero-slider-btn {
