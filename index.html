@@ -55,15 +55,27 @@
   <!-- Main Content -->
   <main id="main-content">
     
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <h1>Willkommen bei Radsport Ziller</h1>
-        <p>Familienbetrieb mit Tradition - Seit 1920 Ihr Experte fürs Rad in Petershausen</p>
-        <a href="pages/fahrraeder.html" class="btn btn-primary">Fahrräder entdecken</a>
-        <a href="pages/kontakt.html" class="btn btn-secondary">Kontakt aufnehmen</a>
+    <!-- Hero Slider -->
+    <div class="hero-slider">
+      <div class="hero-slider-container" id="heroSliderContainer">
+        <div class="hero-slide" style="background-image: url('assets/images/laden/aussicht-1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/laden/schaufenster.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/laden/innen-1.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/laden/fahrraeder-wand.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/laden/aussicht-2.jpg');"></div>
       </div>
-    </section>
+      
+      <!-- Navigation Buttons (Desktop) -->
+      <button class="hero-slider-btn prev" onclick="heroSlider.prev()" aria-label="Vorheriges Bild">
+        ‹
+      </button>
+      <button class="hero-slider-btn next" onclick="heroSlider.next()" aria-label="Nächstes Bild">
+        ›
+      </button>
+      
+      <!-- Indicators -->
+      <div class="hero-slider-indicators" id="heroIndicators"></div>
+    </div>
     
     <!-- Dynamische Feiertagsgrüße -->
     <div id="holidayGreeting" style="display: none; background: var(--color-primary); color: white; text-align: center; padding: var(--spacing-md); font-size: var(--font-size-large); font-weight: 600;"></div>

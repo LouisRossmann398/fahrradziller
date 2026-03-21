@@ -738,3 +738,122 @@ if (document.readyState === 'loading') {
 } else {
   updatePartnerLogoTargets();
 }
+
+// ============================================
+// Hero Slider (Startseite)
+// ============================================
+
+const heroSlider = {
+  currentSlide: 0,
+  slides: [],
+  container: null,
+  indicators: [],
+  autoplayInterval: null,
+  touchStartX: 0,
+  touchEndX: 0,
+  
+  init() {
+    this.container = document.getElementById('heroSliderContainer');
+    if (!this.container) return;
+    
+    this.slides = this.container.querySelectorAll('.hero-slide');
+    if (this.slides.length === 0) return;
+    
+    this.createIndicators();
+    this.setupTouchEvents();
+    this.startAutoplay();
+    this.updateSlider();
+  },
+  
+  createIndicators() {
+    const indicatorsContainer = document.getElementById('heroIndicators');
+    if (!indicatorsContainer) return;
+    
+    this.slides.forEach((_, index) => {
+      const indicator = document.createElement('button');
+      indicator.className = 'hero-indicator';
+      indicator.setAttribute('aria-label', `Bild ${index + 1} anzeigen`);
+      indicator.addEventListener('click', () => this.goToSlide(index));
+      indicatorsContainer.appendChild(indicator);
+      this.indicators.push(indicator);
+    });
+  },
+  
+  setupTouchEvents() {
+    this.container.addEventListener('touchstart', (e) => {
+      this.touchStartX = e.changedTouches[0].screenX;
+      this.stopAutoplay();
+    }, { passive: true });
+    
+    this.container.addEventListener('touchend', (e) => {
+      this.touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe();
+      this.startAutoplay();
+    }, { passive: true });
+  },
+  
+  handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = this.touchStartX - this.touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        this.next();
+      } else {
+        this.prev();
+      }
+    }
+  },
+  
+  next() {
+    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+    this.updateSlider();
+  },
+  
+  prev() {
+    this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+    this.updateSlider();
+  },
+  
+  goToSlide(index) {
+    this.stopAutoplay();
+    this.currentSlide = index;
+    this.updateSlider();
+    this.startAutoplay();
+  },
+  
+  updateSlider() {
+    const offset = -this.currentSlide * 100;
+    this.container.style.transform = `translateX(${offset}%)`;
+    
+    this.indicators.forEach((indicator, index) => {
+      if (index === this.currentSlide) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  },
+  
+  startAutoplay() {
+    this.stopAutoplay();
+    this.autoplayInterval = setInterval(() => {
+      this.next();
+    }, 3000);
+  },
+  
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+  }
+};
+
+// Initialize Hero Slider
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => heroSlider.init());
+} else {
+  heroSlider.init();
+}
+
