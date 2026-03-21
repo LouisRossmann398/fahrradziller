@@ -1,0 +1,26 @@
+# Analytics Admin - Zusätzlicher Schutz (optional)
+# Entferne die Kommentare (#) um die Schutzmaßnahmen zu aktivieren
+
+# Option 1: Admin-Bereich nur für bestimmte IP-Adressen zugänglich
+# <FilesMatch "\.php$">
+#   Order Deny,Allow
+#   Deny from all
+#   Allow from 123.456.789.0 # Deine feste IP-Adresse
+# </FilesMatch>
+
+# Option 2: Zusätzlicher HTTP Basic Auth
+# AuthType Basic
+# AuthName "Analytics Admin - Zusätzlicher Schutz"
+# AuthUserFile /pfad/zu/.htpasswd
+# Require valid-user
+
+# PHP-Fehler nicht anzeigen (Sicherheit)
+php_flag display_errors off
+
+# Verzeichnis-Listing deaktivieren
+Options -Indexes
+
+# HTTPS erzwingen (wenn verfügbar)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

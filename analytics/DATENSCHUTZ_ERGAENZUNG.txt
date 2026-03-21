@@ -1,0 +1,68 @@
+ERGÄNZUNG FÜR DIE DATENSCHUTZERKLÄRUNG
+========================================
+
+Füge folgenden Abschnitt zu deiner bestehenden Datenschutzerklärung hinzu:
+
+
+-------------------
+ANALYSE-TOOLS
+-------------------
+
+Wir verwenden auf unserer Website ein selbst entwickeltes, DSGVO-konformes Analytics-System, um die Nutzung unserer Website zu analysieren und unser Angebot kontinuierlich zu verbessern.
+
+Was wird erfasst?
+
+- Aufgerufene Seiten und Verweildauer
+- Gerätetyp (Desktop, Tablet, Mobil)
+- Browser-Typ
+- Referrer (von welcher Seite Sie zu uns gekommen sind)
+- Anonymisierte IP-Adresse
+- Datum und Uhrzeit des Besuchs
+
+Rechtsgrundlage
+
+Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse). Unser berechtigtes Interesse liegt in der Optimierung und dem wirtschaftlichen Betrieb unserer Website.
+
+Datenschutzfreundliche Gestaltung
+
+- IP-Anonymisierung: Ihre IP-Adresse wird unmittelbar nach Erhebung gekürzt (letztes Oktett wird auf 0 gesetzt), sodass keine Rückschlüsse auf Ihre Person möglich sind
+- Keine Cookies: Unser Analytics-System verwendet keine Cookies. Die Session-Erkennung erfolgt ausschließlich über den Browser-SessionStorage, der beim Schließen des Browsers automatisch gelöscht wird
+- Keine Weitergabe: Alle Daten werden ausschließlich auf unserem Server gespeichert und nicht an Dritte weitergegeben
+- Datenminimierung: Es werden nur die minimal notwendigen Daten erhoben
+- Kurze Speicherdauer: Analytics-Daten werden nach spätestens 12 Monaten automatisch gelöscht
+
+Keine personenbezogenen Profile
+
+Durch die IP-Anonymisierung und den Verzicht auf Cookies können wir keine personenbezogenen Profile erstellen. Die erfassten Daten dienen ausschließlich statistischen Zwecken.
+
+Widerspruchsrecht
+
+Sie können der Erfassung Ihrer Daten jederzeit widersprechen, indem Sie JavaScript in Ihrem Browser deaktivieren. Dies kann jedoch die Funktionalität unserer Website einschränken.
+
+
+-------------------
+WICHTIG
+-------------------
+
+Da dieses Analytics-System:
+✅ IP-Adressen anonymisiert
+✅ Keine Cookies verwendet
+✅ Keine personenbezogenen Daten speichert
+✅ Keine Daten an Dritte weitergibt
+
+... ist KEIN Cookie-Consent-Banner erforderlich!
+
+Dies entspricht der aktuellen Rechtsprechung des EuGH und deutschen Datenschutzgesetzen.
+
+
+-------------------
+FÜR DEINE ANWÄLTIN/ANWALT
+-------------------
+
+Rechtliche Grundlagen:
+- Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)
+- § 25 TTDSG (keine Einwilligung bei rein technischen Speichervorgängen)
+- EuGH-Urteil C-673/17 (Planet49) - SessionStorage ohne Tracking ist erlaubt
+- Anonymisierte Daten fallen nicht unter DSGVO (Erwägungsgrund 26)
+
+Da keine personenbezogenen Daten (vollständige IP, Cookies, Cross-Site-Tracking) gespeichert werden, ist keine explizite Einwilligung erforderlich.
