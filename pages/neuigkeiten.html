@@ -81,8 +81,13 @@
               </div>
               
               <div style="text-align: center;">
-                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary">
-                  <span style="margin-right: 8px;">📥</span> PDF herunterladen
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  PDF herunterladen
                 </a>
               </div>
             </div>
@@ -90,13 +95,17 @@
             <!-- Mobile: Nur Download Button -->
             <div class="pdf-viewer-mobile" style="display: none;">
               <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📄</div>
                 <h2 style="margin-bottom: var(--spacing-md);">Aktuelle Angebote</h2>
                 <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
                   Laden Sie unser aktuelles Angebots-PDF herunter und entdecken Sie unsere Sonderaktionen.
                 </p>
-                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary" style="font-size: 1.1rem;">
-                  <span style="margin-right: 8px;">📥</span> PDF herunterladen
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1.1rem;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  PDF herunterladen
                 </a>
               </div>
             </div>
@@ -105,7 +114,6 @@
           <!-- Kein PDF vorhanden (Platzhalter) -->
           <div id="pdfNotAvailable" style="display: none;">
             <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-              <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">📋</div>
               <h2 style="margin-bottom: var(--spacing-md);">Aktuell keine Angebote</h2>
               <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); max-width: 600px; margin-left: auto; margin-right: auto;">
                 Im Moment sind keine besonderen Angebote verfügbar. 
@@ -117,7 +125,6 @@
           <!-- Loading State -->
           <div id="pdfLoading">
             <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-              <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">⏳</div>
               <p style="color: var(--color-text-secondary);">Angebote werden geladen...</p>
             </div>
           </div>
