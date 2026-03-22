@@ -351,11 +351,11 @@ a:focus {
 .hero {
   background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary-dark) 100%);
   color: var(--color-white);
-  padding: calc(var(--spacing-xl) / 2) 0;
+  padding: var(--spacing-md) 0;
   text-align: center;
 }
 
-/* Startseite behält volle Höhe - alle anderen Seiten haben halbe Höhe */
+/* Startseite behält volle Höhe - alle anderen Seiten haben reduzierte Höhe */
 body.page-home .hero {
   padding: var(--spacing-xl) 0;
 }
