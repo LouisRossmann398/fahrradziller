@@ -591,6 +591,54 @@ body.page-home .hero p {
 .grid-3 { grid-template-columns: 1fr; }
 .grid-4 { grid-template-columns: 1fr; }
 
+/* Homepage: vier gleich hohe Kacheln (ab Desktop nebeneinander) */
+.feature-tiles-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .feature-tiles-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .feature-tiles-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.feature-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-tile h3 {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.feature-tile p {
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
 /* ============================================
    Cards
    ============================================ */
