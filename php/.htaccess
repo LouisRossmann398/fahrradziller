@@ -1,0 +1,6 @@
+# Konfigurationsdatei nicht per HTTP abrufbar (nur per include auf dem Server)
+<IfModule mod_authz_core.c>
+  <Files "mail-config.php">
+    Require all denied
+  </Files>
+</IfModule>

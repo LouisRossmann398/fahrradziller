@@ -257,6 +257,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // ============================================
+  // Formulare: E-Mail über PHP (Strato SMTP)
+  // ============================================
+  
+  function formMailUrl(filename) {
+    return new URL('../php/' + filename, window.location.href).toString();
+  }
+  
+  function clearFormSubmitAlerts(form) {
+    if (!form) return;
+    form.querySelectorAll('.form-submit-alert').forEach(function(el) {
+      el.remove();
+    });
+  }
+  
+  function showFormSubmitAlert(form, message, isError) {
+    if (!form) return;
+    clearFormSubmitAlerts(form);
+    const div = document.createElement('div');
+    div.className = 'form-submit-alert';
+    div.setAttribute('role', 'alert');
+    div.style.cssText =
+      'padding:var(--spacing-md);border-radius:4px;margin-bottom:var(--spacing-md);text-align:center;' +
+      (isError
+        ? 'background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;'
+        : 'background:#d4edda;color:#155724;border:1px solid #c3e6cb;');
+    div.textContent = message;
+    form.insertBefore(div, form.firstChild);
+  }
+  
+  // ============================================
   // Service Appointment Form
   // ============================================
   
@@ -427,10 +457,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    serviceForm.addEventListener('submit', function(e) {
+    serviceForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Get form values
       const date = document.getElementById('appointmentDate').value;
       const time = document.getElementById('appointmentTime').value;
       const name = document.getElementById('serviceName').value;
@@ -438,12 +467,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const phone = document.getElementById('servicePhone').value;
       const message = document.getElementById('serviceMessage').value;
       const privacy = document.getElementById('servicePrivacy').checked;
+      const honeypot = document.getElementById('serviceHoneypot');
+      const websiteField = honeypot ? honeypot.value : '';
       
-      // Validation
       let isValid = true;
       
-      // Clear previous error messages
-      document.querySelectorAll('.error-message').forEach(el => el.remove());
+      document.querySelectorAll('.error-message').forEach(function(el) {
+        el.remove();
+      });
+      clearFormSubmitAlerts(serviceForm);
       
       if (!date) {
         showError(document.getElementById('appointmentDate'), 'Bitte wählen Sie ein Datum');
@@ -465,7 +497,6 @@ document.addEventListener('DOMContentLoaded', function() {
         isValid = false;
       }
       
-      // Optional phone validation (only if filled)
       if (phone.trim() && !isValidPhone(phone)) {
         showError(document.getElementById('servicePhone'), 'Bitte geben Sie eine gültige Telefonnummer ein');
         isValid = false;
@@ -476,9 +507,60 @@ document.addEventListener('DOMContentLoaded', function() {
         isValid = false;
       }
       
-      if (isValid) {
-        // Show success message and hide form
+      if (!isValid) {
+        return;
+      }
+      
+      const submitBtn = serviceForm.querySelector('button[type="submit"]');
+      const prevLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet…';
+      }
+      
+      try {
+        const res = await fetch(formMailUrl('send-service.php'), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            appointmentDate: date,
+            appointmentTime: time,
+            serviceName: name.trim(),
+            serviceEmail: email.trim(),
+            servicePhone: phone.trim(),
+            serviceMessage: message.trim(),
+            privacy: true,
+            website: websiteField
+          })
+        });
+        
+        let data = { ok: false, error: 'Unbekannter Fehler.' };
+        try {
+          data = await res.json();
+        } catch (parseErr) {
+          data.error = 'Server hat keine gültige Antwort gesendet.';
+        }
+        
+        if (!data.ok) {
+          showFormSubmitAlert(serviceForm, data.error || 'Senden fehlgeschlagen.', true);
+          return;
+        }
+        
         showServiceSuccessMessage(date, time);
+      } catch (err) {
+        showFormSubmitAlert(
+          serviceForm,
+          'Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung oder versuchen Sie es später erneut.',
+          true
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = prevLabel;
+        }
       }
     });
   }
@@ -567,18 +649,24 @@ document.addEventListener('DOMContentLoaded', function() {
   const contactForm = document.getElementById('contactForm');
   
   if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Simple validation
       const name = document.getElementById('name');
       const email = document.getElementById('email');
       const message = document.getElementById('message');
+      const phone = document.getElementById('phone');
+      const subject = document.getElementById('subject');
+      const privacy = document.getElementById('privacy');
+      const honeypot = document.getElementById('contactHoneypot');
+      const websiteField = honeypot ? honeypot.value : '';
       
       let isValid = true;
       
-      // Clear previous error messages
-      document.querySelectorAll('.error-message').forEach(el => el.remove());
+      document.querySelectorAll('.error-message').forEach(function(el) {
+        el.remove();
+      });
+      clearFormSubmitAlerts(contactForm);
       
       if (!name.value.trim()) {
         showError(name, 'Bitte geben Sie Ihren Namen ein');
@@ -595,10 +683,65 @@ document.addEventListener('DOMContentLoaded', function() {
         isValid = false;
       }
       
-      if (isValid) {
-        // Show success message (since we don't have backend yet)
+      if (!privacy || !privacy.checked) {
+        alert('Bitte stimmen Sie der Datenschutzerklärung zu.');
+        isValid = false;
+      }
+      
+      if (!isValid) {
+        return;
+      }
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const prevLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet…';
+      }
+      
+      try {
+        const res = await fetch(formMailUrl('send-contact.php'), {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            name: name.value.trim(),
+            email: email.value.trim(),
+            phone: phone ? phone.value.trim() : '',
+            subject: subject ? subject.value.trim() : '',
+            message: message.value.trim(),
+            privacy: true,
+            website: websiteField
+          })
+        });
+        
+        let data = { ok: false, error: 'Unbekannter Fehler.' };
+        try {
+          data = await res.json();
+        } catch (parseErr) {
+          data.error = 'Server hat keine gültige Antwort gesendet.';
+        }
+        
+        if (!data.ok) {
+          showFormSubmitAlert(contactForm, data.error || 'Senden fehlgeschlagen.', true);
+          return;
+        }
+        
         showSuccessMessage();
         contactForm.reset();
+      } catch (err) {
+        showFormSubmitAlert(
+          contactForm,
+          'Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung oder versuchen Sie es später erneut.',
+          true
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = prevLabel;
+        }
       }
     });
   }

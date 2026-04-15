@@ -31,3 +31,6 @@ package-lock.json
 # Backup files
 *.bak
 *.backup
+
+# SMTP-Zugangsdaten (auf dem Server aus mail-config.example.php anlegen)
+php/mail-config.php
