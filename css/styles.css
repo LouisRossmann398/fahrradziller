@@ -355,7 +355,7 @@ a:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem var(--spacing-sm);
+  padding: 1.5rem var(--spacing-sm);
   box-sizing: border-box;
 }
 
@@ -382,8 +382,8 @@ a:focus {
 /* Tablet/Desktop: gleiche Banner-Höhe, größerer Titel, Inhalt vertikal zentriert */
 @media (min-width: 769px) {
   body:not(.page-home) .hero {
-    min-height: 7.5rem;
-    padding: 0.5rem var(--spacing-md);
+    min-height: 9rem;
+    padding: 0.6rem var(--spacing-md);
   }
 
   body:not(.page-home) .hero h1 {
