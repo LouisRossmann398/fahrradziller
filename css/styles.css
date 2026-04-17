@@ -345,27 +345,62 @@ a:focus {
 }
 
 /* ============================================
-   Hero Section
+   Hero Section (Unterseiten: einheitlicher roter Banner)
    ============================================ */
 
 .hero {
   background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary-dark) 100%);
   color: var(--color-white);
-  padding: 1.5rem 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem var(--spacing-sm);
+  box-sizing: border-box;
+}
+
+.hero .container {
+  width: 100%;
 }
 
 .hero h1 {
+  color: var(--color-white);
   font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.4rem 0;
 }
 
 .hero p {
+  color: rgba(255, 255, 255, 0.95);
   font-size: 1rem;
-  margin: 0;
+  line-height: 1.45;
+  margin: 0 auto;
+  max-width: 40rem;
 }
 
-/* Startseite behält volle Höhe */
+/* Tablet/Desktop: gleiche Banner-Höhe, größerer Titel, Inhalt vertikal zentriert */
+@media (min-width: 769px) {
+  body:not(.page-home) .hero {
+    min-height: 7.5rem;
+    padding: 0.5rem var(--spacing-md);
+  }
+
+  body:not(.page-home) .hero h1 {
+    font-size: 2rem;
+    margin-bottom: 0.45rem;
+  }
+
+  body:not(.page-home) .hero p {
+    font-size: clamp(0.85rem, 0.35rem + 1.1vw, 1.05rem);
+    line-height: 1.35;
+    max-width: none;
+    padding: 0 var(--spacing-xs);
+    white-space: nowrap;
+  }
+}
+
+/* Startseite: .hero nur falls später genutzt */
 body.page-home .hero {
   padding: var(--spacing-xl) 0;
 }
@@ -503,19 +538,6 @@ body.page-home .hero p {
   .hero-indicator.active {
     width: 24px;
   }
-}
-
-.hero h1 {
-  color: var(--color-white);
-  margin-bottom: var(--spacing-md);
-}
-
-.hero p {
-  font-size: var(--font-size-large);
-  margin-bottom: var(--spacing-md);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* ============================================
@@ -877,10 +899,6 @@ body.page-home .hero p {
   .footer-content {
     grid-template-columns: repeat(4, 1fr);
   }
-  
-  .hero {
-    padding: var(--spacing-xl) 0;
-  }
 }
 
 /* ============================================
@@ -1039,6 +1057,138 @@ body.page-home .hero p {
   60% {
     transform: translateY(-2px);
   }
+}
+
+/* ============================================
+   Karriere
+   ============================================ */
+
+.career-benefits {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .career-benefits {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.career-benefit {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.career-benefit__icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto var(--spacing-sm);
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1.35rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.career-benefit h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.career-benefit p {
+  font-size: 0.95rem;
+  color: var(--color-gray);
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+.career-jobs {
+  display: grid;
+  gap: var(--spacing-lg);
+  grid-template-columns: 1fr;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .career-jobs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.career-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: box-shadow var(--transition-speed), transform var(--transition-speed);
+}
+
+.career-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.career-card__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.career-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-secondary);
+}
+
+.career-card p {
+  flex: 1;
+  color: var(--color-gray);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-md);
+}
+
+.career-card .btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.career-note {
+  max-width: 40rem;
+  margin: var(--spacing-lg) auto 0;
+  padding: var(--spacing-md);
+  background: var(--color-gray-light);
+  border-radius: 10px;
+  border-left: 4px solid var(--color-primary);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.career-note p {
+  margin-bottom: 0;
 }
 
 /* ============================================
