@@ -58,7 +58,7 @@ if ($msg !== '') {
 }
 
 try {
-    rz_send_mail($config, 'radsport@radsport-ziller.com', $mailSubject, $body, $email);
+    rz_send_mail($config, 'info@radsport-ziller.com', $mailSubject, $body, $email);
 } catch (Throwable $e) {
     error_log('send-service mail: ' . $e->getMessage());
     rz_json_response(false, 'E-Mail konnte nicht gesendet werden. Bitte später erneut versuchen.', 500);

@@ -49,7 +49,7 @@ htdocs/
 
 ## Schritt 3: E-Mail-Postfach und SMTP
 
-1. Legen Sie bei Strato sicher die Postfächer **`info@radsport-ziller.com`** und **`radsport@radsport-ziller.com`** an (oder prüfen Sie, dass sie existieren und Sie die Passwörter kennen).
+1. Legen Sie bei Strato sicher das Postfach **`info@radsport-ziller.com`** an (oder prüfen Sie, dass es existiert und Sie das Passwort kennen).
 2. Für den **Versand aus PHP** nutzt Strato den Postausgangsserver **`smtp.strato.de`**, Port **587**, **STARTTLS**, mit **Anmeldung** (vollständige E-Mail-Adresse + Passwort der Mailbox).  
    Details: [Strato FAQ – E-Mail-Versand aus PHP](https://www.strato.de/faq/mail/e-mail-versand-aus-cgi-und-php-skripten/)
 
@@ -63,7 +63,7 @@ htdocs/
 
 5. **`mail-config.php` per FTP in den Ordner `php/` auf den Server** hochladen (die Datei ist in `.gitignore` und soll **nicht** ins öffentliche Repository).
 
-Die Skripte senden **Kontaktanfragen** an `info@radsport-ziller.com` und **Termin-/Reparaturanfragen** an `radsport@radsport-ziller.com`. Die SMTP-Anmeldung kann bei **einer** Mailbox erfolgen; beide Ziel-Adressen müssen als Postfach oder Weiterleitung bei Strato existieren.
+Die Skripte senden **Kontaktanfragen** und **Termin-/Reparaturanfragen** an `info@radsport-ziller.com`. Die SMTP-Anmeldung erfolgt über diese Mailbox.
 
 ---
 
@@ -115,6 +115,6 @@ Dann `http://localhost:8080/pages/kontakt.html` öffnen und testen.
 | Formular | Ziel-E-Mail |
 |----------|-------------|
 | Kontakt | info@radsport-ziller.com |
-| Termin / Reparatur | radsport@radsport-ziller.com |
+| Termin / Reparatur | info@radsport-ziller.com |
 
 Versand über **PHPMailer** und **SMTP (Strato)**. Spam-Schutz: verstecktes **Honeypot-Feld** (nicht ausfüllen).

@@ -34,11 +34,6 @@
   --transition-speed: 0.3s;
 }
 
-/* Accessibility Klassen für Textgröße */
-html.text-size-normal { font-size: 16px; }
-html.text-size-large { font-size: 18px; }
-html.text-size-xlarge { font-size: 20px; }
-
 /* ============================================
    Reset & Base Styles
    ============================================ */
@@ -51,7 +46,7 @@ html.text-size-xlarge { font-size: 20px; }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px; /* Standard-Größe, wird durch Accessibility-Klassen überschrieben */
+  font-size: 18px; /* Dauerhaft mittlere Schriftgröße */
 }
 
 body {
@@ -153,7 +148,7 @@ a:focus {
 }
 
 .logo-img {
-  height: 80px;
+  height: 88px;
   width: auto;
   display: block;
 }
@@ -165,7 +160,7 @@ a:focus {
 /* Logo responsive */
 @media (max-width: 768px) {
   .logo-img {
-    height: 60px;
+    height: 64px;
   }
   
   .header {
@@ -424,6 +419,14 @@ body.page-home .hero p {
   height: 500px;
   overflow: hidden;
   background: #f5f5f5;
+}
+
+/* Startseite Desktop: Slider-Breite wie Content/Kacheln */
+@media (min-width: 1024px) {
+  body.page-home .hero-slider {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+  }
 }
 
 .hero-slider-container {
@@ -762,6 +765,13 @@ body.page-home .hero p {
   display: grid;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
+  justify-items: center;
+  text-align: center;
+}
+
+.footer-section {
+  width: 100%;
+  max-width: 320px;
 }
 
 .footer-section h3 {
@@ -854,7 +864,8 @@ body.page-home .hero p {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   
   .footer-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    justify-content: center;
   }
   
   .menu-toggle {
@@ -897,7 +908,8 @@ body.page-home .hero p {
   .grid-4 { grid-template-columns: repeat(4, 1fr); }
   
   .footer-content {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    justify-content: center;
   }
 }
 

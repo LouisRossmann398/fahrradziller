@@ -191,48 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
   setActiveNavLink();
   
   // ============================================
-  // Accessibility: Text Size Control
-  // ============================================
-  
-  const textSizeBtn = document.getElementById('textSizeBtn');
-  let currentTextSize = 0; // 0 = normal, 1 = large, 2 = xlarge
-  
-  // Load saved text size preference
-  const savedTextSize = localStorage.getItem('textSize');
-  if (savedTextSize) {
-    currentTextSize = parseInt(savedTextSize);
-    applyTextSize(currentTextSize);
-  }
-  
-  if (textSizeBtn) {
-    textSizeBtn.addEventListener('click', function() {
-      currentTextSize = (currentTextSize + 1) % 3;
-      applyTextSize(currentTextSize);
-      localStorage.setItem('textSize', currentTextSize);
-    });
-  }
-  
-  function applyTextSize(size) {
-    const html = document.documentElement;
-    html.classList.remove('text-size-normal', 'text-size-large', 'text-size-xlarge');
-    
-    switch(size) {
-      case 0:
-        html.classList.add('text-size-normal');
-        if (textSizeBtn) textSizeBtn.title = 'Textgröße: Normal (klicken für Groß)';
-        break;
-      case 1:
-        html.classList.add('text-size-large');
-        if (textSizeBtn) textSizeBtn.title = 'Textgröße: Groß (klicken für Sehr Groß)';
-        break;
-      case 2:
-        html.classList.add('text-size-xlarge');
-        if (textSizeBtn) textSizeBtn.title = 'Textgröße: Sehr Groß (klicken für Normal)';
-        break;
-    }
-  }
-  
-  // ============================================
   // Smooth Scroll for Anchor Links
   // ============================================
   

@@ -32,22 +32,12 @@
           <li class="nav-item"><a href="fahrraeder.html" class="nav-link">Fahrräder</a></li>
           <li class="nav-item"><a href="leasing.html" class="nav-link">Leasing</a></li>
           <li class="nav-item"><a href="service.html" class="nav-link">Service &amp; Reparatur</a></li>
-          <li class="nav-item"><a href="neuigkeiten.html" class="nav-link">Angebote</a></li>
+          <li class="nav-item"><a href="neuigkeiten.html" class="nav-link">Angebote %</a></li>
           <li class="nav-item"><a href="karriere.html" class="nav-link">Karriere</a></li>
           <li class="nav-item"><a href="kontakt.html" class="nav-link">Kontakt</a></li>
         </ul>
       </nav>
       
-      <!-- Accessibility Controls -->
-      <div class="accessibility-controls" aria-label="Barrierefreiheit">
-        <button 
-          id="textSizeBtn" 
-          class="accessibility-btn" 
-          aria-label="Textgröße anpassen"
-          title="Textgröße anpassen">
-          A+
-        </button>
-      </div>
     </div>
   </header>
   
@@ -175,6 +165,51 @@
       </div>
     </section>
     
+    <!-- JobRad Rechner -->
+    <section class="section section-alt">
+      <div class="container">
+        <h2 class="text-center" style="margin-bottom: var(--spacing-md);">
+          Berechnen Sie ganz einfach Ihre Ersparnis mit dem JobRad-Vorteilsrechner
+        </h2>
+        <p class="text-center" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); max-width: 700px; margin-left: auto; margin-right: auto;">
+          Ermitteln Sie Ihre monatliche Rate und Ersparnis gegenüber dem Direktkauf
+        </p>
+        
+        <div style="max-width: 1000px; margin: 0 auto;">
+          <!-- JobRad Logo -->
+          <div style="text-align: center; margin-bottom: var(--spacing-lg);">
+            <img src="../assets/images/leasinglogos/jobrad-logo.png" 
+                 alt="JobRad Dienstradleasing" 
+                 style="max-width: 180px; height: auto;">
+          </div>
+          
+          <!-- JobRad Rechner iframe -->
+          <div class="jobrad-calculator-wrapper">
+            <script src="https://www.jobrad.org/.resources/jobrad/external-modules/iframeResizer.min.js"></script>
+            <iframe id="jobradCalculator"
+                    src="https://www.jobrad.org/fachhandel/werbematerial/werkzeugkasten/iframe1" 
+                    title="JobRad-Rechner" 
+                    frameBorder="0" 
+                    scrolling="no"
+                    width="100%" 
+                    height="800"
+                    style="min-height: 600px;"></iframe>
+            <script>
+              // iFrameResize mit Konfiguration
+              if (typeof iFrameResize === 'function') {
+                iFrameResize({
+                  log: false,
+                  checkOrigin: false,
+                  heightCalculationMethod: 'lowestElement',
+                  minHeight: 600
+                }, '#jobradCalculator');
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- Leasingpartner -->
     <section class="section">
       <div class="container">
@@ -230,51 +265,6 @@
       </div>
     </section>
     
-    <!-- JobRad Rechner -->
-    <section class="section section-alt">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: var(--spacing-md);">
-          Berechnen Sie ganz einfach Ihre Ersparnis mit dem JobRad-Vorteilsrechner
-        </h2>
-        <p class="text-center" style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); max-width: 700px; margin-left: auto; margin-right: auto;">
-          Ermitteln Sie Ihre monatliche Rate und Ersparnis gegenüber dem Direktkauf
-        </p>
-        
-        <div style="max-width: 1000px; margin: 0 auto;">
-          <!-- JobRad Logo -->
-          <div style="text-align: center; margin-bottom: var(--spacing-lg);">
-            <img src="../assets/images/leasinglogos/jobrad-logo.png" 
-                 alt="JobRad Dienstradleasing" 
-                 style="max-width: 180px; height: auto;">
-          </div>
-          
-          <!-- JobRad Rechner iframe -->
-          <div class="jobrad-calculator-wrapper">
-            <script src="https://www.jobrad.org/.resources/jobrad/external-modules/iframeResizer.min.js"></script>
-            <iframe id="jobradCalculator"
-                    src="https://www.jobrad.org/fachhandel/werbematerial/werkzeugkasten/iframe1" 
-                    title="JobRad-Rechner" 
-                    frameBorder="0" 
-                    scrolling="no"
-                    width="100%" 
-                    height="800"
-                    style="min-height: 600px;"></iframe>
-            <script>
-              // iFrameResize mit Konfiguration
-              if (typeof iFrameResize === 'function') {
-                iFrameResize({
-                  log: false,
-                  checkOrigin: false,
-                  heightCalculationMethod: 'lowestElement',
-                  minHeight: 600
-                }, '#jobradCalculator');
-              }
-            </script>
-          </div>
-        </div>
-      </div>
-    </section>
-    
   </main>
   
   <!-- Scroll to Top -->
@@ -314,16 +304,6 @@
             Samstag: 9:00 - 12:00 Uhr<br>
             Sonntag: geschlossen
           </p>
-        </div>
-        
-        <div class="footer-section">
-          <h3>Schnelllinks</h3>
-          <ul class="footer-links">
-            <li><a href="fahrraeder.html">Fahrräder</a></li>
-            <li><a href="leasing.html">Leasing</a></li>
-            <li><a href="service.html">Service</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-          </ul>
         </div>
         
       </div>
