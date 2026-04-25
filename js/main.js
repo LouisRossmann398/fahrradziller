@@ -1,6 +1,6 @@
 /**
  * Radsport Ziller - Main JavaScript
- * Funktionen: Mobile Navigation, Accessibility Features
+ * Funktionen: Navigation, Interaktionen, Formulare
  */
 
 // ============================================
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         <div style="background: var(--color-gray-light); padding: var(--spacing-md); border-radius: 8px; margin-bottom: var(--spacing-md);">
           <h3 style="margin-top: 0; color: var(--color-secondary);">Ihr Wunschtermin</h3>
-          <p style="font-size: 1.2rem; margin: 0; font-weight: bold; color: var(--color-primary);">
+          <p style="font-size: 1.2rem; margin: 0; font-weight: bold; color: var(--color-secondary);">
             ${formattedDate}<br>um ${time} Uhr
           </p>
         </div>
@@ -707,12 +707,12 @@ document.addEventListener('DOMContentLoaded', function() {
   function showError(input, message) {
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
-    errorDiv.style.color = 'var(--color-primary)';
+    errorDiv.style.color = 'var(--color-secondary)';
     errorDiv.style.fontSize = 'var(--font-size-small)';
     errorDiv.style.marginTop = '0.25rem';
     errorDiv.textContent = message;
     input.parentElement.appendChild(errorDiv);
-    input.style.borderColor = 'var(--color-primary)';
+    input.style.borderColor = 'var(--color-secondary)';
     
     // Reset border color on input
     input.addEventListener('input', function() {
@@ -763,7 +763,7 @@ document.addEventListener('DOMContentLoaded', function() {
   skipLink.className = 'skip-link';
   skipLink.style.cssText = `
     position: absolute;
-    top: -40px;
+    top: -120px;
     left: 0;
     background: var(--color-primary);
     color: white;

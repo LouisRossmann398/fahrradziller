@@ -5,6 +5,8 @@ declare(strict_types=1);
 use PHPMailer\PHPMailer\PHPMailer;
 
 /**
+ * Lädt und validiert die SMTP-Konfiguration aus php/mail-config.php.
+ *
  * @return array{smtp_host:string,smtp_port:int,smtp_user:string,smtp_pass:string,from_email:string,from_name:string}
  */
 function rz_mail_load_config(): array
@@ -28,6 +30,7 @@ function rz_mail_load_config(): array
 
 function rz_send_mail(array $config, string $to, string $subject, string $bodyText, ?string $replyTo = null): void
 {
+    // Zentraler Mailversand: beide Formular-Endpunkte nutzen dieselbe SMTP-Logik.
     $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->Host = (string) $config['smtp_host'];
@@ -61,6 +64,7 @@ function rz_json_response(bool $ok, string $errorMessage = '', int $code = 200):
 
 function rz_sanitize_line(string $s, int $maxLen = 8000): string
 {
+    // Basis-Schutz: entfernt HTML und kürzt überlange Eingaben.
     $s = trim(strip_tags($s));
     if (function_exists('mb_strlen') && mb_strlen($s) > $maxLen) {
         return mb_substr($s, 0, $maxLen);

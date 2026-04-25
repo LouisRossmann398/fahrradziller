@@ -5,6 +5,9 @@ declare(strict_types=1);
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once __DIR__ . '/mail-common.php';
 
+// Erwartet JSON-POST mit:
+// appointmentDate, appointmentTime, serviceName, serviceEmail, servicePhone (optional),
+// serviceMessage (optional), privacy, website (Honeypot).
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     rz_json_response(false, 'Nicht erlaubt.', 405);
 }
@@ -21,6 +24,7 @@ if (!is_array($data)) {
 }
 
 if (!empty($data['website'] ?? null)) {
+    // Für Bots absichtlich "ok", damit kein Feedback für Angreifer entsteht.
     rz_json_response(true);
 }
 

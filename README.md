@@ -1,143 +1,93 @@
 # Radsport Ziller - Website
 
-Moderne, responsive Website für das Fahrradfachgeschäft Radsport Ziller.
+Responsive Firmenwebsite fuer Radsport Ziller mit statischen Seiten und serverseitigem Formularversand (PHP + PHPMailer).
 
-## 📁 Projektstruktur
+## Projektstruktur
 
 ```
 Ziller/
-├── index.html              # Startseite
-├── css/
-│   └── styles.css          # Haupt-Stylesheet (Mobile-First, responsive)
-├── js/
-│   └── main.js             # JavaScript für Navigation & Accessibility
-├── pages/
-│   ├── fahrraeder.html     # Fahrrad-Kategorien Übersicht
-│   ├── leasing.html        # Fahrrad-Leasing Informationen
-│   ├── service.html        # Service & Reparatur (in Vorbereitung)
-│   ├── neuigkeiten.html    # Neuigkeiten & Angebote (in Vorbereitung)
-│   ├── kontakt.html        # Über uns & Kontaktformular
-│   ├── impressum.html      # Impressum
-│   └── datenschutz.html    # Datenschutzerklärung
-└── assets/
-    └── images/             # Platzhalter für Bilder
+|- index.html
+|- pages/
+|  |- fahrraeder.html
+|  |- leasing.html
+|  |- service.html
+|  |- neuigkeiten.html
+|  |- karriere.html
+|  |- kontakt.html
+|  |- impressum.html
+|  `- datenschutz.html
+|- css/styles.css
+|- js/main.js
+|- php/
+|  |- send-contact.php
+|  |- send-service.php
+|  |- mail-common.php
+|  |- mail-config.example.php
+|  `- .htaccess
+|- assets/images/
+|- vendor/                # Composer-Abhaengigkeiten (PHPMailer)
+|- composer.json
+`- HOSTING_STRATO.md
 ```
 
-## 🎨 Design
+## Was bereits fertig ist
 
-- **Farbschema**: Rot (#dc0000), Weiß (#ffffff), Schwarz (#000000)
-- **Typografie**: System-Schriften für optimale Performance
-- **Layout**: Mobile-First, vollständig responsive
-- **Accessibility**: Textgrößen-Anpassung und Kontrast-Modus integriert
+- Responsive Navigation und einheitliche Seitenlayouts
+- Startseite mit Bild-Slider und Inhaltskacheln
+- Kontaktformular und Service-/Reparaturformular mit Frontend-Validierung
+- Serverseitiger E-Mail-Versand ueber Strato SMTP
+- Rechtsseiten (Impressum, Datenschutz) und einheitlicher Footer
 
-## ✨ Features
+## Formularversand (wichtig)
 
-### Barrierefreiheit (Accessibility)
-- **Textgröße anpassen**: 3 Stufen (Normal, Groß, Sehr Groß) - wirkt auf gesamten Text
-- Einstellungen werden im Browser gespeichert (localStorage)
-- Semantisches HTML für Screen-Reader
-- Keyboard-Navigation optimiert
-- Skip-to-Content Link
+- Kontaktformular: Versand ueber `php/send-contact.php`
+- Serviceformular: Versand ueber `php/send-service.php`
+- Gemeinsame SMTP-Logik in `php/mail-common.php`
+- Empfaengeradressen und SMTP-Daten werden in `php/mail-config.php` gepflegt
 
-### Navigation
-- Responsive Menü mit Mobile-Toggle
-- Aktive Seite wird automatisch hervorgehoben
-- Smooth Scrolling für Anker-Links
+`mail-config.php` liegt absichtlich **nicht** im Repository (siehe `.gitignore`).
+Als Vorlage dient `php/mail-config.example.php`.
 
-### Kontaktformular
-- Formular-Validierung (Frontend)
-- E-Mail-Format-Prüfung
-- Erfolgs- und Fehlermeldungen
-- DSGVO-Checkbox
-- Backend-Integration vorbereitet (noch nicht implementiert)
-
-## 🚀 Verwendung
-
-### Lokal öffnen
-Öffnen Sie die `index.html` direkt im Browser oder nutzen Sie einen lokalen Webserver:
+## Lokale Entwicklung
 
 ```bash
-# Python 3
-python -m http.server 8000
-
-# Dann im Browser öffnen: http://localhost:8000
+cd /Pfad/zum/Ziller
+python3 -m http.server 8080
 ```
 
-### Deployment
-Die Website besteht aus reinen HTML/CSS/JavaScript-Dateien und kann auf jedem Webserver gehostet werden:
-- Alle Dateien auf den Server hochladen
-- Keine Server-seitige Konfiguration erforderlich
-- SSL/HTTPS wird empfohlen
+Dann im Browser:
 
-## 🔧 Anpassungen
+- Startseite: `http://localhost:8080/`
+- Unterseiten: `http://localhost:8080/pages/...`
 
-### Farben ändern
-Bearbeiten Sie die CSS Custom Properties in `css/styles.css`:
+Wenn Formulare lokal getestet werden sollen, einen PHP-Server verwenden:
 
-```css
-:root {
-  --color-primary: #dc0000;      /* Hauptfarbe (Rot) */
-  --color-primary-dark: #a50000; /* Dunkleres Rot */
-  --color-secondary: #000000;    /* Schwarz */
-  --color-white: #ffffff;        /* Weiß */
-}
+```bash
+php -S localhost:8080
 ```
 
-### Kontaktdaten aktualisieren
-Ersetzen Sie Platzhalter-Kontaktdaten in:
-- Footer (in allen HTML-Dateien)
-- `pages/kontakt.html`
-- `pages/impressum.html`
+## Deployment / Strato
 
-### Bilder hinzufügen
-Fügen Sie Bilder im Ordner `assets/images/` hinzu und ersetzen Sie die Platzhalter:
-- Hero-Bereiche
-- Produkt-Karten
-- Über-uns-Sektion
+Die komplette Schritt-fuer-Schritt-Anleitung steht in:
 
-## 📋 To-Do / Geplante Erweiterungen
+- `HOSTING_STRATO.md`
 
-- [ ] Echte Bilder einfügen (derzeit Platzhalter)
-- [ ] Backend für Kontaktformular implementieren
-- [ ] Google Maps / OpenStreetMap einbinden
-- [ ] Newsletter-Anmeldung
-- [ ] Service-Seite mit Preisen ausbauen
-- [ ] Neuigkeiten/Blog-System
-- [ ] Produkt-Katalog mit Detailseiten
-- [ ] Online-Terminbuchung
-- [ ] Cookie-Banner (falls externe Services eingebunden werden)
+Kurzfassung:
 
-## 🌐 Browser-Unterstützung
+1. Dateien in den richtigen Webspace-Ordner hochladen
+2. PHP 8.x aktivieren
+3. `php/mail-config.php` aus der Vorlage erstellen und SMTP eintragen
+4. Formulare auf Live-Domain testen
 
-- Chrome/Edge (aktuelle Versionen)
-- Firefox (aktuelle Versionen)
-- Safari (aktuelle Versionen)
-- Mobile Browser (iOS Safari, Chrome Mobile)
+## Wartungshinweise fuer den Kunden
 
-## 📱 Responsive Breakpoints
+- Inhalte/texte: direkt in den entsprechenden HTML-Dateien
+- Design/Abstaende/Farben: `css/styles.css`
+- Interaktionen/Formular-Frontend: `js/main.js`
+- Formular-Empfaenger oder SMTP: `php/send-*.php` und `php/mail-config.php`
 
-- Mobile: < 768px
-- Tablet: 768px - 1023px
-- Desktop: ≥ 1024px
+## Technischer Stand
 
-## 🛠️ Technologien
-
-- HTML5 (Semantisch)
-- CSS3 (Custom Properties, Flexbox, Grid)
-- Vanilla JavaScript (ES6+)
-- Keine externen Dependencies
-
-## 📄 Lizenz & Hinweise
-
-- Impressum und Datenschutz enthalten Platzhalter und müssen mit echten Daten gefüllt werden
-- Bilder und Inhalte müssen vor Live-Gang vervollständigt werden
-- USt-IdNr. und rechtliche Angaben im Impressum prüfen
-
-## 👤 Kontakt
-
-Bei Fragen zur Website-Entwicklung oder Anpassungen wenden Sie sich an den Website-Administrator.
-
----
-
-**Stand**: Februar 2026  
-**Version**: 1.0.0 (Grundgerüst)
+- HTML5, CSS3, Vanilla JavaScript
+- PHP 8+ fuer Mail-Endpunkte
+- PHPMailer via Composer
