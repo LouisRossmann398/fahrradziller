@@ -618,6 +618,11 @@ body.page-home .hero p {
   transform: translateX(4px);
 }
 
+/* Für Buttons, die keinen rechten Pfeil zeigen sollen (z. B. PDF-Download) */
+.btn-primary.no-arrow::after {
+  content: none;
+}
+
 .btn-primary:active {
   transform: translateY(0);
   box-shadow: var(--shadow-soft);
@@ -1160,6 +1165,19 @@ body.page-home .hero p {
   display: block;
   width: 100%;
   border: none;
+}
+
+/* Neuigkeiten: PDF-Button auch mobil sauber zentrieren */
+.pdf-download-btn {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .pdf-download-btn {
+    width: min(100%, 360px);
+    justify-content: center;
+  }
 }
 
 /* Mobile Optimierung */
