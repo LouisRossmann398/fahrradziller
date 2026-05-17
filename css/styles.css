@@ -461,9 +461,19 @@ body.page-home .hero p {
   min-width: 100%;
   height: 100%;
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hero-slide picture,
+.hero-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide img {
+  object-fit: cover;
+  object-position: center center;
 }
 
 .hero-slide::before {
@@ -781,6 +791,88 @@ body.page-home .hero p {
 }
 
 /* ============================================
+   Seitenfotos (Kontakt, Service, …)
+   ============================================ */
+
+.page-photo-figure {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-white);
+  box-shadow: var(--shadow-card);
+}
+
+.page-photo-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ============================================
+   Service – Werkstatt
+   ============================================ */
+
+.service-intro {
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.service-intro-content h2 {
+  font-size: var(--font-size-h2);
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-secondary);
+}
+
+.service-intro-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.service-intro-content p:last-child {
+  margin-bottom: 0;
+}
+
+.service-intro-figure img {
+  object-position: 55% center;
+}
+
+@media (max-width: 768px) {
+  .service-intro {
+    gap: var(--spacing-md);
+  }
+
+  .service-intro-figure img {
+    aspect-ratio: 4 / 3;
+    object-position: center 40%;
+  }
+}
+
+/* ============================================
+   Kontakt – Teamfoto
+   ============================================ */
+
+.contact-team {
+  max-width: 920px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.contact-team-figure img {
+  object-position: center 40%;
+}
+
+@media (max-width: 768px) {
+  .contact-team-figure img {
+    aspect-ratio: 4 / 3;
+    object-position: center 35%;
+  }
+}
+
+/* ============================================
    Forms
    ============================================ */
 
@@ -1053,6 +1145,129 @@ body.page-home .hero p {
 }
 
 /* ============================================
+   Markenband (Fahrräder)
+   ============================================ */
+
+.brand-marquee-section {
+  background: var(--color-white);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Gleicher, kompakter Abstand zur Kategorie-Sektion darunter */
+.brand-marquee-section + .section {
+  padding-top: 1rem;
+}
+
+.brand-marquee {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.brand-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: brand-marquee-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.brand-marquee:hover .brand-marquee-track,
+.brand-marquee:focus-within .brand-marquee-track {
+  animation-play-state: paused;
+}
+
+.brand-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  padding: 0 clamp(1.25rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.brand-marquee-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 56px;
+}
+
+.brand-marquee-item img {
+  display: block;
+  max-width: 140px;
+  max-height: 48px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.brand-marquee-item--velodeville img {
+  max-width: 180px;
+  max-height: 44px;
+}
+
+.brand-marquee-item--puky img {
+  max-height: 52px;
+}
+
+@keyframes brand-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-marquee-item {
+    min-width: 100px;
+    height: 48px;
+  }
+
+  .brand-marquee-item img {
+    max-width: 110px;
+    max-height: 40px;
+  }
+
+  .brand-marquee-track {
+    animation-duration: 32s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: thin;
+  }
+
+  .brand-marquee-track {
+    animation: none;
+    padding-bottom: var(--spacing-xs);
+  }
+}
+
+/* ============================================
    Leasing Partners
    ============================================ */
 
@@ -1109,14 +1324,30 @@ body.page-home .hero p {
   background: transparent;
 }
 
-/* Leasing: "So einfach funktioniert's" zentrieren */
+/* Leasing: "So einfach funktioniert's" – breit, zentriert, 3 Spalten */
 .leasing-steps {
-  max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: 1fr;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .leasing-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+.leasing-step-card {
+  height: 100%;
 }
 
 .leasing-step-card .card-content {
   text-align: center;
+  padding: var(--spacing-md) var(--spacing-sm);
 }
 
 .leasing-step-card .card-title,
