@@ -47,25 +47,29 @@
     <!-- Page Header -->
     <section class="hero">
       <div class="container">
+        <span class="eyebrow">Persönlich beraten lassen</span>
         <h1>Kontakt</h1>
-        <p>Kontakt aufnehmen – wir freuen uns auf Sie</p>
+        <p>Kontakt aufnehmen – wir freuen uns auf Sie.</p>
       </div>
     </section>
     
     <!-- Über uns -->
     <section class="section">
       <div class="container">
-        <h2 class="text-center mb-lg">Über Radsport Ziller</h2>
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Über uns</span>
+          <h2>Familienbetrieb mit Tradition</h2>
+        </div>
         
         <div class="grid grid-2">
           <div>
-            <h3>Familienbetrieb mit Tradition seit 1920</h3>
+            <h3>Seit 1920 in Petershausen</h3>
             <p>
               Radsport Ziller ist ein Familienbetrieb mit Tradition. 
               Seit 1920 sind wir in Petershausen Ihr Experte fürs Rad!
             </p>
             <p>
-              Neben unserer jahrelangen Erfahrung und einem breiten Know-How im Zweiradbereich, 
+              Neben unserer jahrelangen Erfahrung und einem breiten Know-how im Zweiradbereich 
               zeichnet sich Radsport Ziller durch eine umfassende Auswahl an topaktuellen Fahrrädern, 
               hochwertigem Zubehör und Bekleidungsartikeln aus.
             </p>
@@ -91,7 +95,10 @@
     <!-- Kontakt -->
     <section class="section section-alt">
       <div class="container">
-        <h2 class="text-center mb-lg">Kontaktieren Sie uns</h2>
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Kontakt aufnehmen</span>
+          <h2>Kontaktieren Sie uns</h2>
+        </div>
 
         <div class="contact-team">
           <figure class="page-photo-figure contact-team-figure">
@@ -113,45 +120,47 @@
           <div>
             <h3>So erreichen Sie uns</h3>
             
-            <div style="margin: var(--spacing-md) 0;">
-              <h4 style="color: var(--color-secondary); margin-bottom: 0.5rem;">📍 Adresse</h4>
-              <address style="font-style: normal; line-height: 1.8;">
-                Radsport Ziller GmbH & Co. KG<br>
-                Indersdorfer Str. 2 a<br>
-                85238 Petershausen
-              </address>
-            </div>
-            
-            <div style="margin: var(--spacing-md) 0;">
-              <h4 style="color: var(--color-secondary); margin-bottom: 0.5rem;">📞 Telefon</h4>
-              <p><a href="tel:081375025">08137 / 5025</a></p>
-            </div>
-            
-            <div style="margin: var(--spacing-md) 0;">
-              <h4 style="color: var(--color-secondary); margin-bottom: 0.5rem;">✉️ E-Mail</h4>
-              <p><a href="mailto:info@radsport-ziller.com">info@radsport-ziller.com</a></p>
-            </div>
-            
-            <div style="margin: var(--spacing-md) 0;">
-              <h4 style="color: var(--color-secondary); margin-bottom: 0.5rem;">🕐 Öffnungszeiten</h4>
-              <p style="line-height: 2;">
-                Montag, Dienstag, Donnerstag, Freitag: 9:00 - 12:00 und 14:00 - 18:00 Uhr<br>
-                Mittwoch: 9:00 - 12:00 Uhr<br>
-                Samstag: 9:00 - 12:00 Uhr<br>
-                Sonntag: geschlossen
-              </p>
+            <div class="contact-info">
+              <div class="contact-info-item">
+                <span class="eyebrow eyebrow--dark">Adresse</span>
+                <address>
+                  Radsport Ziller GmbH &amp; Co. KG<br>
+                  Indersdorfer Str. 2 a<br>
+                  85238 Petershausen
+                </address>
+              </div>
+              
+              <div class="contact-info-item">
+                <span class="eyebrow eyebrow--dark">Telefon</span>
+                <p><a href="tel:081375025">08137 / 5025</a></p>
+              </div>
+              
+              <div class="contact-info-item">
+                <span class="eyebrow eyebrow--dark">E-Mail</span>
+                <p><a href="mailto:info@radsport-ziller.com">info@radsport-ziller.com</a></p>
+              </div>
+              
+              <div class="contact-info-item">
+                <span class="eyebrow eyebrow--dark">Öffnungszeiten</span>
+                <p>
+                  Mo, Di, Do, Fr: 9:00 – 12:00 und 14:00 – 18:00 Uhr<br>
+                  Mittwoch: 9:00 – 12:00 Uhr<br>
+                  Samstag: 9:00 – 12:00 Uhr<br>
+                  Sonntag: geschlossen
+                </p>
+              </div>
             </div>
           </div>
           
           <!-- Kontaktformular -->
           <div>
             <h3>Schreiben Sie uns</h3>
-            <p style="margin-bottom: var(--spacing-md);">
+            <p>
               Haben Sie Fragen oder möchten Sie einen Beratungstermin vereinbaren? 
               Nutzen Sie unser Kontaktformular – wir melden uns schnellstmöglich bei Ihnen.
             </p>
             
-            <form id="contactForm" class="contact-form">
+            <form id="contactForm" class="contact-form form-card">
               <div class="form-group">
                 <label for="name" class="form-label">
                   Name <span style="color: var(--color-secondary);">*</span>
@@ -234,7 +243,7 @@
                 <span style="color: var(--color-secondary);">*</span> Pflichtfelder
               </p>
               
-              <button type="submit" class="btn btn-primary">Nachricht senden</button>
+              <button type="submit" class="btn btn-primary btn--lg btn--block">Nachricht senden</button>
             </form>
           </div>
           
@@ -245,11 +254,14 @@
     <!-- Google Maps -->
     <section class="section">
       <div class="container">
-        <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">So finden Sie uns</h2>
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Standort</span>
+          <h2>So finden Sie uns</h2>
+        </div>
         
         <!-- Desktop: Interaktive Karte + Button -->
-        <div class="map-desktop" style="display: none;">
-          <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md);">
+        <div class="map-desktop">
+          <div class="map-frame">
             <iframe 
               src="https://www.google.com/maps?q=Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2a,+85238+Petershausen&output=embed&z=15"
               width="100%" 
@@ -261,13 +273,12 @@
               title="Google Maps Standort Radsport Ziller">
             </iframe>
           </div>
-          <div style="text-align: center;">
+          <div class="text-center">
             <a href="https://www.google.com/maps/dir//Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2A,+85238+Petershausen/@48.1656832,11.5277824,6130m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x479e66c0b348e191:0x6329681be1454853!2m2!1d11.4682051!2d48.408672?entry=ttu" 
                target="_blank" 
                rel="noopener noreferrer"
-               class="btn btn-primary no-arrow"
-               style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1rem;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+               class="btn btn-primary btn--lg no-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -277,20 +288,20 @@
         </div>
         
         <!-- Mobile: Nur Button zur Route -->
-        <div class="map-mobile" style="display: none;">
-          <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-            <h3 style="margin-bottom: var(--spacing-md);">Besuchen Sie uns</h3>
-            <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg); line-height: 1.8;">
-              Radsport Ziller GmbH & Co. KG<br>
+        <div class="map-mobile">
+          <div class="info-callout info-callout--centered">
+            <span class="eyebrow">Besuchen Sie uns</span>
+            <h3>Radsport Ziller</h3>
+            <address>
+              Radsport Ziller GmbH &amp; Co. KG<br>
               Indersdorfer Str. 2 a<br>
               85238 Petershausen
-            </p>
+            </address>
             <a href="https://www.google.com/maps/dir//Radsport+Ziller+GmbH+%26+Co.+KG,+Indersdorfer+Str.+2A,+85238+Petershausen/@48.1656832,11.5277824,6130m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x479e66c0b348e191:0x6329681be1454853!2m2!1d11.4682051!2d48.408672?entry=ttu" 
                target="_blank" 
                rel="noopener noreferrer"
-               class="btn btn-primary no-arrow"
-               style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1.1rem;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+               class="btn btn-primary btn--lg no-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
@@ -298,20 +309,6 @@
             </a>
           </div>
         </div>
-        
-        <style>
-          /* Desktop: Karte + Button anzeigen */
-          @media (min-width: 768px) {
-            .map-desktop { display: block !important; }
-            .map-mobile { display: none !important; }
-          }
-          
-          /* Mobile: Nur Button anzeigen */
-          @media (max-width: 767px) {
-            .map-desktop { display: none !important; }
-            .map-mobile { display: block !important; }
-          }
-        </style>
         
       </div>
     </section>

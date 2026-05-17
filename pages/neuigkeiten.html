@@ -47,32 +47,32 @@
     <!-- Page Header -->
     <section class="hero">
       <div class="container">
+        <span class="eyebrow">Aktionen &amp; Highlights</span>
         <h1>Aktuelle Angebote</h1>
-        <p>Unsere monatlichen Sonderangebote und Aktionen</p>
+        <p>Unsere monatlichen Sonderangebote und Aktionen – als PDF zum Download.</p>
       </div>
     </section>
     
     <!-- PDF Viewer / Download Section -->
     <section class="section">
       <div class="container">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="pdf-section">
           
           <!-- PDF vorhanden -->
           <div id="pdfAvailable" style="display: none;">
             <!-- Desktop: PDF Viewer -->
             <div class="pdf-viewer-desktop" style="display: none;">
-              <div style="background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: var(--spacing-md); padding: 20px;">
+              <div class="pdf-frame">
                 <iframe 
                   id="pdfFrame"
                   src="../angebote/aktuelle-angebote.pdf#view=Fit&pagemode=none" 
-                  style="width: 100%; height: 650px; border: none; background: white;"
                   title="Aktuelle Angebote PDF">
                 </iframe>
               </div>
               
-              <div style="text-align: center;">
-                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary pdf-download-btn no-arrow" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1rem;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <div class="text-center">
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary btn--lg pdf-download-btn no-arrow">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -84,13 +84,14 @@
             
             <!-- Mobile: Nur Download Button -->
             <div class="pdf-viewer-mobile" style="display: none;">
-              <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                <h2 style="margin-bottom: var(--spacing-md);">Aktuelle Angebote</h2>
-                <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+              <div class="info-callout info-callout--centered">
+                <span class="eyebrow">Sonderaktionen</span>
+                <h2>Aktuelle Angebote</h2>
+                <p>
                   Laden Sie unser aktuelles Angebots-PDF herunter und entdecken Sie unsere Sonderaktionen.
                 </p>
-                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary pdf-download-btn no-arrow" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; font-size: 1.1rem;">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <a href="../angebote/aktuelle-angebote.pdf" download class="btn btn-primary btn--lg pdf-download-btn no-arrow">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -103,9 +104,10 @@
           
           <!-- Kein PDF vorhanden (Platzhalter) -->
           <div id="pdfNotAvailable" style="display: none;">
-            <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-              <h2 style="margin-bottom: var(--spacing-md);">Aktuell keine Angebote</h2>
-              <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-md); max-width: 600px; margin-left: auto; margin-right: auto;">
+            <div class="info-callout info-callout--centered">
+              <span class="eyebrow">Hinweis</span>
+              <h2>Aktuell keine Angebote</h2>
+              <p>
                 Im Moment sind keine besonderen Angebote verfügbar. 
                 Schauen Sie bald wieder vorbei oder besuchen Sie uns direkt im Geschäft!
               </p>
@@ -114,8 +116,8 @@
           
           <!-- Loading State -->
           <div id="pdfLoading">
-            <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-              <p style="color: var(--color-text-secondary);">Angebote werden geladen...</p>
+            <div class="info-callout info-callout--centered">
+              <p>Angebote werden geladen…</p>
             </div>
           </div>
           

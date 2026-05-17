@@ -17,7 +17,6 @@
         <img src="assets/images/radsport-ziller-logo.png" alt="Radsport Ziller Logo" class="logo-img">
       </a>
       
-      <!-- Mobile Menu Toggle -->
       <button 
         class="menu-toggle" 
         aria-label="Menü öffnen"
@@ -26,7 +25,6 @@
         ☰
       </button>
       
-      <!-- Navigation -->
       <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
         <ul class="nav-list">
           <li class="nav-item"><a href="index.html" class="nav-link">Startseite</a></li>
@@ -42,11 +40,10 @@
     </div>
   </header>
   
-  <!-- Main Content -->
   <main id="main-content">
     
-    <!-- Hero Slider -->
-    <div class="hero-slider">
+    <!-- Hero Slider mit Editorial-Overlay -->
+    <section class="hero-slider" aria-label="Bilder aus unserem Fachgeschäft">
       <div class="hero-slider-container" id="heroSliderContainer">
         <div class="hero-slide">
           <picture>
@@ -85,8 +82,19 @@
           </picture>
         </div>
       </div>
+
+      <!-- Editorial Overlay (Rose-Style) -->
+      <div class="home-hero-content">
+        <div class="container">
+          <span class="eyebrow eyebrow--light">Familienbetrieb seit 1920</span>
+          <h1 class="home-hero-title">Dein Rad.<br>Deine Tour.</h1>
+          <div class="home-hero-actions">
+            <a href="pages/fahrraeder.html" class="btn btn-on-dark btn--lg">Räder entdecken</a>
+            <a href="pages/service.html" class="btn btn-outline-light btn--lg">Service buchen</a>
+          </div>
+        </div>
+      </div>
       
-      <!-- Navigation Buttons (Desktop) -->
       <button class="hero-slider-btn prev" onclick="heroSlider.prev()" aria-label="Vorheriges Bild">
         ‹
       </button>
@@ -94,20 +102,18 @@
         ›
       </button>
       
-      <!-- Indicators -->
       <div class="hero-slider-indicators" id="heroIndicators"></div>
-    </div>
+    </section>
     
-    <!-- Dynamische Feiertagsgrüße -->
-    <div id="holidayGreeting" style="display: none; background: var(--color-primary); color: white; text-align: center; padding: var(--spacing-md); font-size: var(--font-size-large); font-weight: 600;"></div>
+    <!-- Holiday Greeting -->
+    <div id="holidayGreeting" style="display: none;"></div>
     
-    <!-- Intro -->
+    <!-- Intro: Familienbetrieb -->
     <section class="section">
-      <div class="container" style="max-width: 1000px; text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-md); font-weight: 700; color: var(--color-secondary);">
-          Familienbetrieb mit Tradition
-        </h2>
-        <p style="font-size: 1.25rem; line-height: 1.8; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto;">
+      <div class="container container--narrow text-center">
+        <span class="eyebrow">Seit über 100 Jahren</span>
+        <h2>Familienbetrieb mit Tradition</h2>
+        <p class="lead lead--center">
           Seit 1920 sind wir in Petershausen Ihr Experte fürs Rad – mit Leidenschaft, 
           Erfahrung und persönlicher Beratung.
         </p>
@@ -116,10 +122,15 @@
     
     <!-- Was uns auszeichnet -->
     <section class="section section-alt">
-      <div class="container" style="max-width: 1200px;">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Was uns auszeichnet</span>
+          <h2>Warum Radsport Ziller</h2>
+          <p class="lead">Mehr als ein Fahrradladen – ein Versprechen für Qualität, Beratung und langjährige Betreuung.</p>
+        </div>
+
         <div class="feature-tiles-grid">
           
-          <!-- Sortiment -->
           <div class="feature-tile">
             <h3>Große Auswahl</h3>
             <p>
@@ -128,7 +139,6 @@
             </p>
           </div>
           
-          <!-- Gebrauchträder -->
           <div class="feature-tile">
             <h3>Gebrauchte Räder</h3>
             <p>
@@ -136,7 +146,6 @@
             </p>
           </div>
           
-          <!-- Service -->
           <div class="feature-tile">
             <h3>Profi-Werkstatt</h3>
             <p>
@@ -145,7 +154,6 @@
             </p>
           </div>
           
-          <!-- Beratung -->
           <div class="feature-tile">
             <h3>Persönliche Betreuung</h3>
             <p>
@@ -159,38 +167,36 @@
     </section>
     
     <!-- Tipp -->
-    <section class="section section-alt">
-      <div class="container" style="max-width: 800px; text-align: center;">
-        <div style="background: white; padding: var(--spacing-xl); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-          <h3 style="font-size: 1.5rem; margin-bottom: var(--spacing-md); color: var(--color-secondary); font-weight: 600;">
-            Unser Tipp für Sie
-          </h3>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: var(--spacing-md); color: var(--color-text-secondary);">
+    <section class="section">
+      <div class="container">
+        <div class="tip-card">
+          <span class="eyebrow">Unser Tipp für Sie</span>
+          <h3>Jährliche Inspektion lohnt sich</h3>
+          <p>
             Bringen Sie Ihr Fahrrad einmal im Jahr zur Inspektion und halten Sie es somit nachhaltig in Schuss. 
             So werden Sie lange an Ihrem Fahrrad Freude haben.
           </p>
-          <a href="pages/service.html" class="btn btn-primary">Jetzt Termin anfragen</a>
+          <a href="pages/service.html" class="btn btn-primary btn--lg">Jetzt Termin anfragen</a>
         </div>
       </div>
     </section>
         
-    
     <!-- Social Media & Bewertung -->
-    <section class="section">
-      <div class="container" style="max-width: 900px; text-align: center;">
-        <h3 style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">Bleiben Sie in Verbindung</h3>
-        <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
-          Folgen Sie uns auf Social Media und teilen Sie Ihre Erfahrungen
+    <section class="section section-alt">
+      <div class="container container--narrow text-center">
+        <span class="eyebrow">Bleiben Sie in Verbindung</span>
+        <h2>Folgen Sie uns &amp; teilen Sie Ihre Erfahrungen</h2>
+        <p class="lead lead--center">
+          Aktuelle News, Aktionen und Eindrücke aus dem Laden – jederzeit verfügbar.
         </p>
         
-        <div style="display: flex; gap: var(--spacing-md); justify-content: center; align-items: center; flex-wrap: wrap;">
+        <div class="social-cta">
           <a href="https://www.instagram.com/radsport_ziller" 
              target="_blank" 
              rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(188, 24, 136, 0.3);"
-             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(188, 24, 136, 0.4)'"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(188, 24, 136, 0.3)'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+             class="social-btn"
+             aria-label="Radsport Ziller auf Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
             Instagram
@@ -198,10 +204,9 @@
           <a href="https://www.facebook.com/profile.php?id=61579308178374" 
              target="_blank" 
              rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; background: #1877F2; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);"
-             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(24, 119, 242, 0.4)'; this.style.background='#166FE5'"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(24, 119, 242, 0.3)'; this.style.background='#1877F2'">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+             class="social-btn"
+             aria-label="Radsport Ziller auf Facebook">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
             Facebook
@@ -209,10 +214,9 @@
           <a href="https://search.google.com/local/writereview?placeid=ChIJkeFIszBmn0cRU0hF4RtoKWM" 
              target="_blank" 
              rel="noopener noreferrer"
-             style="display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; background: white; color: #5F6368; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 1px solid #DADCE0;"
-             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(0, 0, 0, 0.15)'"
-             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.1)'">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+             class="social-btn"
+             aria-label="Radsport Ziller bei Google bewerten">
+            <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -241,26 +245,26 @@
         
         <div class="footer-section">
           <h3>Radsport Ziller</h3>
-          <p>Ihr Fahrradfachgeschäft für<br>Beratung, Verkauf und Service</p>
+          <p>Ihr Fahrradfachgeschäft für<br>Beratung, Verkauf und Service.</p>
         </div>
         
         <div class="footer-section">
           <h3>Kontakt</h3>
           <address>
-            Radsport Ziller GmbH & Co. KG<br>
+            Radsport Ziller GmbH &amp; Co. KG<br>
             Indersdorfer Str. 2 a<br>
             85238 Petershausen<br>
-            Tel: <a href="tel:081375025" style="color: rgba(255, 255, 255, 0.8);">08137 / 5025</a><br>
-            E-Mail: <a href="mailto:info@radsport-ziller.com" style="color: rgba(255, 255, 255, 0.8);">info@radsport-ziller.com</a>
+            Tel: <a href="tel:081375025">08137 / 5025</a><br>
+            E-Mail: <a href="mailto:info@radsport-ziller.com">info@radsport-ziller.com</a>
           </address>
         </div>
         
         <div class="footer-section">
           <h3>Öffnungszeiten</h3>
           <p>
-            Mo, Di, Do, Fr: 9:00 - 12:00 und 14:00 - 18:00 Uhr<br>
-            Mittwoch: 9:00 - 12:00 Uhr<br>
-            Samstag: 9:00 - 12:00 Uhr<br>
+            Mo, Di, Do, Fr: 9:00 – 12:00 und 14:00 – 18:00 Uhr<br>
+            Mittwoch: 9:00 – 12:00 Uhr<br>
+            Samstag: 9:00 – 12:00 Uhr<br>
             Sonntag: geschlossen
           </p>
         </div>
