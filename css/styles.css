@@ -2058,8 +2058,9 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 .career-jobs {
   display: grid;
   gap: var(--space-6);
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -2070,14 +2071,47 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   }
 }
 
+/* Mobile: Buttons & Karten – kein Overflow nach rechts */
+@media (max-width: 767px) {
+  .tip-card,
+  .career-card,
+  .info-callout--centered {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .career-card h3 {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .btn--lg {
+    padding: 16px 18px;
+    font-size: 0.95rem;
+  }
+
+  .text-center > .btn {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: normal;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
 .career-card {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0;
+  max-width: 100%;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   padding: var(--space-7);
+  overflow-wrap: break-word;
   transition: border-color var(--transition-speed) var(--easing),
               transform var(--transition-speed) var(--easing);
 }
@@ -2114,8 +2148,11 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 .career-card .btn {
   width: 100%;
+  max-width: 100%;
   text-align: center;
   justify-content: center;
+  white-space: normal;
+  box-sizing: border-box;
 }
 
 .career-note {
@@ -2204,7 +2241,9 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   border-radius: var(--radius-sm);
   text-align: center;
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
@@ -2232,6 +2271,14 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   margin-right: auto;
 }
 
+.tip-card .btn {
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
 /* ============================================
    Editorial Components (Info-Callout, Check-List, etc.)
    ============================================ */
@@ -2255,11 +2302,13 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   border-left: none;
   border-top: 3px solid var(--color-primary);
   max-width: 720px;
+  width: 100%;
   margin: 0 auto;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-top: 3px solid var(--color-primary);
   padding: var(--space-8);
+  box-sizing: border-box;
 }
 
 .info-callout h3 {
@@ -2284,6 +2333,11 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 .info-callout--centered .btn {
   margin-top: var(--space-3);
+  width: 100%;
+  max-width: 100%;
+  white-space: normal;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 /* Info-Card (schlichte Karte für Inhaltsblöcke) */
