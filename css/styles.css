@@ -86,7 +86,7 @@
   --container-padding: 1.25rem;
   --container-narrow: 880px;
   --container-reading: 720px;
-  --header-height: 88px;
+  --header-height: 92px;
 
   /* Radius (scharfkantiger, ROSE-Anmutung) */
   --radius-sm: 2px;
@@ -349,7 +349,7 @@ a:focus-visible {
 }
 
 .logo-img {
-  height: 70px;
+  height: 74px;
   width: auto;
   display: block;
   transition: opacity var(--transition-speed) var(--easing);
@@ -378,9 +378,9 @@ a:focus-visible {
 
 /* Mobile Header */
 @media (max-width: 768px) {
-  :root { --header-height: 72px; }
+  :root { --header-height: 76px; }
 
-  .logo-img { height: 54px; }
+  .logo-img { height: 58px; }
 
   .header {
     box-shadow: none !important;
@@ -1620,10 +1620,10 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 @media (min-width: 1024px) {
   :root {
-    --header-height: 92px;
+    --header-height: 96px;
   }
 
-  .logo-img { height: 78px; }
+  .logo-img { height: 82px; }
 
   .header .container {
     max-width: 1600px;
