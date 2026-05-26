@@ -822,16 +822,71 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   object-position: center center;
 }
 
-/* Mobile: Bild oben, weißer Rand nur unten (nicht oben/unten zentriert) */
+/* Mobile: kein Letterboxing – Bild füllt den Bereich, Text liegt darüber */
 @media (max-width: 767px) {
+  .hero-slider,
+  .home-hero-slider {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    max-height: 80vh;
+  }
+
+  .hero-slider-container,
+  .home-hero-slider-container {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
   .hero-slide,
   .home-hero-slide {
-    align-items: flex-start;
+    align-items: stretch;
+    background: var(--color-bg-dark);
+  }
+
+  .hero-slide picture,
+  .home-hero-slide picture {
+    background: transparent;
   }
 
   .hero-slide img,
   .home-hero-slide img {
-    object-position: center top;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .hero-slide picture::after,
+  .home-hero-slide picture::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+  }
+
+  .hero-indicator {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-indicator.active {
+    background: var(--color-white);
+  }
+
+  .home-hero-indicator {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .home-hero-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .home-hero-indicator.active {
+    background: var(--color-white);
   }
 }
 
