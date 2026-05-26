@@ -822,13 +822,34 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   object-position: center center;
 }
 
-/* Mobile: kein Letterboxing – Bild füllt den Bereich, Text liegt darüber */
+/* Mobile: kein Letterboxing – Bild füllt den Bereich, nur CTAs als Overlay */
 @media (max-width: 767px) {
   .hero-slider,
   .home-hero-slider {
-    height: auto;
-    aspect-ratio: 3 / 2;
-    max-height: 80vh;
+    height: clamp(400px, 62vh, 520px);
+    aspect-ratio: auto;
+    max-height: 85vh;
+  }
+
+  .home-hero-content .eyebrow,
+  .home-hero-title {
+    display: none;
+  }
+
+  .home-hero-content .container {
+    padding-bottom: var(--space-6);
+  }
+
+  .home-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .home-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
   }
 
   .hero-slider-container,
