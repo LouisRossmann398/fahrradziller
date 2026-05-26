@@ -582,16 +582,16 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 .home-hero {
   position: relative;
   width: 100%;
-  background: var(--color-bg-dark);
+  background: var(--color-white);
   overflow: hidden;
 }
 
 .home-hero-slider {
   position: relative;
   width: 100%;
-  height: clamp(420px, 60vh, 720px);
+  height: clamp(460px, 65vh, 760px);
   overflow: hidden;
-  background: var(--color-bg-dark);
+  background: var(--color-white);
 }
 
 .home-hero-slider-container {
@@ -607,31 +607,41 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   height: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
 }
 
-.home-hero-slide picture,
+.home-hero-slide picture {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+}
+
 .home-hero-slide img {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.home-hero-slide img {
-  object-fit: cover;
+  max-width: none;
+  object-fit: contain;
   object-position: center center;
 }
 
-/* Dunkles Overlay für Textlesbarkeit */
-.home-hero-slide::after {
+/* Verlauf nur über dem Foto (nicht über weiße Ränder) */
+.home-hero-slide picture::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.15) 40%,
-    rgba(0, 0, 0, 0.55) 100%
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.12) 40%,
+    rgba(0, 0, 0, 0.5) 100%
   );
+  pointer-events: none;
 }
 
 /* Editorialer Text-Layer */
@@ -678,7 +688,7 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 @media (min-width: 768px) {
   .home-hero-slider {
-    height: clamp(520px, 70vh, 780px);
+    height: clamp(560px, 72vh, 820px);
   }
 
   .home-hero-content .container {
@@ -735,7 +745,7 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 .home-hero-indicator {
   width: 24px;
   height: 3px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   border: none;
   cursor: pointer;
   transition: background var(--transition-speed) var(--easing),
@@ -743,10 +753,10 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   padding: 0;
 }
 
-.home-hero-indicator:hover { background: rgba(255, 255, 255, 0.7); }
+.home-hero-indicator:hover { background: rgba(0, 0, 0, 0.35); }
 
 .home-hero-indicator.active {
-  background: var(--color-white);
+  background: var(--color-primary);
   width: 48px;
 }
 
@@ -765,14 +775,14 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 .hero-slider {
   position: relative;
   width: 100%;
-  height: clamp(420px, 60vh, 720px);
+  height: clamp(460px, 65vh, 760px);
   overflow: hidden;
-  background: var(--color-bg-dark);
+  background: var(--color-white);
 }
 
 @media (min-width: 768px) {
   .hero-slider {
-    height: clamp(520px, 70vh, 780px);
+    height: clamp(560px, 72vh, 820px);
   }
 }
 
@@ -789,30 +799,40 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   height: 100%;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
 }
 
-.hero-slide picture,
+.hero-slide picture {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+}
+
 .hero-slide img {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.hero-slide img {
-  object-fit: cover;
+  max-width: none;
+  object-fit: contain;
   object-position: center center;
 }
 
-.hero-slide::before {
+.hero-slide picture::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.18) 45%,
-    rgba(0, 0, 0, 0.55) 100%
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    rgba(0, 0, 0, 0.5) 100%
   );
+  pointer-events: none;
 }
 
 .hero-slider-btn {
@@ -863,7 +883,7 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 .hero-indicator {
   width: 24px;
   height: 3px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   border: none;
   cursor: pointer;
   transition: background var(--transition-speed) var(--easing),
@@ -872,10 +892,10 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   border-radius: 0;
 }
 
-.hero-indicator:hover { background: rgba(255, 255, 255, 0.7); }
+.hero-indicator:hover { background: rgba(0, 0, 0, 0.35); }
 
 .hero-indicator.active {
-  background: var(--color-white);
+  background: var(--color-primary);
   width: 48px;
   border-radius: 0;
 }
