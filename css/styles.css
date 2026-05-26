@@ -826,9 +826,9 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 @media (max-width: 767px) {
   .hero-slider,
   .home-hero-slider {
-    height: clamp(400px, 62vh, 520px);
-    aspect-ratio: auto;
-    max-height: 85vh;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    max-height: 70vh;
   }
 
   .home-hero-content .eyebrow,
@@ -837,19 +837,27 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   }
 
   .home-hero-content .container {
-    padding-bottom: var(--space-6);
+    padding-bottom: var(--space-5);
   }
 
   .home-hero-actions {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: var(--space-3);
+    width: auto;
+    max-width: 100%;
   }
 
   .home-hero-actions .btn {
-    width: 100%;
+    width: auto;
+    flex: 0 1 auto;
+    max-width: none;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
     justify-content: center;
-    white-space: normal;
   }
 
   .hero-slider-container,
