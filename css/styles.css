@@ -687,12 +687,53 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 }
 
 @media (min-width: 768px) {
+  .hero-slider,
   .home-hero-slider {
-    height: clamp(560px, 72vh, 820px);
+    --hero-h: clamp(560px, 72vh, 820px);
+    --hero-img-w: min(100vw, calc(var(--hero-h) * 1.5));
+    --hero-letterbox: max(0px, calc((100vw - var(--hero-img-w)) / 2));
+  }
+
+  .home-hero-slider {
+    height: var(--hero-h);
   }
 
   .home-hero-content .container {
     padding-bottom: var(--space-9);
+    /* Linken Letterbox-Rand ausgleichen → Text/CTAs liegen auf dem Foto */
+    padding-left: max(
+      var(--space-8),
+      calc(
+        var(--hero-letterbox)
+        - (100vw - min(100vw, var(--container-max-width))) / 2
+        - var(--container-padding)
+        + var(--space-6)
+      )
+    );
+  }
+
+  /* Rechte Kante der Indikatoren = rechte Kante des Fotos */
+  .hero-slider-indicators,
+  .home-hero-indicators {
+    left: calc(50vw + var(--hero-img-w) / 2 - var(--space-6));
+    right: auto;
+    transform: translateX(-100%);
+    bottom: var(--space-5);
+  }
+
+  .hero-indicator,
+  .home-hero-indicator {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .hero-indicator:hover,
+  .home-hero-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-indicator.active,
+  .home-hero-indicator.active {
+    background: var(--color-primary);
   }
 }
 
@@ -733,13 +774,6 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   display: flex;
   gap: 8px;
   z-index: 11;
-}
-
-@media (min-width: 768px) {
-  .home-hero-indicators {
-    right: var(--space-6);
-    bottom: var(--space-5);
-  }
 }
 
 .home-hero-indicator {
@@ -968,13 +1002,6 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   display: flex;
   gap: 8px;
   z-index: 11;
-}
-
-@media (min-width: 768px) {
-  .hero-slider-indicators {
-    right: var(--space-6);
-    bottom: var(--space-5);
-  }
 }
 
 .hero-indicator {
