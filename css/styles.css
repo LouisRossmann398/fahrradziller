@@ -843,10 +843,10 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   .home-hero-actions {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: var(--space-3);
-    width: auto;
+    width: 100%;
     max-width: 100%;
   }
 
