@@ -822,6 +822,19 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   object-position: center center;
 }
 
+/* Mobile: Bild oben, weißer Rand nur unten (nicht oben/unten zentriert) */
+@media (max-width: 767px) {
+  .hero-slide,
+  .home-hero-slide {
+    align-items: flex-start;
+  }
+
+  .hero-slide img,
+  .home-hero-slide img {
+    object-position: center top;
+  }
+}
+
 .hero-slide picture::after {
   content: '';
   position: absolute;
