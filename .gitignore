@@ -34,3 +34,6 @@ package-lock.json
 
 # SMTP-Zugangsdaten (auf dem Server aus mail-config.example.php anlegen)
 php/mail-config.php
+
+# Rohfotos Slider (nur optimierte laden-XX-* Versionen versionieren)
+assets/images/laden/IMG_*.jpg
