@@ -1068,6 +1068,13 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   white-space: normal;
 }
 
+@media (min-width: 768px) {
+  .btn--block {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
 .btn--wrap {
   white-space: normal;
 }
@@ -2770,6 +2777,11 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 @media (min-width: 768px) {
   .map-desktop { display: block; }
   .map-mobile  { display: none; }
+
+  .map-desktop-cta {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Legal Pages */
