@@ -63,7 +63,7 @@ htdocs/
 
 5. **`mail-config.php` per FTP in den Ordner `php/` auf den Server** hochladen (die Datei ist in `.gitignore` und soll **nicht** ins öffentliche Repository).
 
-Die Skripte senden **Kontaktanfragen** und **Termin-/Reparaturanfragen** an `info@radsport-ziller.com`. Die SMTP-Anmeldung erfolgt über diese Mailbox.
+**Kontaktanfragen** gehen an `info@radsport-ziller.com`, **Termin-/Reparaturanfragen** an `radsport@radsport-ziller.com`. Die SMTP-Anmeldung erfolgt über die Mailbox in `mail-config.php` (meist `info@`).
 
 ---
 
@@ -115,6 +115,6 @@ Dann `http://localhost:8080/pages/kontakt.html` öffnen und testen.
 | Formular | Ziel-E-Mail |
 |----------|-------------|
 | Kontakt | info@radsport-ziller.com |
-| Termin / Reparatur | info@radsport-ziller.com |
+| Termin / Reparatur | radsport@radsport-ziller.com |
 
 Versand über **PHPMailer** und **SMTP (Strato)**. Spam-Schutz: verstecktes **Honeypot-Feld** (nicht ausfüllen).
