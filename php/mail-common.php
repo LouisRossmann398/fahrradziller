@@ -37,8 +37,15 @@ function rz_send_mail(array $config, string $to, string $subject, string $bodyTe
     $mail->SMTPAuth = true;
     $mail->Username = (string) $config['smtp_user'];
     $mail->Password = (string) $config['smtp_pass'];
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = (int) $config['smtp_port'];
+    $port = (int) $config['smtp_port'];
+    $mail->Port = $port;
+    // Strato: Port 465 = SSL/TLS (empfohlen), Port 587 = STARTTLS (Relay/PHP)
+    if ($port === 465) {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    } else {
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    }
+    $mail->SMTPTimeout = 15;
     $mail->CharSet = 'UTF-8';
     $mail->setFrom((string) $config['from_email'], (string) $config['from_name']);
     $mail->addAddress($to);
