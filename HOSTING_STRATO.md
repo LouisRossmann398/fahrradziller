@@ -267,13 +267,22 @@ Wenn alles läuft: `php/mail-status.php` per FTP vom Server **löschen** (nur Di
 
 ### SMTP schlägt fehl, obwohl `mail-status.php` → `ready: true`
 
-1. **Webmail testen:** https://webmail.strato.de mit `radsport@radsport-ziller.com` + Passwort einloggen.  
-   - Geht nicht → Passwort in Strato zurücksetzen und in `mail-config.php` neu eintragen.
-2. **Port wechseln** in `mail-config.php` auf dem Server:
-   - zuerst `'smtp_port' => 465` (SSL/TLS, [Strato-Ports](https://www.strato.de/faq/mail/e-mailserver-adressen-ports-ssl-tls/))
-   - falls nötig `'smtp_port' => 587` (STARTTLS)
-3. **Passwort in PHP:** Enthält `'` oder `\`? Datei mit **einfachen Anführungszeichen** um das Passwort: `'smtp_pass' => 'Ihr#Passwort'`
-4. **`mail-common.php`** aktuell vom Repo hochladen (erkennt 465 vs. 587 automatisch).
+1. **Echtes Postfach?** In Strato muss `radsport@…` ein **eigenes Postfach mit Passwort** sein – **kein reiner Alias**, der nur an `info@` weiterleitet. Alias ohne Login → SMTP schlägt fehl, Webmail oft auch.  
+   **Lösung:** In `mail-config.php` testweise **`info@radsport-ziller.com`** für `smtp_user` und `from_email` (Passwort von info@), Empfang der Formulare bleibt bei `radsport@` im PHP-Code.
+2. **Webmail testen:** https://webmail.strato.de mit **derselben Adresse wie `smtp_user`** + Passwort.  
+   - Geht nicht → Passwort in Strato zurücksetzen, in `mail-config.php` neu speichern (keine Leerzeichen am Ende).
+3. **SMTP-Diagnose (zeigt den echten Fehler):**  
+   In `mail-config.php` auf dem Server ergänzen:
+   ```php
+   'diagnose_key' => 'mein-geheimes-testwort',
+   ```
+   Dateien hochladen: `php/mail-common.php`, `php/mail-smtp-diagnose.php`  
+   Im Browser öffnen:  
+   `https://www.radsport-ziller.com/php/mail-smtp-diagnose.php?key=mein-geheimes-testwort`  
+   → zeigt, ob Port **465** oder **587** verbindet und die **Fehlermeldung** von Strato.  
+   Danach **`diagnose_key` wieder löschen** und `mail-smtp-diagnose.php` optional vom Server entfernen.
+4. **Port** in `mail-config.php`: den Port wählen, den die Diagnose als `"ok": true` meldet ([Strato-Ports](https://www.strato.de/faq/mail/e-mailserver-adressen-ports-ssl-tls/)).
+5. **Passwort in PHP:** nur einfache Anführungszeichen: `'smtp_pass' => 'IhrPasswort'`
 
 ---
 
