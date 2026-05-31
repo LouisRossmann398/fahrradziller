@@ -4,8 +4,9 @@
  * Kopieren nach mail-config.php und Werte eintragen.
  * mail-config.php nicht öffentlich teilen (Passwort).
  *
- * Strato: Postausgang smtp.strato.de, Port 587, STARTTLS.
- * SMTP-Benutzer = vollständige E-Mail-Adresse der Mailbox, mit der Sie sich authentifizieren.
+ * Strato: smtp.strato.de, Port 587, STARTTLS.
+ * smtp_user + from_email = dieselbe existierende Mailbox (z. B. info@ oder radsport@).
+ * Formular-E-Mails gehen an radsport@ (siehe send-contact.php / send-service.php).
  */
 
 return [

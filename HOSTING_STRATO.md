@@ -8,23 +8,18 @@ Laden Sie den **gesamten Projektinhalt** hoch (mindestens):
 
 - `index.html`, `css/`, `js/`, `pages/`, `assets/`
 - `php/` (Skripte für Formular-E-Mails)
-- `vendor/` (von Composer erzeugt – wird für PHPMailer benötigt)
+- `vendor/` (PHPMailer – **Pflicht**, liegt im Git-Repository)
 
-**Nicht** per Git mit hochladen müssen: `php/mail-config.php` (legt man **nur auf dem Server** an, siehe unten).
+**Nicht** per Git mit hochladen: `php/mail-config.php` (nur **auf dem Server** anlegen, siehe Schritt 3).
 
 ---
 
 ## Schritt 1: Dateien per FTP/SFTP hochladen
 
-1. Im **Strato-Kundenlogin** unter **SFTP & SSH** (oder FTP) einen Zugang anlegen: Wenn noch **0 Konten** angezeigt werden, auf **„+ Neu anlegen“** klicken und **Benutzername, Passwort und Server/Hostname** notieren (ohne eigenes Konto gibt es keine Login-Daten zum Hochladen).
-   - **Kommentar:** frei wählbar (z. B. „Website-Upload“), nur Beschriftung in Strato.
-   - **Typ:** **SFTP** reicht zum Hochladen; **SFTP + SSH** nur, wenn Sie eine Shell auf dem Server brauchen.
-   - **Stammverzeichnis:** Ordner wählen, unter dem Ihr **Web-Root** erreichbar ist (häufig Zugriff auf **`htdocs`** oder den Ordner Ihrer Domain). Nicht versehentlich nur einen Unterordner wählen (z. B. eine fremde WordPress-Installation), wenn die neue Website woanders im Webspace liegt.
-2. Mit einem Programm wie **FileZilla** oder **Cyberduck** verbinden.
-3. Auf dem Server in den **Web-Root** wechseln – oft heißt der Ordner **`htdocs`** oder **`httpdocs`** (ggf. in der Strato-Hilfe zu Ihrem Paket nachlesen).
-4. Alle Website-Dateien so hochladen, dass **`index.html` direkt im Web-Root** liegt (nicht eine Ebene zu tief).
-
-Ergebnis soll z. B. so aussehen:
+1. Im **Strato-Kundenlogin** unter **SFTP & SSH** (oder FTP) einen Zugang anlegen.
+2. Mit **FileZilla** oder **Cyberduck** verbinden.
+3. In den **Web-Root** wechseln – oft **`htdocs`** oder der Ordner Ihrer Domain.
+4. Dateien so hochladen, dass **`index.html` direkt im Web-Root** liegt.
 
 ```text
 htdocs/
@@ -35,69 +30,107 @@ htdocs/
   pages/
   assets/
   php/
-  vendor/
+  vendor/          ← unbedingt mit hochladen!
 ```
 
 ---
 
-## Schritt 2: PHP-Version
+## Schritt 2: PHP-Version (wichtig für Formulare)
 
-1. Im Strato-Menü zum **PHP**- bzw. **Skript**-Bereich Ihres Pakets gehen.
-2. **PHP 8.0 oder höher** wählen (empfohlen: aktuelle 8.x).
+Die Formular-E-Mails brauchen **PHP 8.0 oder höher**.
 
----
+1. Strato-Kundenbereich → Ihr Paket / Domain → **PHP-Einstellungen** (oder „Skriptsprache“).
+2. **PHP 8.2** oder **8.3** wählen (mindestens **8.0**).
+3. Speichern und **2–5 Minuten warten**.
 
-## Schritt 3: E-Mail-Postfach und SMTP
-
-1. Legen Sie bei Strato sicher das Postfach **`info@radsport-ziller.com`** an (oder prüfen Sie, dass es existiert und Sie das Passwort kennen).
-2. Für den **Versand aus PHP** nutzt Strato den Postausgangsserver **`smtp.strato.de`**, Port **587**, **STARTTLS**, mit **Anmeldung** (vollständige E-Mail-Adresse + Passwort der Mailbox).  
-   Details: [Strato FAQ – E-Mail-Versand aus PHP](https://www.strato.de/faq/mail/e-mail-versand-aus-cgi-und-php-skripten/)
-
-3. Auf Ihrem PC: Datei **`php/mail-config.example.php`** kopieren und als **`php/mail-config.php`** speichern.
-
-4. **`php/mail-config.php`** bearbeiten:
-   - `smtp_user` = die **E-Mail-Adresse der Mailbox**, mit der Sie sich am SMTP anmelden (meist **`info@radsport-ziller.com`**).
-   - `smtp_pass` = **Passwort dieser Mailbox**.
-   - `from_email` = dieselbe Adresse wie `smtp_user` (empfohlen, weniger Probleme mit Absenderprüfung).
-   - `from_name` = z. B. `Radsport Ziller Website`.
-
-5. **`mail-config.php` per FTP in den Ordner `php/` auf den Server** hochladen (die Datei ist in `.gitignore` und soll **nicht** ins öffentliche Repository).
-
-**Kontaktanfragen** gehen an `info@radsport-ziller.com`, **Termin-/Reparaturanfragen** an `radsport@radsport-ziller.com`. Die SMTP-Anmeldung erfolgt über die Mailbox in `mail-config.php` (meist `info@`).
+**Symptom bei zu alter PHP-Version:** Aufruf von  
+`https://www.radsport-ziller.com/php/send-contact.php`  
+zeigt nur: *„Composer detected issues… PHP version >= 8.0.0“* → dann ist Schritt 2 noch nicht erledigt.
 
 ---
 
-## Schritt 4: HTTPS (SSL)
+## Schritt 3: E-Mail-Postfach und `mail-config.php`
 
-1. Im Strato-Kundenbereich **SSL/TLS** für die Domain aktivieren (z. B. Let’s Encrypt).
-2. Optional: **Automatische Weiterleitung von HTTP auf HTTPS** einschalten.
+### Postfächer bei Strato
+
+| Zweck | Adresse |
+|--------|---------|
+| **Empfang** (beide Formulare) | `radsport@radsport-ziller.com` |
+| **SMTP-Anmeldung** (Versand aus PHP) | Mailbox mit Passwort, z. B. `info@radsport-ziller.com` **oder** `radsport@radsport-ziller.com` |
+
+Strato-Versand: **`smtp.strato.de`**, Port **587**, **STARTTLS**, Login = **volle E-Mail-Adresse** + **Passwort der Mailbox**.
+
+### `mail-config.php` anlegen
+
+1. Auf dem PC: `php/mail-config.example.php` kopieren → `php/mail-config.php`.
+2. Eintragen (Beispiel mit Mailbox **info@**):
+
+```php
+return [
+    'smtp_host' => 'smtp.strato.de',
+    'smtp_port' => 587,
+    'smtp_user' => 'info@radsport-ziller.com',      // Mailbox für SMTP-Login
+    'smtp_pass' => 'IHR_POSTFACH_PASSWORT',
+    'from_email' => 'info@radsport-ziller.com',     // = smtp_user (empfohlen)
+    'from_name' => 'Radsport Ziller Website',
+];
+```
+
+3. **`php/mail-config.php` per FTP** in den Ordner `php/` auf dem Server hochladen (nicht ins öffentliche Git).
+
+`from_email` und `smtp_user` sollten **dieselbe existierende Mailbox** sein – sonst lehnt Strato oft den Versand ab.
 
 ---
 
-## Schritt 5: Testen
+## Schritt 4: Checkliste Formular-Versand
 
-1. **Startseite:** `https://ihre-domain.de/`
-2. **Kontaktformular:** eine Testnachricht senden – E-Mail an **info@** prüfen (auch Spam-Ordner).
-3. **Service / Terminanfrage:** Testanfrage – E-Mail an **radsport@** prüfen.
+| Prüfung | So testen | Erwartung |
+|----------|-----------|-----------|
+| PHP ≥ 8 | `https://www.radsport-ziller.com/php/mail-status.php` | `"php_min_8": true` |
+| vendor/ | gleiche URL | `"vendor_autoload": true` |
+| mail-config | gleiche URL | `"mail_config": true` |
+| Gesamt | gleiche URL | `"ready": true` |
+| Kontaktformular | Seite Kontakt → Test senden | Mail an **radsport@** |
+| Reparaturformular | Seite Service → Test senden | Mail an **radsport@** |
 
-Wenn nichts ankommt:
-
-- Strato **Fehlerprotokolle** / PHP-Logs ansehen.
-- Prüfen, ob `vendor/` vollständig hochgeladen wurde.
-- Prüfen, ob `php/mail-config.php` existiert und SMTP-Daten stimmen.
-- Test: Im Browser nur `https://ihre-domain.de/php/send-contact.php` aufrufen – erwartet wird **kein** JSON-Erfolg bei GET (Absicht); ein **500** deutet auf fehlende Konfiguration oder fehlendes `vendor` hin.
+`mail-status.php` nach erfolgreichem Test **optional per FTP löschen** (nur Diagnose).
 
 ---
 
-## Schritt 6: Website nicht in einem Unterordner?
+## Schritt 5: HTTPS (SSL)
 
-Die Formular-URLs werden im JavaScript relativ zur aktuellen Seite aufgelöst (`../php/...`). Liegt die gesamte Website in einem Unterordner (z. B. `https://domain.de/shop/`), funktioniert das weiterhin, solange **`pages/`** und **`php/`** relativ zueinander wie im Projekt liegen.
+1. **SSL/TLS** für die Domain aktivieren (Let’s Encrypt).
+2. Optional: Weiterleitung **HTTP → HTTPS**.
+
+---
+
+## Schritt 6: Häufige Fehler
+
+| Was Sie sehen | Ursache | Lösung |
+|---------------|---------|--------|
+| *Composer … PHP >= 8.0* im Browser | PHP zu alt | Schritt 2: PHP 8.x aktivieren |
+| *Der Versand ist momentan nicht möglich* im Formular | `mail-config.php` fehlt | Schritt 3 |
+| *E-Mail konnte nicht gesendet werden* | Falsches SMTP-Passwort oder falsche `smtp_user` | Passwort in Strato prüfen, Mailbox existiert? |
+| Netzwerkfehler im Formular | `php/` nicht erreichbar (404) | `php/` und Dateien im Web-Root prüfen |
+| Mail kommt nicht an | Spam-Ordner / falsches Postfach | **radsport@** prüfen; ggf. Weiterleitung in Strato |
+| 404 auf `send-contact.php` | Falscher Upload-Pfad | `index.html` und `php/` auf gleicher Ebene |
+
+**Strato-Fehlerprotokoll:** Kundenlogin → Hosting → Logs / PHP-Error-Log (dort stehen SMTP-Fehler von PHPMailer).
+
+---
+
+## Schritt 7: Technik Kurzüberblick
+
+| Formular | PHP-Skript | Ziel-E-Mail |
+|----------|------------|-------------|
+| Kontakt | `php/send-contact.php` | radsport@radsport-ziller.com |
+| Termin / Reparatur | `php/send-service.php` | radsport@radsport-ziller.com |
+
+Versand: **PHPMailer** über **SMTP (Strato)**. Spam-Schutz: verstecktes Honeypot-Feld (nicht ausfüllen).
 
 ---
 
 ## Lokaler Test (optional)
-
-PHP und Composer lokal installiert:
 
 ```bash
 cd /Pfad/zum/Projekt
@@ -106,15 +139,10 @@ cp php/mail-config.example.php php/mail-config.php
 php -S localhost:8080
 ```
 
-Dann `http://localhost:8080/pages/kontakt.html` öffnen und testen.
+Dann `http://localhost:8080/pages/kontakt.html` öffnen.
 
 ---
 
-## Kurzüberblick Technik
+## Unterordner?
 
-| Formular | Ziel-E-Mail |
-|----------|-------------|
-| Kontakt | info@radsport-ziller.com |
-| Termin / Reparatur | radsport@radsport-ziller.com |
-
-Versand über **PHPMailer** und **SMTP (Strato)**. Spam-Schutz: verstecktes **Honeypot-Feld** (nicht ausfüllen).
+Formular-URLs werden relativ aufgelöst (`../php/...`). `pages/` und `php/` müssen wie im Projekt zueinander liegen.
