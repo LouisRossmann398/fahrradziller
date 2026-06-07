@@ -40,6 +40,19 @@ if ($appointmentDate === '' || $appointmentTime === '' || $name === '' || !filte
     rz_json_response(false, 'Bitte füllen Sie alle Pflichtfelder korrekt aus.', 422);
 }
 
+$parsedAppointmentDate = DateTimeImmutable::createFromFormat('!d.m.Y', $appointmentDate);
+if (
+    !$parsedAppointmentDate
+    || $parsedAppointmentDate->format('d.m.Y') !== $appointmentDate
+) {
+    rz_json_response(false, 'Bitte wählen Sie ein gültiges Datum.', 422);
+}
+
+$earliestAppointmentDate = (new DateTimeImmutable('today'))->modify('+7 days');
+if ($parsedAppointmentDate < $earliestAppointmentDate) {
+    rz_json_response(false, 'Termine sind frühestens eine Woche im Voraus möglich.', 422);
+}
+
 try {
     $config = rz_mail_load_config();
 } catch (Throwable $e) {

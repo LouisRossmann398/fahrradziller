@@ -251,15 +251,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const serviceForm = document.getElementById('serviceAppointmentForm');
   
   if (serviceForm) {
+    const SERVICE_APPOINTMENT_LEAD_DAYS = 7;
+    const earliestAppointmentDate = new Date();
+    earliestAppointmentDate.setHours(0, 0, 0, 0);
+    earliestAppointmentDate.setDate(earliestAppointmentDate.getDate() + SERVICE_APPOINTMENT_LEAD_DAYS);
+
+    function parseGermanDate(dateStr) {
+      const parts = dateStr.split('.');
+      if (parts.length !== 3) return null;
+      const day = Number(parts[0]);
+      const month = Number(parts[1]);
+      const year = Number(parts[2]);
+      const parsed = new Date(year, month - 1, day);
+      if (
+        parsed.getFullYear() !== year ||
+        parsed.getMonth() !== month - 1 ||
+        parsed.getDate() !== day
+      ) {
+        return null;
+      }
+      parsed.setHours(0, 0, 0, 0);
+      return parsed;
+    }
+
+    function isAppointmentDateAllowed(date) {
+      return date >= earliestAppointmentDate;
+    }
+
     // Initialize Flatpickr for date selection
     const appointmentDateInput = document.getElementById('appointmentDate');
     const appointmentTimeSelect = document.getElementById('appointmentTime');
     let flatpickrInstance = null;
     
     if (appointmentDateInput && typeof flatpickr !== 'undefined') {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      
       // Update time options based on selected date
       function updateTimeOptions(selectedDate) {
         if (!appointmentTimeSelect || !selectedDate) return;
@@ -309,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
       flatpickrInstance = flatpickr(appointmentDateInput, {
         locale: 'de',
         dateFormat: 'd.m.Y',
-        minDate: tomorrow,
+        minDate: earliestAppointmentDate,
         disable: [
           function(date) {
             // Disable weekends (0 = Sunday, 6 = Saturday)
@@ -438,6 +462,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!date) {
         showError(document.getElementById('appointmentDate'), 'Bitte wählen Sie ein Datum');
         isValid = false;
+      } else {
+        const selectedDate = parseGermanDate(date);
+        if (!selectedDate || !isAppointmentDateAllowed(selectedDate)) {
+          showError(
+            document.getElementById('appointmentDate'),
+            'Termine sind frühestens eine Woche im Voraus möglich.'
+          );
+          isValid = false;
+        }
       }
       
       if (!time) {
