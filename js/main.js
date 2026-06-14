@@ -278,6 +278,24 @@ document.addEventListener('DOMContentLoaded', function() {
       return date >= earliestAppointmentDate;
     }
 
+    const SERVICE_MORNING_TIMES = [
+      '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00'
+    ];
+    const SERVICE_AFTERNOON_TIMES = [
+      '14:00', '14:30', '15:00', '15:30', '16:00'
+    ];
+
+    function getServiceTimesForDay(dayOfWeek) {
+      // 0 = So, 1 = Mo, 2 = Di, 3 = Mi, 4 = Do, 5 = Fr, 6 = Sa
+      if (dayOfWeek === 3) {
+        return SERVICE_MORNING_TIMES.slice();
+      }
+      if (dayOfWeek >= 1 && dayOfWeek <= 5) {
+        return SERVICE_MORNING_TIMES.concat(SERVICE_AFTERNOON_TIMES);
+      }
+      return [];
+    }
+
     // Initialize Flatpickr for date selection
     const appointmentDateInput = document.getElementById('appointmentDate');
     const appointmentTimeSelect = document.getElementById('appointmentTime');
@@ -287,69 +305,35 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update time options based on selected date
       function updateTimeOptions(selectedDate) {
         if (!appointmentTimeSelect || !selectedDate) return;
-        
-        const dayOfWeek = selectedDate.getDay();
-        const isFriday = (dayOfWeek === 5);
+
+        const availableTimes = getServiceTimesForDay(selectedDate.getDay());
         const currentValue = appointmentTimeSelect.value;
-        
-        // Mo-Do Zeiten: 8:00 - 16:00
-        const mondayToThursdayTimes = [
-          '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-          '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00'
-        ];
-        
-        // Freitag Zeiten: 8:00 - 13:30
-        const fridayTimes = [
-          '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-          '12:00', '12:30', '13:00', '13:30'
-        ];
-        
-        const availableTimes = isFriday ? fridayTimes : mondayToThursdayTimes;
-        
-        // Clear and rebuild options
+
         appointmentTimeSelect.innerHTML = '<option value="">Bitte wählen Sie eine Uhrzeit</option>';
-        
+
         availableTimes.forEach(time => {
           const option = document.createElement('option');
           option.value = time;
           option.textContent = time + ' Uhr';
           appointmentTimeSelect.appendChild(option);
         });
-        
-        // Restore previous value if still valid
+
         if (availableTimes.includes(currentValue)) {
           appointmentTimeSelect.value = currentValue;
         }
       }
-      
-      // Check if time is valid for Fridays (only 8:00 - 13:30)
-      function isTimeValidForFriday(time) {
-        if (!time) return true;
-        const [hours, minutes] = time.split(':').map(Number);
-        const timeInMinutes = hours * 60 + minutes;
-        return timeInMinutes >= 480 && timeInMinutes <= 810; // 8:00 - 13:30
-      }
-      
       flatpickrInstance = flatpickr(appointmentDateInput, {
         locale: 'de',
         dateFormat: 'd.m.Y',
         minDate: earliestAppointmentDate,
         disable: [
           function(date) {
-            // Disable weekends (0 = Sunday, 6 = Saturday)
+            // Wochenende: Werkstatt-Annahme geschlossen
             if (date.getDay() === 0 || date.getDay() === 6) {
               return true;
             }
-            // Disable holidays
             if (isBavarianHoliday(date)) {
               return true;
-            }
-            // If time is selected and it's after 13:30, disable Fridays
-            const selectedTime = appointmentTimeSelect ? appointmentTimeSelect.value : null;
-            if (selectedTime && !isTimeValidForFriday(selectedTime)) {
-              if (date.getDay() === 5) { // Friday
-                return true;
-              }
             }
             return false;
           }
@@ -366,24 +350,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // When time changes, refresh Flatpickr to update disabled days
       if (appointmentTimeSelect) {
         appointmentTimeSelect.addEventListener('change', function() {
           if (flatpickrInstance) {
             flatpickrInstance.redraw();
-            
-            // Check if currently selected date is still valid
-            const currentDate = flatpickrInstance.selectedDates[0];
-            if (currentDate) {
-              const isFriday = currentDate.getDay() === 5;
-              const selectedTime = this.value;
-              
-              if (isFriday && selectedTime && !isTimeValidForFriday(selectedTime)) {
-                // Clear the date if Friday with invalid time
-                flatpickrInstance.clear();
-                alert('Die gewählte Uhrzeit ist freitags nicht verfügbar. Freitags sind nur Termine bis 13:30 Uhr möglich.\n\nBitte wählen Sie ein anderes Datum (Mo-Do) oder eine frühere Uhrzeit.');
-              }
-            }
           }
         });
       }
@@ -476,6 +446,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!time) {
         showError(document.getElementById('appointmentTime'), 'Bitte wählen Sie eine Uhrzeit');
         isValid = false;
+      } else {
+        const selectedDate = parseGermanDate(date);
+        const allowedTimes = selectedDate ? getServiceTimesForDay(selectedDate.getDay()) : [];
+        if (!allowedTimes.includes(time)) {
+          showError(document.getElementById('appointmentTime'), 'Die gewählte Uhrzeit ist an diesem Tag nicht verfügbar.');
+          isValid = false;
+        }
       }
       
       if (!name.trim()) {

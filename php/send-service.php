@@ -53,6 +53,21 @@ if ($parsedAppointmentDate < $earliestAppointmentDate) {
     rz_json_response(false, 'Termine sind frühestens eine Woche im Voraus möglich.', 422);
 }
 
+$dayOfWeek = (int) $parsedAppointmentDate->format('w');
+if ($dayOfWeek === 0 || $dayOfWeek === 6) {
+    rz_json_response(false, 'An Wochenenden ist die Werkstatt-Annahme nicht möglich.', 422);
+}
+
+$morningTimes = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00'];
+$afternoonTimes = ['14:00', '14:30', '15:00', '15:30', '16:00'];
+$allowedTimes = $dayOfWeek === 3
+    ? $morningTimes
+    : array_merge($morningTimes, $afternoonTimes);
+
+if (!in_array($appointmentTime, $allowedTimes, true)) {
+    rz_json_response(false, 'Die gewählte Uhrzeit ist an diesem Tag nicht verfügbar.', 422);
+}
+
 try {
     $config = rz_mail_load_config();
 } catch (Throwable $e) {
