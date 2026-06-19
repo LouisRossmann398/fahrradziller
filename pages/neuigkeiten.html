@@ -134,46 +134,78 @@
         const pdfLoading = document.getElementById('pdfLoading');
         const pdfViewerDesktop = document.querySelector('.pdf-viewer-desktop');
         const pdfViewerMobile = document.querySelector('.pdf-viewer-mobile');
+        const pdfFrame = document.getElementById('pdfFrame');
         
-        // Mobile Detection
-        const isMobile = window.innerWidth < 768;
+        function isMobileViewport() {
+          return window.matchMedia('(max-width: 767px)').matches;
+        }
         
-        // Funktion um PDF anzuzeigen
         function showPDF() {
           pdfLoading.style.display = 'none';
+          pdfNotAvailable.style.display = 'none';
           pdfAvailable.style.display = 'block';
           
-          if (isMobile) {
+          if (isMobileViewport()) {
             pdfViewerMobile.style.display = 'block';
+            pdfViewerDesktop.style.display = 'none';
           } else {
             pdfViewerDesktop.style.display = 'block';
+            pdfViewerMobile.style.display = 'none';
           }
         }
         
-        // Funktion um Platzhalter anzuzeigen
         function showPlaceholder() {
           pdfLoading.style.display = 'none';
+          pdfAvailable.style.display = 'none';
+          pdfViewerDesktop.style.display = 'none';
+          pdfViewerMobile.style.display = 'none';
           pdfNotAvailable.style.display = 'block';
         }
         
-        // Prüfen ob wir über HTTP(S) oder file:// laufen
-        if (window.location.protocol === 'file:') {
-          // Lokaler Test: Immer PDF anzeigen
-          showPDF();
-        } else {
-          // Auf Server: PDF Existenz prüfen
-          fetch(pdfUrl, { method: 'HEAD' })
-            .then(response => {
-              if (response.ok) {
-                showPDF();
-              } else {
-                showPlaceholder();
+        function isPdfResponse(response) {
+          if (!response.ok) return false;
+          const type = (response.headers.get('content-type') || '').toLowerCase();
+          return type.includes('pdf') || type.includes('octet-stream');
+        }
+        
+        function checkPdfAvailability() {
+          const checkUrl = pdfUrl + '?check=' + Date.now();
+          
+          // GET mit Range: zuverlässiger als HEAD (Safari cached HEAD oft zu aggressiv)
+          return fetch(checkUrl, {
+            method: 'GET',
+            cache: 'no-store',
+            headers: { Range: 'bytes=0-4' }
+          })
+            .then(function(response) {
+              if (response.status === 206 || response.status === 200) {
+                if (isPdfResponse(response)) return true;
+                return response.arrayBuffer().then(function(buf) {
+                  var bytes = new Uint8Array(buf);
+                  return bytes.length >= 4 &&
+                    bytes[0] === 0x25 && bytes[1] === 0x50 &&
+                    bytes[2] === 0x44 && bytes[3] === 0x46;
+                });
               }
+              return false;
             })
-            .catch(error => {
-              // Bei Fehler: Platzhalter anzeigen
+            .catch(function() { return false; });
+        }
+        
+        if (window.location.protocol === 'file:') {
+          checkPdfAvailability().then(function(available) {
+            if (available) showPDF();
+            else showPlaceholder();
+          });
+        } else {
+          checkPdfAvailability().then(function(available) {
+            if (available) {
+              if (pdfFrame) pdfFrame.src = pdfUrl + '#view=Fit&pagemode=none';
+              showPDF();
+            } else {
               showPlaceholder();
-            });
+            }
+          });
         }
       })();
     </script>
