@@ -3006,17 +3006,17 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 @media (min-width: 768px) {
   .bikesizing-hero-figure {
-    margin-bottom: var(--space-7);
+    margin-bottom: var(--space-5);
   }
 
   .bikesizing-split {
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: var(--space-8);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-6);
   }
 
   .bikesizing-gallery {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .bikesizing-cta__actions {
@@ -3028,6 +3028,87 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   .bikesizing-cta__actions .btn {
     width: auto;
     min-width: 200px;
+  }
+}
+
+/* Desktop: kompaktere Abstände auf der Bikesizing-Seite */
+@media (min-width: 1024px) {
+  .page-bikesizing .hero {
+    padding: var(--space-6) 0 var(--space-7);
+  }
+
+  .page-bikesizing .hero h1 {
+    font-size: clamp(2rem, 1.4rem + 1.6vw, 3rem);
+    margin-bottom: var(--space-3);
+  }
+
+  .page-bikesizing .section {
+    padding: var(--space-7) 0;
+  }
+
+  .page-bikesizing .section-head {
+    margin-bottom: var(--space-5);
+  }
+
+  .page-bikesizing .bikesizing-hero-media {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+
+  .page-bikesizing .bikesizing-hero-figure {
+    max-width: 820px;
+    margin-bottom: var(--space-4);
+  }
+
+  .page-bikesizing .bikesizing-hero-figure img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .page-bikesizing .bikesizing-split__media {
+    padding: var(--space-4);
+  }
+
+  .page-bikesizing .bikesizing-split__media img {
+    width: min(100%, 220px);
+  }
+
+  .page-bikesizing .bikesizing-split__content h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .page-bikesizing .bikesizing-split__content .check-list {
+    margin-top: var(--space-4);
+  }
+
+  .page-bikesizing .bikesizing-gallery img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .page-bikesizing .tip-card {
+    padding: var(--space-6);
+  }
+
+  .page-bikesizing .bikesizing-cta__actions {
+    margin-top: var(--space-4);
+  }
+
+  .page-bikesizing .bikesizing-partner-logo {
+    margin-top: var(--space-4);
+  }
+
+  .page-bikesizing .leasing-step-card .card-content {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .page-bikesizing .leasing-step-number {
+    font-size: 2.75rem;
+    margin-bottom: var(--space-2);
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-bikesizing .section {
+    padding: var(--space-7) 0;
   }
 }
 
