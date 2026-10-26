@@ -7,7 +7,9 @@ Diese Anleitung setzt voraus, dass Sie **Webhosting bei Strato** haben und die *
 Laden Sie den **gesamten Projektinhalt** hoch (mindestens):
 
 - `index.html`, `css/`, `js/`, `pages/`, `assets/`
-- `php/` (Skripte für Formular-E-Mails)
+- `angebote/` (Angebots-PDF, siehe README dort)
+- `hinweise/` (kurzfristiger Startseiten-Text als Word, siehe README dort)
+- `php/` (Skripte für Formular-E-Mails und Hinweis-Text)
 - `vendor/` (PHPMailer – **Pflicht**, liegt im Git-Repository)
 
 **Nicht** per Git mit hochladen: `php/mail-config.php` (nur **auf dem Server** anlegen, siehe Schritt 3).

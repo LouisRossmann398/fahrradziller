@@ -95,6 +95,48 @@ function showHolidayGreeting() {
   }
 }
 
+// ============================================
+// Kurzfristiger Hinweis (Startseite, Word-Datei)
+// ============================================
+
+function loadHomeHinweis() {
+  const section = document.getElementById('homeHinweis');
+  const textBox = document.getElementById('homeHinweisText');
+  if (!section || !textBox) return;
+
+  if (window.location.protocol === 'file:') {
+    return;
+  }
+
+  const url = 'php/get-hinweis.php?t=' + Date.now();
+
+  fetch(url, { method: 'GET', cache: 'no-store' })
+    .then(function(response) {
+      if (!response.ok) return null;
+      return response.json();
+    })
+    .then(function(data) {
+      if (!data || !data.ok || !Array.isArray(data.paragraphs) || data.paragraphs.length === 0) {
+        return;
+      }
+
+      textBox.textContent = '';
+      data.paragraphs.forEach(function(paragraph) {
+        if (typeof paragraph !== 'string' || !paragraph.trim()) return;
+        const p = document.createElement('p');
+        p.textContent = paragraph;
+        textBox.appendChild(p);
+      });
+
+      if (textBox.childElementCount > 0) {
+        section.hidden = false;
+      }
+    })
+    .catch(function() {
+      // Kein Hinweis = normale Startseite
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   
   // ============================================
@@ -102,6 +144,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // ============================================
   
   showHolidayGreeting();
+
+  // ============================================
+  // Kurzfristiger Hinweis (Word → Startseite)
+  // ============================================
+
+  loadHomeHinweis();
   
   // ============================================
   // Dynamisches Jahr im Footer und rechtlichen Seiten

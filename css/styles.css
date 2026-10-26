@@ -1233,6 +1233,43 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 }
 
 /* ============================================
+   Startseite – Kurzfristiger Hinweis (Word)
+   ============================================ */
+
+.home-hinweis {
+  padding: var(--space-6) 0 0;
+}
+
+.home-hinweis[hidden] {
+  display: none !important;
+}
+
+.home-hinweis__box {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+}
+
+.home-hinweis__text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.home-hinweis__text p {
+  margin: 0 0 var(--space-3);
+}
+
+.home-hinweis__text p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .home-hinweis {
+    padding-top: var(--space-7);
+  }
+}
+
+/* ============================================
    Startseite – Intro + Kacheln
    ============================================ */
 
