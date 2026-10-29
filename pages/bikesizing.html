@@ -200,64 +200,91 @@
 
     <section class="section section-alt" id="pakete">
       <div class="container">
-        <div class="bikesizing-packages-head">
-          <div class="section-head">
-            <span class="eyebrow">Preise &amp; Leistungen</span>
-            <h2>Bikesizing-Pakete</h2>
-            <p class="lead">Zwei klare Angebote – vom schnellen Einstieg bis zur erweiterten Beratung.</p>
-          </div>
+        <div class="section-head section-head--center bikesizing-offer-intro">
+          <span class="eyebrow">Unsere Angebote</span>
+          <h2>Welches Paket passt zu Ihnen?</h2>
+          <p class="lead">
+            Ob schneller Größen-Check oder ausführliche Feineinstellung –
+            Sie starten mit der richtigen Passform und fahren sicherer, komfortabler und mit mehr Freude.
+          </p>
+        </div>
+
+        <div class="bikesizing-offers">
+          <article class="bikesizing-offer">
+            <div class="bikesizing-offer__top">
+              <p class="bikesizing-offer__eyebrow">Einstieg</p>
+              <h3 class="bikesizing-offer__name">Basis</h3>
+              <p class="bikesizing-offer__pitch">
+                Ideal, wenn Sie ein neues Rad kaufen und schnell die passende
+                Rahmengröße sowie Sitzhöhe wissen möchten.
+              </p>
+              <p class="bikesizing-offer__duration">Dauer ca. 15 Minuten</p>
+            </div>
+
+            <div class="bikesizing-offer__pricing">
+              <p class="bikesizing-offer__price-was">regulär 25&nbsp;€</p>
+              <p class="bikesizing-offer__price-now">
+                <span class="bikesizing-offer__price-value">0&nbsp;€</span>
+                <span class="bikesizing-offer__price-note">für Neu- &amp; Bestandskunden<sup>1</sup></span>
+              </p>
+            </div>
+
+            <ul class="bikesizing-offer__features">
+              <li>Körpervermessung mit Smartfit Q2</li>
+              <li>Auswahl von bis zu 3 Bikes inkl. Rahmenhöhe</li>
+              <li>Sitzhöhe einstellen &amp; Probefahrt</li>
+              <li>Ergebnis per E-Mail oder Ausdruck</li>
+            </ul>
+
+            <a href="kontakt.html" class="btn btn-secondary btn--block bikesizing-offer__cta">Jetzt vorbeikommen</a>
+          </article>
+
+          <article class="bikesizing-offer bikesizing-offer--featured">
+            <p class="bikesizing-offer__ribbon">Empfohlen</p>
+            <div class="bikesizing-offer__top">
+              <p class="bikesizing-offer__eyebrow">Komplettberatung</p>
+              <h3 class="bikesizing-offer__name">Plus</h3>
+              <p class="bikesizing-offer__pitch">
+                Für alle, die nicht nur die Größe, sondern auch Sitzposition,
+                Sattel und Feineinstellung auf ihre Fahrweise abgestimmt haben wollen.
+              </p>
+              <p class="bikesizing-offer__duration">Dauer ca. 30 Minuten</p>
+            </div>
+
+            <div class="bikesizing-offer__pricing">
+              <p class="bikesizing-offer__price-now">
+                <span class="bikesizing-offer__price-value">50&nbsp;€</span>
+                <span class="bikesizing-offer__price-note">inkl. MwSt.</span>
+              </p>
+              <p class="bikesizing-offer__upgrade">
+                Als Kunde zahlen Sie nur die Differenz von 25&nbsp;€ zum Basispaket<sup>1</sup>
+              </p>
+            </div>
+
+            <ul class="bikesizing-offer__features">
+              <li>Alles aus dem Basis-Paket</li>
+              <li>Erweiterte Beratung &amp; Feineinstellung auf Fahrweise</li>
+              <li>Sitzknochenmessung &amp; Sattelauswahl</li>
+              <li>Ergebnis per E-Mail oder Ausdruck</li>
+            </ul>
+
+            <a href="kontakt.html" class="btn btn-primary btn--block bikesizing-offer__cta">Plus-Paket wählen</a>
+          </article>
+        </div>
+
+        <div class="bikesizing-offer-foot">
           <img
-            class="bikesizing-packages-logo"
             src="../assets/images/smartfit/smartfit-logo.svg"
             alt="Smartfit"
-            width="160"
-            height="36"
+            width="140"
+            height="32"
             loading="lazy"
             decoding="async">
+          <p>
+            <sup>1</sup> Basis ist gratis für Neu- und Bestandskunden. Beim Plus-Paket zahlen Kunden
+            nur die Differenz von 25&nbsp;€ zum Basispaket. Ohne Terminbuchung – einfach während der Öffnungszeiten vorbeikommen.
+          </p>
         </div>
-
-        <div class="bikesizing-packages">
-          <article class="bikesizing-package">
-            <header class="bikesizing-package__header">
-              <h3>Basis</h3>
-              <p class="bikesizing-package__time">ca. 15 Minuten</p>
-            </header>
-            <ul class="check-list bikesizing-package__list">
-              <li>Körpervermessung</li>
-              <li>Auswahl von bis zu 3 Bikes inklusive passender Rahmenhöhe</li>
-              <li>Perfekt eingestellte Sitzhöhe mit anschließender Probefahrt</li>
-              <li>Ergebnisse per E-Mail oder als Ausdruck</li>
-            </ul>
-            <div class="bikesizing-package__price">
-              <span class="bikesizing-package__amount">25&nbsp;€</span>
-              <span class="bikesizing-package__vat">inkl. MwSt.</span>
-            </div>
-            <p class="bikesizing-package__promo">Gratis für Neu- und Bestandskunden<sup>1</sup></p>
-          </article>
-
-          <article class="bikesizing-package bikesizing-package--plus">
-            <header class="bikesizing-package__header">
-              <h3>Plus</h3>
-              <p class="bikesizing-package__time">ca. 30 Minuten</p>
-            </header>
-            <ul class="check-list bikesizing-package__list">
-              <li>Körpervermessung</li>
-              <li>Auswahl von bis zu 3 Bikes inklusive passender Rahmenhöhe</li>
-              <li>Perfekt eingestellte Sitzhöhe mit anschließender Probefahrt</li>
-              <li>Erweiterte Bikesizing-Beratung mit Feineinstellung auf Fahrweise</li>
-              <li>Inklusive Sitzknochenmessung und Sattelauswahl</li>
-              <li>Ergebnisse per E-Mail oder als Ausdruck</li>
-            </ul>
-            <div class="bikesizing-package__price bikesizing-package__price--accent">
-              <span class="bikesizing-package__amount">50&nbsp;€</span>
-              <span class="bikesizing-package__vat">inkl. MwSt.</span>
-            </div>
-          </article>
-        </div>
-
-        <p class="bikesizing-packages-note">
-          <sup>1</sup> Bei Wahl des Plus-Pakets zahlen Sie als Kunde nur die Differenz zum Basispaket von 25&nbsp;€.
-        </p>
       </div>
     </section>
     
