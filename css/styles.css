@@ -3160,7 +3160,7 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
 
 .bikesizing-offer__features {
   list-style: none;
-  margin: 0 0 var(--space-6);
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -3187,8 +3187,16 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   transform: rotate(-45deg);
 }
 
-.bikesizing-offer__cta {
-  margin-top: auto;
+.bikesizing-offers-cta {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-6) auto 0;
+  max-width: 980px;
+}
+
+.bikesizing-offers-cta .btn {
+  min-width: min(100%, 280px);
+  justify-content: center;
 }
 
 .bikesizing-offer-foot {
