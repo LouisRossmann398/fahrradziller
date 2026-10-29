@@ -3187,18 +3187,6 @@ body.page-home .hero p { margin-left: auto; margin-right: auto; text-align: cent
   transform: rotate(-45deg);
 }
 
-.bikesizing-offers-cta {
-  display: flex;
-  justify-content: center;
-  margin: var(--space-6) auto 0;
-  max-width: 980px;
-}
-
-.bikesizing-offers-cta .btn {
-  min-width: min(100%, 280px);
-  justify-content: center;
-}
-
 /* Startseite: Service-Spotlight */
 .home-service-spotlight {
   display: grid;
