@@ -194,6 +194,40 @@
         </div>
       </div>
     </section>
+
+    <!-- Schnellnavigator -->
+    <nav class="home-quicknav" aria-label="Schnellzugriff">
+      <div class="container">
+        <p class="home-quicknav__label">Direkt zu</p>
+        <ul class="home-quicknav__list">
+          <li>
+            <a href="pages/bikesizing.html" class="home-quicknav__link home-quicknav__link--new">
+              <span class="home-quicknav__badge">Neu</span>
+              <span class="home-quicknav__title">Bikesizing</span>
+              <span class="home-quicknav__text">Rahmengröße per Smartfit Q2</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/fahrraeder.html" class="home-quicknav__link">
+              <span class="home-quicknav__title">Fahrräder</span>
+              <span class="home-quicknav__text">E-Bikes, MTB &amp; mehr</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/service.html" class="home-quicknav__link">
+              <span class="home-quicknav__title">Service</span>
+              <span class="home-quicknav__text">Reparatur &amp; Termin</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/leasing.html" class="home-quicknav__link">
+              <span class="home-quicknav__title">Leasing</span>
+              <span class="home-quicknav__text">JobRad &amp; Partner</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     
     <!-- Intro: Familienbetrieb + Kacheln -->
     <section class="section">
@@ -239,11 +273,11 @@
       </div>
     </section>
     
-    <!-- Bikesizing Teaser -->
+    <!-- Neu im Serviceprogramm -->
     <section class="section section-alt">
       <div class="container">
-        <div class="tip-card">
-          <figure class="bikesizing-teaser-media">
+        <div class="home-service-spotlight">
+          <div class="home-service-spotlight__media">
             <picture>
               <source srcset="assets/images/smartfit/q2-store.webp" type="image/webp">
               <img
@@ -254,14 +288,19 @@
                 loading="lazy"
                 decoding="async">
             </picture>
-          </figure>
-          <span class="eyebrow">Neu bei uns</span>
-          <h3>Bikesizing mit Smartfit Q2</h3>
-          <p>
-            Finden Sie die passende Rahmengröße und Sitzhöhe per KI-Vermessung –
-            kontaktlos, präzise und ohne Terminbuchung.
-          </p>
-          <a href="pages/bikesizing.html" class="btn btn-primary btn--lg btn--block">Mehr zum Bikesizing</a>
+          </div>
+          <div class="home-service-spotlight__content">
+            <span class="eyebrow">Neu im Serviceprogramm</span>
+            <h2>Bikesizing mit Smartfit Q2</h2>
+            <p>
+              Passende Rahmengröße und Sitzhöhe per KI-Vermessung – kontaktlos, präzise
+              und ohne Terminbuchung. Basis gratis für Neu- und Bestandskunden.
+            </p>
+            <div class="home-service-spotlight__actions">
+              <a href="pages/bikesizing.html" class="btn btn-primary btn--lg">Zum Bikesizing</a>
+              <a href="pages/bikesizing.html#pakete" class="btn btn-secondary btn--lg">Pakete &amp; Preise</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
